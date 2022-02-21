@@ -1,0 +1,108 @@
+.h2{
+
+	font-size: 2rem;
+	font-weight: 700;
+	color: #002F34;
+	font-family: Helvetica,Lato, sans-serif;
+}
+.h3{
+
+	font-size: 1.4rem;
+	font-weight: 700;
+	color: #002F34;
+	justify-content: center;
+	font-family: Helvetica,Lato, sans-serif;
+}
+.icn{
+	color: #002F34;
+}
+.card_color,.input_border,.input_checkbox,.input_checkbox2,.input_checkbox3{
+	border: 0.2px solid #002F34;
+}
+.card_color2{
+	border: 0.1px solid #002F34;
+	height: .1%;
+}
+
+.btn_color,.btn_ads{
+	background-color: #002F34;
+	color: #ffffff;
+	font-size: 1.2vw;
+    display: inline-block;
+    padding: 12px 90px;
+  
+    border-radius: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.package,.span
+{
+    font-size: 1rem;
+	font-weight: 650;
+	
+	justify-content: center;
+	font-family: Helvetica,Lato, sans-serif;
+}
+.package{
+	color: #002F34;
+}
+.span{
+	color: #A3B4B8 !important;
+}
+.span2{
+	font-size: .9rem;
+	color: #002F34;
+}
+.input{
+	width: 15%;
+}
+.package_price{
+	position: relative;
+}
+.package_price .discount{
+position: absolute;
+top: 13%;
+left: 6%;
+font-size: 1.1rem;
+	font-weight: 600;
+	color: #002F34;
+}
+hr{
+	color: #002F34;
+}
+.input_checkbox,.input_checkbox2,.input_checkbox3{
+  display: flex;
+  width: 13%;
+  height: 3rem;
+  color:#002F34 ;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3%;
+}
+.input_checkbox label,.input_checkbox2 label,.input_checkbox3 label{
+	 font-size: 1vw;
+	 font-weight: 600;
+}
+.all_checkbox,.all_checkbox2{
+	display: flex;
+   height: 5rem;
+   flex-wrap: wrap;
+}
+.input_checkbox input,.input_checkbox2 input,.input_checkbox3 input{
+	display: none;
+}
+.property_for_sale,.property_for_sale2{
+	border: .2px solid #002F34;
+	width: 100%;
+	height: 3rem;
+	font-size: vw;
+	color: #002F34;
+	font-weight: 600;
+	cursor: pointer;
+	text-decoration: none;
+}
+.category_append{
+	display: flex;
+	flex-direction: column;
+}

@@ -1,0 +1,85 @@
+.con{
+	color: #002F34;
+}
+.item_price{
+	display: flex;
+	justify-content: space-between;
+}
+.item_price h5,.detail h5{
+	font-size: 2vw;
+	font-weight: 700;
+	font-family:font-family: Helvetica,Lato, sans-serif;
+}
+.item_price p{
+	font-size: 1vw;
+	color: #002f34;
+	font-family:font-family: Helvetica,Lato, sans-serif;
+}
+.p-name {
+	font-size: 1.2vw;
+	color: #002f34;
+	font-family:font-family: Helvetica,Lato, sans-serif;
+}
+.item_pri,.icon2,.item_imges
+{
+display: flex;
+
+}
+.item_imges
+{
+display: flex;
+overflow-x: auto;
+}
+.item_imges img{
+	margin-left: 2%;
+}
+.selller_description,.phone{
+	display: flex;
+	flex-direction: row;
+   justify-content: center;
+	font-family:font-family: Helvetica,Lato, sans-serif;
+}
+.selller_description h6{
+ font-size: 1.5rem;
+}
+.seller_name p{
+ font-size: .8rem;
+}
+.selller_description i{
+	margin-left: 30%;
+	margin-top: 8%;
+}
+.phone a{
+	margin-left: 5%;
+}
+.description,.descriptio{
+	font-size: 1.2rem;
+	font-weight: 650;
+	margin-left: 5%;
+	color: #002F34;
+	font-family:font-family: Helvetica,Lato, sans-serif;
+}
+.descriptio{
+	margin-left: 0%;
+}
+.btn_chat{
+
+	width: 95%;
+	height: 20%;
+	color: #ffffff;
+	margin-left: 3%;
+	margin-top: 3%;
+	background-color: #002F34;
+}
+.card_border{
+	border: 1px solid #002F34;
+}
+.price{
+	display: flex;
+	justify-content: space-between;
+}
+.descption p{
+	margin-bottom: 0%;
+	font-family:font-family: Helvetica,Lato, sans-serif;
+	font-size: 1vw;
+}
