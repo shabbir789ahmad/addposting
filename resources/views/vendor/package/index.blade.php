@@ -7,6 +7,7 @@
   <div class="text-center py-5" style="background-color:#FFF6D9">
    <img src="{{asset('pic/businessMulti.9a0300207061151bc35b7093edbdba6a.webp')}}" width="10%">
    <p class="package mt-4 mb-2">Heavy discount on Packages</p>
+   <a class="btn_color" href="{{route('cart')}}">Cart</a>
   </div>
  </div>
 </div>

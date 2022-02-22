@@ -4,7 +4,7 @@
       <label for="check" class="checkbtn">
         <i class="fas fa-bars"></i>
       </label>
-      <label class="logo">CLASSY<span>ADS</span></label>
+      <label class="logo"><a href="{{url('/')}}" class="link">CLASSY<span>ADS</span></a></label>
       <button class="btn btn_upload_adds"><i class="fa-solid fa-plus"></i>Post Adds</button>
       @guest
           @if (Route::has('login'))
@@ -43,7 +43,7 @@
           @endif
      @endguest
     <ul class="ul">
-        <li class="li"><a class="active" href="#">Home</a></li>
+        <li class="li"><a class="active" href="{{url('/')}}">Home</a></li>
         <li class="li"><a href="#">About</a></li>
         <li class="li"><a href="#">Contact</a></li>
       </ul>

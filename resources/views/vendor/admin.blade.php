@@ -111,6 +111,12 @@
           <span>All Ads</span>
         </a>
        </li>
+       <li class="nav-item ">
+        <a class="nav-link " href="{{route('ads.index')}}">
+          <i class="fas fa-address-card text-light"></i>
+          <span>Your Profile</span>
+        </a>
+       </li>
     
       
       
@@ -245,6 +251,43 @@ function myFunction(id,res) {
     }
        
 });
+ //remove from cart
+ $('.remove_from_cart').click(function(){
+   
+   let id=$(this).parents('td').parents('tr').children('.id').find('input').val();
+ 
+  $.ajax({
+
+      url:'remove-from-cart/'+id,
+      method:'GET',
+  }).done(function(res){
+    window.location.reload();
+
+  }).fail(function(){
+
+  });
+
+
+ });
+ //update cart
+  $(".update_cart").change(function (e) {
+       
+       
+        let id=$(this).parents('td').parents('tr').children('.id').find('input').val();
+
+       $.ajax({
+            url:'update-from-cart/'+id,
+            method: "patch",
+            data: {
+                _token: '{{ csrf_token() }}', 
+                id: id, 
+                quentity: $(this).val()
+            },
+            success: function (response) {
+               // window.location.reload();
+            }
+        });
+    });
  
 </script>
 </body>

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('user_image');
             $table->string('phone');
             $table->bigInteger('type');
+            $table->bigInteger('approve');
             $table->rememberToken();
             $table->timestamps();
         });

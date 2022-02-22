@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\StateController;
 use App\Http\Controllers\admin\CityController;
 use App\Http\Controllers\admin\CountDataController;
 use App\Http\Controllers\admin\AreaController;
+use App\Http\Controllers\admin\UserController;
 
 use App\Http\Controllers\vendor\PackageController;
 use App\Http\Controllers\vendor\AdsController;
@@ -119,6 +120,13 @@ Route::group(['prefix'=>'admin'],function()
     Route::post('/city/store', 'store')->name('city.store');
     Route::delete('/city/{id}/destroy', 'destroy')->name('city.destroy');
   });
+  Route::controller(UserController::class)->group(function () {
+    Route::get('/vendor', 'index')->name('vendor.index');
+    Route::get('approve/this/user','update');
+
+    Route::delete('/vendor/{id}/destroy', 'destroy')->name('vendor.destroy');
+    Route::get('/user', 'index2')->name('user.index');
+  });
 
   });
 });
@@ -139,6 +147,7 @@ Route::group(['middleware'=>'vendor'],function()
     Route::put('/package/{id}/update', 'update')->name('package.update');
     Route::post('/package/store', 'store')->name('package.store');
     Route::delete('/package/{id}/destroy', 'destroy')->name('package.destroy');
+
    
   });
    Route::controller(AdsController::class)->group(function () {
@@ -156,7 +165,8 @@ Route::group(['middleware'=>'vendor'],function()
    //add to cart route
    Route::get('add-to-cart/{id}',[CartController::class,'addToCart']);
    Route::get('/remove-from-cart/{id}',[CartController::class,'remove']);
-   Route::get('/cart',[CartController::class,'cart'])->name('cart');
+   Route::patch('/update-from-cart/{id}',[CartController::class,'update']);
+   Route::view('/cart','vendor.package.cart')->name('cart');
 });
 
 

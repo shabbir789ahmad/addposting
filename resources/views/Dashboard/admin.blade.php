@@ -97,6 +97,18 @@
           <span>City</span>
         </a>
        </li>
+       <li class="nav-item ">
+        <a class="nav-link " href="{{route('vendor.index')}}">
+          <i class="fas fa-window-maximize text-light"></i>
+          <span>Vendor</span>
+        </a>
+       </li>
+       <li class="nav-item ">
+        <a class="nav-link " href="{{route('user.index')}}">
+          <i class="fas fa-window-maximize text-light"></i>
+          <span>Users</span>
+        </a>
+       </li>
     
       
       
@@ -256,11 +268,7 @@
 <script>
  
 
- let elems2 = Array.prototype.slice.call(document.querySelectorAll('.js-switchv'));
 
-elems2.forEach(function(html) {
-    let switchery = new Switchery(html,  { size: ' small' });
-});
  
 let elemsu = Array.prototype.slice.call(document.querySelectorAll('.js-switchu'));
 
@@ -285,35 +293,10 @@ $('.discount').click(function(){
      
     
 </script>
-<script>
 
-$('.js-switchu').change(function () {
-
-        let status = $(this).prop('checked') === true ? 1 : 0;
-        
-        let id = $(this).data('id');
-       $('#notifi_modal').modal('show');
-       $('#moda').val(id)
-       $('#video_title').val($(this).data('title'))
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-           url : '/approve/this/modal',
-            
-           data: {'approve': status, 'id': id},
-            success: function (data) {
-               console.log('ddf');
-           }
-       });
-       
-  
-        
-    });
-  
-
+@section('script')
+@show
     
-</script>
-
 </body>
 
 </html>

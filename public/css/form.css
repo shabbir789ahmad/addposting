@@ -5,6 +5,10 @@
 	color: #002F34;
 	font-family: Helvetica,Lato, sans-serif;
 }
+.header{
+	background-color: #182430;
+
+}
 .h3{
 
 	font-size: 1.4rem;
@@ -22,6 +26,18 @@
 .card_color2{
 	border: 0.1px solid #002F34;
 	height: .1%;
+}
+
+.btn_color2{
+	background-color: #002F34;
+	color: #ffffff;
+	font-size: 1.2vw;
+    display: inline-block;
+    
+    width: 100%;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .btn_color,.btn_ads{
