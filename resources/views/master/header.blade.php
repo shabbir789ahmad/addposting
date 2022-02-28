@@ -4,7 +4,7 @@
       <label for="check" class="checkbtn">
         <i class="fas fa-bars"></i>
       </label>
-      <label class="logo"><a href="{{url('/')}}" class="link">CLASSY<span>ADS</span></a></label>
+      <label class="logo"><a href="{{url('/')}}" class="link text-dark">Real<span>Estate</span></a></label>
       <button class="btn btn_upload_adds"><i class="fa-solid fa-plus"></i>Post Adds</button>
       @guest
           @if (Route::has('login'))

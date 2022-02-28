@@ -112,9 +112,15 @@
         </a>
        </li>
        <li class="nav-item ">
-        <a class="nav-link " href="{{route('ads.index')}}">
+        <a class="nav-link " href="{{route('vendor.index')}}">
           <i class="fas fa-address-card text-light"></i>
           <span>Your Profile</span>
+        </a>
+       </li>
+       <li class="nav-item ">
+        <a class="nav-link " href="{{route('labour.index')}}">
+          <i class="fas fa-address-card text-light"></i>
+          <span>Your User</span>
         </a>
        </li>
     
@@ -185,12 +191,11 @@
   
  @if(Session()->has('success'))
 <script>
-   swal.fire({
-  title: ' {{ Session('success') }}',
-  text: "Upload More",
-  icon: "success",
-  
-}); 
+ var x = document.getElementById("snackbar");
+  x.className = "show";
+  x.innerHTML='{{ Session('success') }}';
+  x.style.backgroundColor ='#182430'
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 
 </script>
 {{Session::forget('success')}}

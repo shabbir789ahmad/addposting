@@ -5,6 +5,8 @@ namespace App\Http\Controllers\vendor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Package;
+use App\Models\Cart;
+use Auth;
 class CartController extends Controller
 {
    public function addToCart($id,Request $req)
@@ -56,5 +58,31 @@ class CartController extends Controller
         }
     }
 
-    
+    function order(Request $request)
+    {
+        $cart=session()->get('cart');
+      
+        foreach($cart as $cart)
+        {
+          $data=[
+             
+              'item_name'=>$cart['package_name'],
+              'item_quentity'=>$cart['package_quentity'],
+              'item_ads'=>$cart['package_ads'],
+              'item_total'=>$cart['package_price']*$cart['package_quentity'],
+              'user_id'=>Auth::user()->id,
+          ];
+         
+         try{
+
+            Cart::create($data);
+            session()->forget('cart');
+            return to_route('vendor.dashboard')->with('success','Your Order Has Been Placed');
+         }catch(\Exception $e)
+         {
+            return redirect()->back()->with('success','Could Not Place Order');
+         }
+           return \App\Helpers\Form::CreateEloquent(new Cart, $data);
+        }
+    }
 }

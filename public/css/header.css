@@ -61,7 +61,7 @@ label.logo{
   text-transform: uppercase;
   text-decoration: none;
 }
-a.active,a:hover{
+.li a.active, .li a:hover{
   background: #30E3CA;
   transition: .5s;
   color: #ffffff;

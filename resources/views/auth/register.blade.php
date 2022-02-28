@@ -18,7 +18,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
+            <div class="card shadow" style="border: 1.2px solid #002F34;">
                 <div class="d-flex mt-4">
                 <button type="button" class="btn btn_color w-50 mr-2 active" id="user_form" disabled>Register as User</button>
                 <button type="button" class="btn btn_color w-50 "  id="vendor_form">Register as Vendor</button>

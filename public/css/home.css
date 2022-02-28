@@ -1,6 +1,41 @@
 product_data.img{
 	filter: grayscale(100%);
 }
+.show_more_filter,.hide_more_filter 
+{ 
+  font-size: 1.2vw;
+  color:#002f34 ;
+  text-decoration: none;
+}
+.hide_more_filter{
+  float: right;
+}
+.input_checkbox3{
+  display: flex;
+  width: 30%;
+  height: 3rem;
+  color:#002f34;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3%;
+  margin-left: 2%;
+  border: .2px solid #002f34;
+}
+.input_checkbox3 label{
+   font-size: 1vw;
+   font-weight: 600;
+}
+.all_checkbox{
+  display: flex;
+   height: 5rem;
+   flex-wrap: wrap;
+}
+.input_checkbox3 input{
+  display: none;
+}
+
+
+
 .herth{
 	margin-right: 3%;
 }
@@ -56,6 +91,7 @@ transition: .5s ease;
   color:#000000 ;
   text-decoration: none;
 }
+
 .product_data span
 {
   float: right;
@@ -124,7 +160,7 @@ transition: .5s ease;
 .container_background2
 {
  position: absolute;
- top: 30%;
+ top: 20%;
  left: 10%;
  width: 80%;
  height: 9rem;
@@ -278,4 +314,10 @@ font-size: 1.5rem;
 
 #seeMore:hover{
   opacity:1;
+}
+.contact button{
+  color: #403b45;
+}
+.contact button i{
+  color: #002F34;
 }

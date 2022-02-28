@@ -22,6 +22,7 @@ trait ImageTrait
        return $image;;
    }
 
+
  
 
  }

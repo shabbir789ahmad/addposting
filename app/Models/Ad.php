@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Ad extends Model
 {
     use HasFactory;
-    protected $fillable=['total_ads','used_ads','price'];
+    protected $fillable=['total_ads','used_ads','cart_id','user_id'];
 }

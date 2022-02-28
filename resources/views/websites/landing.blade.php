@@ -10,24 +10,125 @@
   <div class="container mt-5 text-center">
     <h1 class="heading">{{ucfirst($slider->heading1)}}</h1>
    <p>{{ucfirst($slider->heading2)}}</p>
-   <div class="row bg-dark p-4">
-    <div class="col-md-5 col-12 col-sm-12 mt-2">
-     <input type="search" name="search" class="form-control" placeholder="Search Here">
+   <div class="row bg-light rounded p-4 pb-5">
+    <div class="row">
+      <form action="{{route('searchresult')}}" method="GET">
+      
+     <div class="col-md-3 col-12 all_checkbox p-0">
+       <div type="button" class="input_checkbox3  p-2 mt-2">
+         <label>Buy</label>
+         <input type="checkbox" name="buy" value="buy" class="buy" >
+       </div>
+       <div type="button" class="input_checkbox3  p-2 mt-2">
+         <label>Rent</label>
+         <input type="checkbox" name="buy" value="rent" class="buy" >
+       </div>
+     </div>
     </div>
-    <div class="col-md-5 col-12 col-sm-12 mt-2">
-      <select class="form-control" name="Category">
-   	   <option selected disabled hidden>All Categories</option>
+    
+    <div class="col-md-4 col-12 col-sm-12 mt-2 p-1">
+     <input type="search" name="search" class="form-control border border-secondary" placeholder="Search Here">
+    </div>
+    <div class="col-md-2 col-6 col-sm-12 p-0 mt-2 p-1">
+      <select class="form-control border border-secondary" name="category">
+   	   <option selected disabled hidden>Property Type</option>
        @foreach($categories as $category)
    	   <option value="{{$category['id']}}">{{ucfirst($category['category_name'])}}</option>
        @endforeach
       </select>
     </div>
-    <div class="col-md-2 col-12 col-sm-12 mt-2">
-      <button class="btn btn-lg  search_btn w-100"> Search</button>
+    <div class="col-md-2 col-6 col-sm-12 mt-2 p-1">
+      <select class="form-control border border-secondary" name="city">
+       <option selected disabled hidden>Select City</option>
+       @foreach($cities as $city)
+       <option value="{{$city['city']}}">{{ucfirst($city['city'])}}</option>
+       @endforeach
+      </select>
+    </div>
+    <div class="col-md-2 col-6 col-sm-12 mt-2 p-1">
+      <select class="form-control border border-secondary" name="city">
+       <option selected disabled hidden>Bed Rooms</option>
+       @foreach($cities as $city)
+       <option value="1">1</option>
+       <option value="2">2</option>
+       <option value="3">3</option>
+       <option value="4">4</option>
+       <option value="5">5</option>
+       <option value="6">6</option>
+       <option value="7">7</option>
+       @endforeach
+      </select>
+    </div>
+    <div class="col-md-2 col-12 col-sm-12 mt-2 p-2">
+      <button class="btn btn-lg  search_btn w-100" type="submit"> Search</button>
+     <label class="show_more_filter mt-2">More Filter  <i class="fas fa-arrow-down rounded border border-dark py-1 px-2 "></i></label>
+    </div>
+
+   
+     
+   
+    <div class="row more_filter" style="display:none">
+     <!-- <div class="col-md-2 col-6 col-sm-12 mt-2">
+      <select class="form-control" name="min_area" >
+       <option selected disabled hidden> Area Sqrt (min area)</option>
+       
+       <option>500</option>
+              <option>600</option>
+              <option>700</option>
+              <option>800</option>
+              <option>900</option>
+              <option>1000</option>
+              <option>1100</option>
+              <option>1200</option>
+              <option>1300</option>
+              <option>1500</option>
+              <option>1600</option>
+              <option>1700</option>
+              <option>1800</option>
+              <option>1900</option>
+              <option>2000</option>
+              <option>2100</option>
+      </select>
+    </div> -->
+    <div class="col-md-3 col-6 col-sm-12 mt-2 p-1">
+      <select class="form-control border border-secondary" name="areaunit" >
+        <option selected disabled hidden> Area Unit</option>
+        @foreach($areas as $area)
+       <option value="{{$area['areaunit']}}">{{ucfirst($area['areaunit'])}}</option>
+       @endforeach
+      </select>
+    </div>
+    <div class="col-md-3 col-6 col-sm-12 mt-2 p-1">
+      <select class="form-control border border-secondary" name="min_price">
+       <option selected disabled hidden>Minimum Price</option>
+       @foreach($prices as $price)
+       <option value="{{$price['price1']}}">${{ucfirst($price['price1'])}}</option>
+       @endforeach
+      </select>
+    </div>
+    <div class="col-md-3 col-6 col-sm-12 mt-2 p-1">
+      <select class="form-control border border-secondary" name="max_price">
+       <option selected disabled hidden>Maximum Price</option>
+       @foreach($prices as $price)
+       <option value="{{$price['price1']}}">${{ucfirst($price['price1'])}}</option>
+       @endforeach
+      </select>
+    </div>
+    <div class="col-md-3 col-6 col-sm-12 mt-2 p-1">
+      <select class="form-control border border-secondary" name="amenities">
+       <option selected disabled hidden> Amenities</option>
+       @foreach($features as $feature)
+       <option value="{{$feature['sub_category_name']}}">{{ucfirst($feature['sub_category_name'])}}</option>
+       @endforeach
+      </select>
+      <label class="hide_more_filter mt-2 float-right">Hide Filter
+      <i class="fas fa-arrow-up rounded border border-dark py-1 px-2 "></i></label>
+    </div>
     </div>
    </div>
   </div>
 </div>
+</form>
 @endforeach
 
  <div class="container mt-5">
@@ -133,14 +234,14 @@
           </div>
           <div class="product_data mb-0 mt-4">
            <h5>{{ucfirst($product['name'])}}</h5>
-           <p>{{ucfirst($product['location'])}}</p>
-           <div class="text-center">
+           <p>{{ucfirst($product['location'])}}<span class="mr-3">${{ucfirst($product['price'])}}</span></p>
+           <!-- <div class="text-center">
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star"></span>
             <span class="fa fa-star"></span>
-           </div>
+           </div> -->
           </div>
        </div>
      </div>

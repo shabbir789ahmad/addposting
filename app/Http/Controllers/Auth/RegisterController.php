@@ -5,23 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Ad;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use DB;
 class RegisterController extends Controller
 {
-   
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
+  
 
     use RegistersUsers;
 
@@ -78,13 +69,27 @@ class RegisterController extends Controller
             $file->move('uploads/img/',$name);
           
           }
-        return User::create([
+
+          //DB::transaction(function() use($data,$name){
+        $user= User::create([
             'user_name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'phone'=>$data['phone'],
             'user_image'=>$name,
             'type'=>$data['type'],
+            'approve'=>0,
         ]);
+
+        if($data['type']==1)
+        {
+            Ad::create([
+             
+              'total_ads'=>5,
+              'user_id'=>$user['id'],
+            ]);
+        }
+     return $user;
+        //});
     }
 }

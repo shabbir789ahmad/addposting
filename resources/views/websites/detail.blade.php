@@ -42,7 +42,9 @@
        <p class="p-name">{{ucfirst($products['name'])}}</p>
        <div class="item_price">
        	<p>{{ucfirst($products['location'])}}</p>
-        <p>3 days ago</p>
+        @php $now = time(); @endphp
+        @php $datediff = $now - strtotime($products['created_at']); @endphp
+        <p>{{floor($datediff / (60 * 60 * 24))}} days ago</p>
        </div>
       </div>
      </div>
@@ -50,15 +52,17 @@
      <div class="card card_border mt-4 p-0">
       <div class="card-body p-0 pt-4">
        <p class="description">Seller Description</p>
+       <a href="{{route('vendor.product',['id'=>$products['user_id']])}}" class="mt-3  text-dark link">
        <div class="selller_description">
         <img src="{{asset('pic/iconProfilePicture.7975761176487dc62e25536d9a36a61d.png')}}" width="20%">
         <div class="seller_name mt-2">
          <h6 class="p-0">{{ucfirst($products['user_name'])}}</h6>
-         <p class="p-0">Member since Aug 2017</p>
+         <p class="p-0">Member since  {{date('Y',strtotime($products['created_at']))}}</p>
          
         </div>
         <i class="fa-solid fa-arrow-right-long fa-lg "></i>
-       </div>
+        
+       </div></a>
        <button  class="btn btn_chat">Chat With Seller</button>
         <div class="phone text-center mt-3">
           <i class="fa-solid fa-phone fa-lg mt-3 pr-5">..</i>

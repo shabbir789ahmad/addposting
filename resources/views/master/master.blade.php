@@ -39,6 +39,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{{asset('js/category.js')}}"></script>
   <script src="{{asset('js/filter.js')}}"></script>
+  <script src="{{asset('js/rent.js')}}"></script>
 <script type="text/javascript">
 
   $(document).ready(function(){
@@ -61,23 +62,24 @@
 })});
 
   $(document).ready(function(){
-  $(".a").slice(0,4).show();
+  $(".a").slice(0,20).show();
   $("#seeMore").click(function(e){
     e.preventDefault();
-    $(".a:hidden").slice(0,4).fadeIn("slow");
+    $(".a:hidden").slice(0,20).fadeIn("slow");
     
     if($(".a:hidden").length == 0){
        $("#seeMore").fadeOut("slow");
       }
   });
 
-   $(".b").slice(0,4).show();
+   $(".b").slice(0,20).show();
   $("#seeMore").click(function(e){
     e.preventDefault();
-    $(".b:hidden").slice(0,4).fadeIn("slow");
+    $(".b:hidden").slice(0,20).fadeIn("slow");
     
     if($(".b:hidden").length == 0){
-       $("#seeMore").fadeOut("slow");
+       $("#seeMore").fadeOut();
+       $("#h1").css("display",'block').fadeIn('slow')
       }
   });
 })

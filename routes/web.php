@@ -16,19 +16,26 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\vendor\PackageController;
 use App\Http\Controllers\vendor\AdsController;
 use App\Http\Controllers\vendor\CartController;
+use App\Http\Controllers\vendor\VendorContoller;
+use App\Http\Controllers\vendor\LabourContoller;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\SearchResultController;
 
 Auth::routes();
 
-// Route::get('/', function () {
-//     return view('websites.landing');
-// });
+ // Route::get('/searchresult', function () {
+ //     return view('websites.searchresult');
+ // });
+
  Route::get('/',[HomeController::class,'index']);
 Route::view('ads/detail','');
 Route::get('ads/{id}detail',[HomeController::class,'adsdetail'])->name('ads.detail');
 Route::get('all/{id}/ads',[HomeController::class,'allAds'])->name('all.ads');
 Route::get('sort/ads',[HomeController::class,'sortAds'])->name('sort.ads');
+Route::get('vendor/{id}/product',[HomeController::class,'vendorProduct'])->name('vendor.product');
+Route::get('searchresult',[SearchResultController::class,'searchResut'])->name('searchresult');
 
 //ajax call data route 
 Route::get('/get-city-id/{id}',[AdsController::class,'allAds']);
@@ -139,7 +146,8 @@ Route::group(['prefix'=>'admin'],function()
 Route::group(['middleware'=>'vendor'],function()
 {
   
-   Route::view('dashboard','vendor.dashboard')->name('vendor.dashboard');
+   Route::get('dashboard',[VendorContoller::class,'count'])->name('vendor.dashboard');
+
    Route::controller(PackageController::class)->group(function () {
     Route::get('/package','index')->name('package.index');
     Route::get('/package/create', 'create')->name('package.create');
@@ -162,18 +170,31 @@ Route::group(['middleware'=>'vendor'],function()
     Route::delete('/ads/{id}/destroy', 'destroy')->name('ads.destroy');
    
   });
+
+   Route::controller(VendorContoller::class)->group(function () {
+       Route::get('/profile', 'index')->name('vendor.index');
+      Route::put('/vendor/{id}/update', 'update')->name('vendor.update');
+   });
+
    //add to cart route
-   Route::get('add-to-cart/{id}',[CartController::class,'addToCart']);
-   Route::get('/remove-from-cart/{id}',[CartController::class,'remove']);
-   Route::patch('/update-from-cart/{id}',[CartController::class,'update']);
+   Route::controller(CartController::class)->group(function () {
+   Route::get('add-to-cart/{id}','addToCart');
+   Route::get('/remove-from-cart/{id}','remove');
+   Route::patch('/update-from-cart/{id}','update');
+   Route::post('/buy/package','order')->name('buy.package');
+   
+   });
    Route::view('/cart','vendor.package.cart')->name('cart');
+  
+   //vendor create user route
+   Route::resource('labour', LabourContoller::class);
 });
 
 
 
 
 
-//route for vendor dashboard
+//route for user dashboard
 Route::group(['middleware'=>'user'],function()
 {
   Route::view('user/dashboard','user.user')->name('user.dashboard');

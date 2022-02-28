@@ -9,4 +9,11 @@ class SubCategory extends Model
 {
     use HasFactory;
     protected $fillable=['sub_category_name','category_id','property_id'];
+    
+    protected function subcategoryName(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => ucfirst($value),
+        );
+    }
 }

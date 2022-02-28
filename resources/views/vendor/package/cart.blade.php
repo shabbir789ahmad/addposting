@@ -66,9 +66,12 @@
        
        <p class=" mt-2 ">SubTotal:<span class="float-right"> Rs. {{ $total }}</span></p>
       
-   
+     <form action="{{route('buy.package')}}" method="POST">
+      @csrf
+       <button class=" btn_color " id="checkout">Checkout</button>
+     </form>
     
-        <button class=" btn_color " id="checkout">Checkout</button>
+        
         
 
   </div>

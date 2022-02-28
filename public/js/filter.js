@@ -49,4 +49,11 @@ $(document).ready(function(){
 
   });
  
+   $(document).on('click','.category',function(e){
+    alert('sd')
+    let id=$(this).data('id')
+    $('#category_id').val(id)
+    $('#category_form').submit()
+
+  });
 });
