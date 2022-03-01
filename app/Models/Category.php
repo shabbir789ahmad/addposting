@@ -8,10 +8,16 @@ use App\Models\Product;
 class Category extends Model
 {
     use HasFactory;
-   protected $fillable=['category_name','category_image','property_id'];
+   protected $fillable=['category_name','category_image','property_id','category_type'];
 
    public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    
+    public function getCategoryNameAttribute($value)
+    {
+        return ucfirst($value);
     }
 }

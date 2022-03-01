@@ -137,9 +137,9 @@
   <div class="row">
    @foreach($categories->slice(0,12) as $category)
   
-   <div class="col-md-3 col-lg-2 col-6 col-sm-6  text-center">
+   <div class="col-md-3 col-lg-2 col-6 col-sm-6  text-center" >
      <a href="{{route('all.ads',['id'=>$category['id']])}}" class="link text-dark">
-    <div class="card card_hover mt-2  shadow">
+    <div class="card card_hover mt-2  shadow" style="height: 10rem;">
 	  <div class="card-body p-0 card_items">
        <img src="{{asset('/uploads/user/'.$category['category_image'])}}" width="40%" class="mt-1">
        <p class="p-2 mb-0">{{ucfirst($category['category_name'])}}</p>

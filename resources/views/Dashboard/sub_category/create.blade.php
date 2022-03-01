@@ -7,7 +7,7 @@
 	<div class="row justify-content-center">
 		<div class="col-md-8 text-center">
           <i class="fas fa-boxes fa-3x icn"></i>
-          <h2 class="h2 mt-3">Create Category</h2>
+          <h2 class="h2 mt-3">Create Features</h2>
 		</div>
 		<div class="col-md-6">
 			<div class="card card_color shadow">

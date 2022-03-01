@@ -31,6 +31,20 @@
 							Category Name <span class="text-danger">*</span>
 						</label>
 						<input type="text" class="form-control" name="category_name" value="{{$categories->category_name}}">
+						
+                         <label for="" class="font-weight-bold mt-3">
+							Category Type <span class="text-danger">*</span>
+						</label>
+						<select  class="form-control border-secondary" name="category_type">
+							<option value="house">House</option>
+							<option value="land">Land & Plot</option>
+							<option value="apartment">Apartment</option>
+							<option value="shop">Shop</option>
+							<option value="floor">Portion & Floor</option>
+							<option value="room">Rooms</option>
+						</select>
+                         <span class="text-danger">@error ('category_type') {{$message}} @enderror</span><br>
+
 						<label for="" class="font-weight-bold mt-3">
 							Category Image <span class="text-danger">*</span>
 						</label>

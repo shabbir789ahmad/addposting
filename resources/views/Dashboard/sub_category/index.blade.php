@@ -61,7 +61,7 @@
 
 				@else
 
-				<x-resource-empty resource="sub categories" new="subcategory.create"></x-resource-empty>
+				<x-resource-empty resource="Feature" new="subcategory.create"></x-resource-empty>
 
 				@endif
 							

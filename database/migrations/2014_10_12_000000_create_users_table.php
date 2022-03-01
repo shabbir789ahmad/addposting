@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('phone');
             $table->bigInteger('type');
             $table->bigInteger('approve');
-            $table->longText('about_me');
+            $table->longText('about_me')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

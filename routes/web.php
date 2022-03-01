@@ -12,6 +12,8 @@ use App\Http\Controllers\admin\CityController;
 use App\Http\Controllers\admin\CountDataController;
 use App\Http\Controllers\admin\AreaController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\TypeController;
+use App\Http\Controllers\admin\OrderController;
 
 use App\Http\Controllers\vendor\PackageController;
 use App\Http\Controllers\vendor\AdsController;
@@ -25,9 +27,9 @@ use App\Http\Controllers\SearchResultController;
 
 Auth::routes();
 
- // Route::get('/searchresult', function () {
- //     return view('websites.searchresult');
- // });
+  Route::get('/sort', function () {
+      return view('websites.sort_product');
+  });
 
  Route::get('/',[HomeController::class,'index']);
 Route::view('ads/detail','');
@@ -135,6 +137,10 @@ Route::group(['prefix'=>'admin'],function()
     Route::get('/user', 'index2')->name('user.index');
   });
 
+  //type route
+   Route::resource('type', TypeController::class);
+  //ads order route
+   Route::resource('order', OrderController::class);
   });
 });
 
@@ -143,7 +149,7 @@ Route::group(['prefix'=>'admin'],function()
 
 
 //route for vendor dashboard
-Route::group(['middleware'=>'vendor'],function()
+Route::group(['middleware'=>['auth','vendor']],function()
 {
   
    Route::get('dashboard',[VendorContoller::class,'count'])->name('vendor.dashboard');
@@ -172,8 +178,8 @@ Route::group(['middleware'=>'vendor'],function()
   });
 
    Route::controller(VendorContoller::class)->group(function () {
-       Route::get('/profile', 'index')->name('vendor.index');
-      Route::put('/vendor/{id}/update', 'update')->name('vendor.update');
+       Route::get('/profile', 'index')->name('profile.index');
+      Route::put('/vendor/{id}/update', 'update')->name('profile.update');
    });
 
    //add to cart route

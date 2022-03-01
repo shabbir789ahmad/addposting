@@ -17,22 +17,38 @@
 						<label for="" class="font-weight-bold mt-2">
 							Select Property Type <span class="text-danger">*</span>
 						</label>
-						<select class="form-control" name="property_id">
+						<select class="form-control border-secondary" name="property_id">
 							<option selected disabled hidden>Select Property Type</option>
 							@foreach($properties as $property)
 							<option value="{{$property['id']}}">{{$property['property']}}</option>
 							@endforeach
 						</select>
-						
+						<span class="text-danger">@error ('property_id') {{$message}} @enderror</span><br>
+
 						<label for="" class="font-weight-bold mt-3">
 							Category Name <span class="text-danger">*</span>
 						</label>
-						<input type="text" class="form-control" name="category_name" placeholder="Sub Category ">
+						<input type="text" class="form-control border-secondary" name="category_name" placeholder="Sub Category ">
+                         <span class="text-danger">@error ('category_name') {{$message}} @enderror</span><br>
+
+						<label for="" class="font-weight-bold mt-3">
+							Category Type <span class="text-danger">*</span>
+						</label>
+						<select  class="form-control border-secondary" name="category_type">
+							<option value="house">House</option>
+							<option value="land">Land & Plot</option>
+							<option value="apartment">Apartment</option>
+							<option value="shop">Shop</option>
+							<option value="floor">Portion & Floor</option>
+							<option value="room">Rooms</option>
+						</select>
+                         <span class="text-danger">@error ('category_type') {{$message}} @enderror</span><br>
+
 						<label for="" class="font-weight-bold mt-3">
 							Category Image <span class="text-danger">*</span>
 						</label>
-						<input type="file" class="form-control" name="image" >
-						
+						<input type="file" class="form-control border-secondary" name="image" >
+						 <span class="text-danger">@error ('image') {{$message}} @enderror</span>
 					</div>
 					<div class="text-center">
 						<button class="btn btn_color mt-3">Save</button>

@@ -18,7 +18,7 @@ class VendorRedirect
     {
        if(Auth::user())
           {
-          if(Auth::user()->type==1){
+          if(Auth::user()->type==1 && Auth::user()->approve==1){
           return $next($request);
           }else
           {

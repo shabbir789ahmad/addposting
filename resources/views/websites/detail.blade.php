@@ -32,7 +32,7 @@
        <div class="item_pri">
        	<div class="icon2">
        	   <i class="fa-solid fa-table-cells p-1"></i>
-       	   <p class="pt-0 ml-4">{{$products['area']}} {{$products['areaunit']}}</p>
+       	   <p class="pt-0 ml-4">{{$products['total_area']}} {{$products['areaunit']}}</p>
          </div>
          <div class="icon2 ml-2 ml-5">
        	   <i class="fa-solid fa-bed p-1 ml-3"></i>
@@ -54,7 +54,7 @@
        <p class="description">Seller Description</p>
        <a href="{{route('vendor.product',['id'=>$products['user_id']])}}" class="mt-3  text-dark link">
        <div class="selller_description">
-        <img src="{{asset('pic/iconProfilePicture.7975761176487dc62e25536d9a36a61d.png')}}" width="20%">
+        <img src="{{asset('uploads/img/'.Auth::user()->user_image)}}" width="20%">
         <div class="seller_name mt-2">
          <h6 class="p-0">{{ucfirst($products['user_name'])}}</h6>
          <p class="p-0">Member since  {{date('Y',strtotime($products['created_at']))}}</p>
@@ -63,16 +63,15 @@
         <i class="fa-solid fa-arrow-right-long fa-lg "></i>
         
        </div></a>
-       <button  class="btn btn_chat">Chat With Seller</button>
-        <div class="phone text-center mt-3">
-          <i class="fa-solid fa-phone fa-lg mt-3 pr-5">..</i>
-          @if(Auth::user())
-            <p class="mt-2 ml-5">{{$products['phone']}}</p>
+       <div class="d-flex mb-4">
+         <button  class="btn btn_chat pl-0 email" data-id="{{$products['id']}}" data-name="{{$products['name']}}" data-agent="{{ucfirst($products['user_name'])}}">Email</button>
+         @if(Auth::user())
+            <button  class="btn btn_chat"><i class="fa-solid fa-phone fa-lg">.</i>{{$products['phone']}}</button>
           @else
-          <p class="mt-2 ml-5">********</p>
-          <span data-bs-toggle="modal" data-bs-target="#exampleModal" class="p-0 ml-3 text-info">Show Number</span>
-          @endif
+         <button  class="btn btn_chat">Call</button>
+         @endif
         </div>
+        
       </div>
      </div>
    </div>
@@ -108,8 +107,15 @@
         		<div class="price"><p>{{$products['areaunit']}}</p><p>{{$products['total_area']}}</p></div>
         	</div>
         	<div class="col-md-6">
-        		<div class="price"><p>Furnished</p><p>Unfurnished</p></div>
-        		<div class="price"><p>Bathrooms</p><p>3</p></div>
+            @if($products['furnished'])
+        		<div class="price"><p>Furnished</p><p>{{$products['furnished']}}</p></div>
+            @endif
+            @if($products['furnished'])
+        		<div class="price"><p>Bathrooms</p><p>{{$products['bathroom']}}</p></div>
+            @endif
+            @if($products['type'])
+            <div class="price"><p>Type</p><p>{{$products['type']}}</p></div>
+            @endif
         		<div class="price"><p>Area</p><p>200</p></div>
         	</div>
         </div>
@@ -121,20 +127,18 @@
        
         <h6>Key Features:</h6>
          <ul class="list-unstyled">
-          @foreach($features as $feature)
-          <li>{{$feature['product_feature']}}</li>
+          @foreach($features->slice(0,10) as $feature)
+          <li class="text-capitalize">{{$feature['product_feature']}}</li>
          @endforeach
         </ul>
          
      </div>
         <div class="col-md-6 col-12 ">
 
-       <h6 class="mt-3">Key Features:</h6>
-        <ul class="list-unstyled">
-          <li>3 Bedroom with attach bath</li>
-          <li>Kitchen</li>
-          <li>Garage</li>
-         
+        <ul class="list-unstyled mt-5">
+          @foreach($features->slice(10,20) as $feature)
+          <li class="text-capitalize">{{$feature['product_feature']}}</li>
+         @endforeach
         </ul>
      </div>
        </div>
@@ -180,7 +184,7 @@
   </div>
 </div>
 
-
+ <x-email--component />
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -204,6 +208,20 @@
       document.getElementById("imgs").src=a.children[0].src;
        
     }
-
+  
   </script>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+  $('.email').click(function(){
+    $('#emailmodal').modal('show');
+    let name=$(this).data('name');
+    $('#name').text(name)
+    let agent=$(this).data('agent');
+    $('#agent').text(agent)
+    
+    document.getElementById("product_image").src=document.getElementById("imgs").src
+  })
+</script>
 @endsection

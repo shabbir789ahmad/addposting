@@ -44,6 +44,7 @@ class CategoryController extends Controller
         $request->validate([
           
           'category_name'=>'required',
+          'category_type'=>'required',
           'image'=>'required',
           'property_id'=>'required',
         ]);
@@ -51,6 +52,7 @@ class CategoryController extends Controller
         $data=[
 
           'category_name'=>  $request->category_name,
+          'category_type'=>  $request->category_type,
           'category_image'=>  $this->image(),
           'property_id'=>$request->property_id,
         ];
@@ -93,12 +95,14 @@ class CategoryController extends Controller
         $request->validate([
           
           'category_name'=>'required',
+          'category_type'=>'required',
           'property_id'=>'required',
         ]);
 
         $data=[
 
           'category_name'=>  $request->category_name,
+          'category_type'=>  $request->category_type,
           'category_image'=>  $this->image(),
           'property_id'=>$request->property_id,
         ];
@@ -117,6 +121,7 @@ class CategoryController extends Controller
         $categories=Category::destroy($id);
         return redirect()->back()->with('success','Category Deleted Successfully');
     }
+
     function allCategory()
     {
         $categories=Category::latest()->take(12)->get();

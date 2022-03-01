@@ -8,7 +8,7 @@
    <div class="row justify-content-center">
       <div class="col-md-12 text-center">
           <i class="fas fa-boxes fa-3x icn"></i>
-          <h2 class="h2 mt-3">Create User</h2>
+          <h2 class="h2 mt-3">Create Employee</h2>
       </div>
       <div class="col-md-11">
          <div class="card card_color shadow">
@@ -19,8 +19,8 @@
                         <label for="" class="font-weight-bold mt-2">
                      Name <span class="text-danger">*</span>
                   </label>
-                  <input type="text" class="form-control input_border" name="labour_name"  value="{{old('labour_name')}}">
-                  <span class="text-danger">@error ('labour_name') {{$message}}@enderror</span>
+                  <input type="text" class="form-control input_border" name="employee_name"  value="{{old('employee_name')}}">
+                  <span class="text-danger">@error ('employee_name') {{$message}}@enderror</span>
                 </div>
                </div>
                <div class="form-group">
@@ -31,15 +31,15 @@
                    <label for="" class="font-weight-bold mt-4">
                        Phone Number<span class="text-danger">*</span>
                    </label>
-                   <input type="text" class="form-control input_border" name="labour_phone"  value="{{old('labour_phone')}}">
-                   <span class="text-danger">@error ('labour_phone') {{$message}}@enderror</span>
+                   <input type="text" class="form-control input_border" name="employee_phone"  value="{{old('employee_phone')}}">
+                   <span class="text-danger">@error ('employee_phone') {{$message}}@enderror</span>
                  </div>
                  <div class="col-md-6">
                   <label for="" class="font-weight-bold mt-4">
-                       User Email<span class="text-danger">*</span>
+                       Email<span class="text-danger">*</span>
                    </label>
-                   <input type="text" class="form-control input_border" name="labour_email"  value="{{old('labour_email')}}">
-                   <span class="text-danger">@error ('labour_email') {{$message}}@enderror</span>     
+                   <input type="text" class="form-control input_border" name="employee_email"  value="{{old('employee_email')}}">
+                   <span class="text-danger">@error ('employee_email') {{$message}}@enderror</span>     
                  </div>
                </div>
                 
@@ -52,8 +52,8 @@
                <label for="" class="font-weight-bold mt-2">
                      Password <span class="text-danger">*</span>
                   </label>
-                  <input type="password" class="form-control input_border" name="labour_password"  value="{{old('labour_password')}}">
-                  <span class="text-danger">@error ('labour_password') {{$message}}@enderror</span>
+                  <input type="password" class="form-control input_border" name="employee_password"  >
+                  <span class="text-danger">@error ('employee_password') {{$message}}@enderror</span>
                   
                </div>
                <hr class="card_color2">

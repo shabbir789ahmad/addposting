@@ -41,9 +41,15 @@ overflow-x: auto;
 }
 .selller_description h6{
  font-size: 1.5rem;
+ white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 190px;
+  text-transform: capitalize;
 }
 .seller_name p{
- font-size: .8rem;
+  font-size: .8rem;
+  
 }
 .selller_description i{
 	margin-left: 30%;
@@ -67,7 +73,7 @@ overflow-x: auto;
 	width: 95%;
 	height: 20%;
 	color: #ffffff;
-	margin-left: 3%;
+	margin: 1%;
 	margin-top: 3%;
 	background-color: #002F34;
 }

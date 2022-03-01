@@ -40,20 +40,20 @@ class LabourContoller extends Controller
     {
         $request->validate([
           
-             'labour_name'=>'required',
-             'labour_email'=>['required', 'string', 'email', 'max:255', 'unique:labours'],
-             'labour_password'=>['required', 'string', 'min:8'],
+             'employee_name'=>'required',
+             'employee_email'=>['required', 'string', 'email', 'max:255', 'unique:labours'],
+             'employee_password'=>['required', 'string', 'min:8'],
              'image'=>'required',
-             'labour_phone'=>['required', 'min:6', ],
+             'employee_phone'=>['required', 'min:6', ],
         ]);
 
         $data=[
           
-             'labour_name'=>$request->labour_name,
-             'labour_email'=>$request->labour_email,
-             'labour_password'=>$request->labour_password,
+             'labour_name'=>$request->employee_name,
+             'labour_email'=>$request->employee_email,
+             'labour_password'=>$request->employee_password,
              'labour_image'=>$this->image(),
-             'labour_phone'=>$request->labour_phone,
+             'labour_phone'=>$request->employee_phone,
         ];
          return \App\Helpers\Form::CreateEloquent(new Labour, $data);
     }
@@ -92,20 +92,20 @@ class LabourContoller extends Controller
     {
         $request->validate([
           
-             'labour_name'=>'required',
-             'labour_email'=>['required'],
-             'labour_password'=>['required', 'string', 'min:8'],
+             'employee_name'=>'required',
+             'employee_email'=>['required'],
+             'employee_password'=>['required', 'string', 'min:8'],
              'image'=>'required',
-             'labour_phone'=>['required', 'min:6', ],
+             'employee_phone'=>['required', 'min:6', ],
         ]);
-
+       
         $data=[
           
-             'labour_name'=>$request->labour_name,
-             'labour_email'=>$request->labour_email,
-             'labour_password'=>$request->labour_password,
+             'labour_name'=>$request->employee_name,
+             'labour_email'=>$request->employee_email,
+             'labour_password'=>$request->employee_password,
              'labour_image'=>$this->image(),
-             'labour_phone'=>$request->labour_phone,
+             'labour_phone'=>$request->employee_phone,
         ];
          return \App\Helpers\Form::UpdateEloquent(new Labour,$id, $data);
     }

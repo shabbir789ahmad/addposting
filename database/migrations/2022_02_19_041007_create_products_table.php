@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('bedroom')->nullable();
             $table->string('bathroom')->nullable();
             $table->string('plot_type')->nullable();
+            $table->string('type')->nullable();
             $table->string('furnished')->nullable();
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');

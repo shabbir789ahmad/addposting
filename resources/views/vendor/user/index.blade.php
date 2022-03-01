@@ -11,7 +11,7 @@
 <div class="row">
 	@if(count($labours) > 0)
 	<div class="container mt-5">
-  <p class="browser ">All User</p>
+  <p class="browser ">All Employess</p>
    
    
   <div class="row">
@@ -49,7 +49,7 @@
 </div>
 	@else
 	  <div class="col-12">
-	  	<x-resource-empty resource="User" new="labour.create"></x-resource-empty>
+	  	<x-resource-empty resource="Employee" new="labour.create"></x-resource-empty>
 	  </div>
 	  </div>
    @endif

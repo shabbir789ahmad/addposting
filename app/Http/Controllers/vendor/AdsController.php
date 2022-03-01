@@ -12,6 +12,7 @@ use App\Models\SubCategory;
 use App\Models\Product;
 use App\Models\Feature;
 use App\Models\State;
+use App\Models\Type;
 use App\Models\City;
 use App\Models\Image;
 use App\Http\Traits\ImageTrait;
@@ -45,11 +46,13 @@ class AdsController extends Controller
 
     public function create($id)
     {
-        $categories=Category::findOrFail($id)->value('id');
+        $categories=Category::where('id',$id)->select('id','category_type')->first();
         $areas=Area::all();
         $states=State::all();
+        $ads=Ad::where('user_id',Auth::id())->sum('total_ads');
+        $types=Type::where('type_id',$id)->get();
         $subcategories=SubCategory::where('category_id',$id)->get();
-        return view('vendor.ads.create',compact('categories','subcategories','areas','states'));
+        return view('vendor.ads.create',compact('categories','subcategories','areas','states','categories','types','ads'));
     }
 
  
@@ -64,41 +67,50 @@ class AdsController extends Controller
            'price'=>'required',
            'areaunit'=>'required',
            'total_area'=>'required',
-           'furnished'=>'required',
+        
            //'category_id'=>'required',
-           'bedroom'=>'required',
-           'bathroom'=>'required',
+           
         ]);
       
         DB::transaction(function() use($request)
         {
-            $data=$request->only('name','detail','location','price','areaunit','total_area','furnished','category_id','bedroom','bathroom','user_id');
-            $product=Product::create($data);
-           
-           for($i=0; $i<count($request->feature);$i++)
+            $data=$request->only('name','detail','location','price','areaunit','total_area','furnished','category_id','bedroom','bathroom','user_id','type');
+            $ads=Ad::where('user_id',Auth::id())->where('total_ads','>',0)->first('total_ads');
+        // dd($ads);
+            if(!$ads==null)
             {
+               $product=Product::create($data);
+               if($request->feature)
+              {
+                for($i=0; $i<count($request->feature);$i++)
+                 {
                     Feature::create([
                     'product_feature'=>$request->feature[$i],
                     'product_id'=>$product->id,
-                  ]);
-            }
-    
-            foreach($request->file('image') as $file)
-           {
-              $ext=$file->getClientOriginalExtension();
-              $filename= time().rand(1,100).'.'.$ext;
-              $file->move('uploads/product/',$filename);
-              
-              Image::create([
-              
-                 'product_images'=>$filename,
-                 'product_id'=>$product->id,
-              ]);
-      
-           }
-              
-       
+                   ]);
+                 }
+               }
                
+               foreach($request->file('image') as $file)
+               {
+                 $ext=$file->getClientOriginalExtension();
+                 $filename= time().rand(1,100).'.'.$ext;
+                 $file->move('uploads/product/',$filename);
+              
+                Image::create([
+              
+                     'product_images'=>$filename,
+                     'product_id'=>$product->id,
+                ]);
+      
+              }
+              
+              Ad::where('user_id',Auth::id())->where('total_ads','>',0)->first()->decrement('total_ads');
+              //Ad::where('user_id',Auth::id())->where('total_ads','>',0)->first()->increment('used_ads');
+            }else{
+               
+               return redirect()->back()->with('success','Ads Quota is Empty');
+            } 
             
         });
         return to_route('ads.index')->with('success','Ads Created');

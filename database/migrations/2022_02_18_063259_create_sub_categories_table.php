@@ -17,7 +17,8 @@ return new class extends Migration
             
             $table->id();
             $table->string('category_name');
-            $table->string('category_image')->nullable();
+            $table->string('category_type');
+            $table->string('category_image');
             $table->bigInteger('property_id')->unsigned();
             $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

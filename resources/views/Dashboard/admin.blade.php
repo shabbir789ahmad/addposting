@@ -68,6 +68,12 @@
         </a>
        </li>
        <li class="nav-item ">
+        <a class="nav-link " href="{{route('type.index')}}">
+          <i class="fas fa-window-maximize text-light"></i>
+          <span>Types </span>
+        </a>
+       </li>
+       <li class="nav-item ">
         <a class="nav-link " href="{{route('slider.index')}}">
           <i class="fas fa-window-maximize text-light"></i>
           <span>Slider</span>
@@ -83,6 +89,12 @@
         <a class="nav-link " href="{{route('packages.index')}}">
           <i class="fas fa-window-maximize text-light"></i>
           <span>Package</span>
+        </a>
+       </li>
+       <li class="nav-item ">
+        <a class="nav-link " href="{{route('order.index')}}">
+          <i class="fas fa-window-maximize text-light"></i>
+          <span>Ads Order</span>
         </a>
        </li>
        <li class="nav-item ">

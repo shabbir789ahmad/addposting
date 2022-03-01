@@ -47,7 +47,7 @@
 	@endforeach
 	@else
 	  <div class="col-12">
-	  	<x-resource-empty resource="package" new="package.create"></x-resource-empty>
+	  	
 	  </div>
    @endif
 </div>

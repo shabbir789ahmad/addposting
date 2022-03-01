@@ -26,6 +26,7 @@ $(document).ready(function(){
        $(this).siblings('.input_checkbox2').css('border','0.2px solid #002F34')
      }
   });
+
   $('.input_checkbox3').click(function(){
   
      let checked=$(this).children('.check_btn3').is(':checked')
@@ -41,6 +42,23 @@ $(document).ready(function(){
        $(this).siblings('.input_checkbox3').css('border','0.2px solid #002F34')
      }
   });
+
+  $('.input_checkbox4').click(function(){
+  
+     let checked=$(this).children('.check_btn4').is(':checked')
+     if(checked==true)
+     {
+       $(this).css('border','0.2px solid #002F34')
+      $(this).children('.check_btn4').prop('checked',false)
+     }else{
+
+       $(this).children('.check_btn4').prop('checked',true)
+       $(this).css('border','2px solid #002F34')
+       $(this).siblings('.input_checkbox4').children('.check_btn4').prop('checked',false)
+       $(this).siblings('.input_checkbox4').css('border','0.2px solid #002F34')
+     }
+  });
+
 
 $('.property_for_sale').click(function() {
    
