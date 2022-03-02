@@ -59,6 +59,21 @@ $(document).ready(function(){
      }
   });
 
+$('.input_checkbox6').click(function(){
+  
+     let checked=$(this).children('.check_btn6').is(':checked')
+     if(checked==true)
+     {
+       $(this).css('border','0.2px solid #002F34')
+      $(this).children('.check_btn6').prop('checked',false)
+     }else{
+
+       $(this).children('.check_btn6').prop('checked',true)
+       $(this).css('border','2px solid #002F34')
+       $(this).siblings('.input_checkbox6').children('.check_btn6').prop('checked',false)
+       $(this).siblings('.input_checkbox6').css('border','0.2px solid #002F34')
+     }
+  });
 
 $('.property_for_sale').click(function() {
    

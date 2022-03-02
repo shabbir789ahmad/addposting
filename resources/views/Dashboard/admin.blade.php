@@ -142,7 +142,7 @@
 
                             
                         @else
-            <li class="nav-item border rounded p-2 bg-light border-danger dropdown d-block mt-2 ml-5 bookname">
+            <li class="nav-item border rounded p-2 bg-light border-danger dropdown d-block mt-2 ml-5 bookname" style="z-index:900" >
          <a id="navbarDropdown" class=" bg-light dropdown-toggle  text-light mt-4" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
          <a href="" class="mt-5  text-dark " > {{ucwords( Auth::user()->name )}}</a>
                                 </a>
@@ -154,7 +154,7 @@
           {{ __('Logout') }}
           </a>
 
-  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-hidden">
+  <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-hidden">
                                         @csrf
                                     </form>
                                 </div>
@@ -185,24 +185,53 @@
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
-                <span class="badge badge-danger badge-counter">+</span>
+                @php 
+                $notify=0;
+             
+                 $cart=\App\Models\Cart::get();
+
+                 if($cart)
+                 {
+                 foreach($cart as $car)
+                   {
+                      $notify=count($car->unreadNotifications);
+                     $cart=$car->unreadNotifications; 
+                   
+                  }
+              
+                }else{
+                  $notify=0;
+                }
+                  
+                 @endphp
+                
+                <span class="badge badge-danger badge-counter">{{$notify}}</span>
+               
               </a>
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
-              
+               @foreach($cart as $notification)
                 <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
+                  <!-- <div class="mr-3">
                     <div class="icon-circle bg-success">
                       <i class="fas fa-donate text-white"></i>
                     </div>
+                  </div> -->
+                 
+                  <div class="d-flex">
+                    @foreach($notification['data'] as $d)
+                
+                      {{$d}}
+                    @endforeach
+                  
+                    <a href="{{route('order.index')}}" class=" border badge-warning rounded px-2 py-1 ml-auto mr-3">{{$notification['notifiable_id']}}</a>
+                    
                   </div>
-                  <div>
-
                 </a>
-               
+               @endforeach
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
             </li>

@@ -54,7 +54,7 @@
        <p class="description">Seller Description</p>
        <a href="{{route('vendor.product',['id'=>$products['user_id']])}}" class="mt-3  text-dark link">
        <div class="selller_description">
-        <img src="{{asset('uploads/img/'.Auth::user()->user_image)}}" width="20%">
+        <img src="{{asset('uploads/img/'.$products->user_image)}}" width="20%">
         <div class="seller_name mt-2">
          <h6 class="p-0">{{ucfirst($products['user_name'])}}</h6>
          <p class="p-0">Member since  {{date('Y',strtotime($products['created_at']))}}</p>

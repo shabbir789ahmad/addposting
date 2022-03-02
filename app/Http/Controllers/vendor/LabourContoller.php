@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Vendor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Labour;
+use App\Models\Cart;
+use App\Models\AAd;
+use App\Models\Ad;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Traits\ImageTrait;
 class LabourContoller extends Controller
 {
@@ -16,8 +20,10 @@ class LabourContoller extends Controller
      */
     public function index()
     {
+        $ads=Cart::join('ads','carts.id','=','ads.cart_id')->select('carts.item_name','ads.*')->where('total_ads','>',0)->withTrashed()->get();
         $labours=labour::all();
-        return view('vendor.user.index',compact('labours'));
+        $aads=AAd::get();
+        return view('vendor.user.index',compact('labours','ads','aads'));
     }
 
     /**
@@ -41,20 +47,21 @@ class LabourContoller extends Controller
         $request->validate([
           
              'employee_name'=>'required',
-             'employee_email'=>['required', 'string', 'email', 'max:255', 'unique:labours'],
+             'labour_email'=>['required', 'string', 'email', 'max:255', 'unique:labours'],
              'employee_password'=>['required', 'string', 'min:8'],
              'image'=>'required',
              'employee_phone'=>['required', 'min:6', ],
         ]);
-
+       
         $data=[
           
              'labour_name'=>$request->employee_name,
-             'labour_email'=>$request->employee_email,
-             'labour_password'=>$request->employee_password,
+             'labour_email'=>$request->labour_email,
+             'labour_password'=>Hash::make($request->employee_password),
              'labour_image'=>$this->image(),
              'labour_phone'=>$request->employee_phone,
         ];
+
          return \App\Helpers\Form::CreateEloquent(new Labour, $data);
     }
 
@@ -119,5 +126,20 @@ class LabourContoller extends Controller
     public function destroy($id)
     {
         return \App\Helpers\Form::DeleteEloquent(new Labour,$id);
+    }
+
+    function assignAd(Request $req)
+    {
+        $adds=AAd::create([
+           
+           'total_ads'=>$req->total_ads,
+           'ad_id'=>$req->ads_id,
+           'labour_id'=>$req->labour_id,
+        ]);
+         $ad=Ad::findOrFail($req->ads_id);
+         $ad->total_ads=$ad->total_ads-$req->total_ads;
+         $ad->save();
+
+        return redirect()->back()->with('success','Ads Assign to this user');
     }
 }

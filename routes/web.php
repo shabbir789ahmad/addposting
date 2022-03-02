@@ -2,18 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\admin\CategoryController;
-use App\Http\Controllers\admin\SubCategoryController;
-use App\Http\Controllers\admin\SliderController;
-use App\Http\Controllers\admin\AdminAdsController;
-use App\Http\Controllers\admin\AdsPackageController;
-use App\Http\Controllers\admin\StateController;
-use App\Http\Controllers\admin\CityController;
-use App\Http\Controllers\admin\CountDataController;
-use App\Http\Controllers\admin\AreaController;
-use App\Http\Controllers\admin\UserController;
-use App\Http\Controllers\admin\TypeController;
-use App\Http\Controllers\admin\OrderController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\AdminAdsController;
+use App\Http\Controllers\Admin\AdsPackageController;
+use App\Http\Controllers\Admin\StateController;
+use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\CountDataController;
+use App\Http\Controllers\Admin\AreaController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Admin\OrderController;
 
 use App\Http\Controllers\vendor\PackageController;
 use App\Http\Controllers\vendor\AdsController;
@@ -21,15 +21,15 @@ use App\Http\Controllers\vendor\CartController;
 use App\Http\Controllers\vendor\VendorContoller;
 use App\Http\Controllers\vendor\LabourContoller;
 
+use App\Http\Controllers\agent\AgentLoginController;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\SearchResultController;
 
 Auth::routes();
 
-  Route::get('/sort', function () {
-      return view('websites.sort_product');
-  });
+ 
 
  Route::get('/',[HomeController::class,'index']);
 Route::view('ads/detail','');
@@ -140,7 +140,9 @@ Route::group(['prefix'=>'admin'],function()
   //type route
    Route::resource('type', TypeController::class);
   //ads order route
-   Route::resource('order', OrderController::class);
+  
+   Route::get('order',[OrderController::class,'index'])->name('order.index');
+   Route::get('orders/destroy',[OrderController::class,'destroy']);
   });
 });
 
@@ -194,6 +196,7 @@ Route::group(['middleware'=>['auth','vendor']],function()
   
    //vendor create user route
    Route::resource('labour', LabourContoller::class);
+   Route::post('assign/ads',[LabourContoller::class,'assignAd'])->name('asign.ads');
 });
 
 
@@ -207,3 +210,23 @@ Route::group(['middleware'=>'user'],function()
 
 });
 
+
+
+Route::group(['prefix'=>'agent'],function()
+{
+  Route::group(['middleware'=>'labour.guest'],function()
+  {
+    Route::view('login','admin.agent_login')->name('agent.login');
+    Route::post('authenticate',[AgentLoginController::class,'agentLogin'])->name('agent.authenticate');
+  });
+
+  //loggedin route
+  Route::group(['middleware'=>'labour.auth'],function()
+  {
+    Route::post('logout',[AgentLoginController::class,'logout'])->name('agent.logout');
+    Route::get('dashboard',[AgentLoginController::class,'index'])->name('agent.dashboard');
+   
+
+  });
+
+});

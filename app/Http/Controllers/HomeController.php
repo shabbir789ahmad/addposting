@@ -44,7 +44,7 @@ class HomeController extends Controller
         $products=Product::
          join('categories','categories.id','products.category_id')
          ->join('users','users.id','products.user_id')
-         ->select('products.*','users.user_name','users.email','areaunit','total_area','users.phone','users.created_at')
+         ->select('products.*','users.user_name','users.email','areaunit','total_area','users.phone','users.created_at','users.user_image')
          ->where('products.id',$id)
          ->first();
          

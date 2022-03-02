@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\Cart;
 use Auth;
+use Notification;
+use App\Notifications\NewOrderNotification;
 class CartController extends Controller
 {
    public function addToCart($id,Request $req)
@@ -72,17 +74,18 @@ class CartController extends Controller
               'item_total'=>$cart['package_price']*$cart['package_quentity'],
               'user_id'=>Auth::user()->id,
           ];
-         
+         }
          try{
 
-            Cart::create($data);
-            session()->forget('cart');
+             $order =Cart::create($data);
+             session()->forget('cart');
+             Notification::send($order, new NewOrderNotification($order));
             return to_route('vendor.dashboard')->with('success','Your Order Has Been Placed');
          }catch(\Exception $e)
-         {
+        {
             return redirect()->back()->with('success','Could Not Place Order');
-         }
-           return \App\Helpers\Form::CreateEloquent(new Cart, $data);
         }
+           
+        
     }
 }

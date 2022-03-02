@@ -26,7 +26,7 @@
 								<th scope="col">Package Quentity</th>
 								<th scope="col">Package Ads</th>
 								<th scope="col">Total Price</th>
-								<th scope="col">Total Price</th>
+								<th scope="col">Approve Package</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -34,20 +34,13 @@
 							<tr>
 							
 								<td class="text-dark">{{ ucfirst($car->item_name) }}</td>
-								<td class="text-dark">{{ ucfirst($car->item_quentity) }}</td>
-								<td class="text-dark">{{ ucfirst($car->item_ads) }}</td>
-								<td class="text-dark">{{ ucfirst($car->item_total) }}</td>
+								<td class="text-dark">{{$car->item_quentity}}</td>
+								<td class="text-dark">{{$car->item_ads }}</td>
+								<td class="text-dark">{{$car->item_total}}</td>
 							
 									
 								<td>
-									
-									<form action="{{ route('order.destroy', ['order' => $car->id]) }}" method="POST" class="d-inline" onsubmit="return confirmDelete()">
-										@method('DELETE')
-										@csrf
-										<button type="submit" class="btn btn-xs btn-danger">
-											Delete
-										</button>
-									</form>
+								<button class="btn btn-warning cart" data-id="{{$car['id']}}">Approve</button>
 								</td>
 							</tr>
 							@endforeach
@@ -64,4 +57,34 @@
 	</div>
 </div>
 
+@endsection
+
+@section('script')
+
+<script type="text/javascript">
+$(document).ready(function()
+ {
+   $('.cart').click(function () {
+
+         $(this).prop('disabled',true);
+        
+        let id = $(this).data('id');
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url :'orders/destroy',
+            
+           data: { 'id': id},
+            success: function (data) {
+               console.log('ddf');
+           }
+       });
+       
+  
+        
+    });
+
+ });
+</script>
 @endsection

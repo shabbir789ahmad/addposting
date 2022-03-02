@@ -48,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'vendors',
         ],
+        'labour' => [
+            'driver' => 'session',
+            'provider' => 'labours',
+        ],
     ],
 
     /*
@@ -81,6 +85,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Vendor::class,
         ],
+        'labours' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Labour::class,
+        ],
     ],
 
     /*
@@ -113,6 +121,12 @@ return [
         ],
        'vendors' => [
             'provider' => 'vendors',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'labours' => [
+            'provider' => 'labours',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

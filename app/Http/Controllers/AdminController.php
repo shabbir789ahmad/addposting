@@ -28,11 +28,11 @@ class AdminController extends Controller
 
     public function logout()
     {
-    if(Auth::guard('admin')->logout())
-    {
+      if(Auth::guard('admin')->logout())
+      {
         return redirect(route('admin.login'));
+      }
     }
-}
     public function __construct()
     {
         $this->middleware('admin.guest')->except('logout');

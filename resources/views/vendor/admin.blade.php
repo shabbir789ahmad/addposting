@@ -144,9 +144,9 @@
 
                             
                         @else
-            <li class="nav-item border rounded p-2 bg-light border-danger dropdown d-block mt-2 ml-5 bookname">
+            <li class="nav-item border rounded p-2 bg-light border-danger dropdown d-block mt-2 ml-5 bookname" style="z-index:900">
          <a id="navbarDropdown" class=" bg-light dropdown-toggle  text-light mt-4" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-         <a href="" class="mt-5  text-dark " > {{ucwords( Auth::user()->name )}}</a>
+         <a href="" class="mt-5  text-dark " > {{ucwords( Auth::user()->user_name )}}</a>
                                 </a>
 
   <div class="dropdown-menu " aria-labelledby="navbarDropdown">
@@ -295,6 +295,8 @@ function myFunction(id,res) {
     });
  
 </script>
+@section('script')
+@show
 </body>
 
 </html>

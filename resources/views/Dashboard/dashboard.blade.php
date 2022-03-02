@@ -94,7 +94,7 @@
             <div class="col-xl-8 col-lg-7">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-light">Top Selling Product</h6>
+                  <h6 class="m-0 font-weight-bold text-dark">Top Selling Ads</h6>
                   
                 </div>
                 <div class="card-body">
@@ -141,11 +141,11 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Task', 'product pr sell'],
-          
+          <?php echo $chartdata ?>
         ]);
 
         var options = {
-          title: 'Top Selling Products'
+          title: 'Top Selling Ads Packages'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));

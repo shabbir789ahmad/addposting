@@ -38,8 +38,8 @@
                   <label for="" class="font-weight-bold mt-4">
                        Email<span class="text-danger">*</span>
                    </label>
-                   <input type="text" class="form-control input_border" name="employee_email"  value="{{old('employee_email')}}">
-                   <span class="text-danger">@error ('employee_email') {{$message}}@enderror</span>     
+                   <input type="text" class="form-control input_border" name="labour_email"  value="{{old('labour_email')}}">
+                   <span class="text-danger">@error ('labour_email') {{$message}}@enderror</span>     
                  </div>
                </div>
                 

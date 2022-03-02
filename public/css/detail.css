@@ -55,6 +55,12 @@ overflow-x: auto;
 	margin-left: 30%;
 	margin-top: 8%;
 }
+.selller_description img{
+	width: 50px;
+	height: 50%;
+	border-radius: 50%;
+	border: 2px solid black;
+}
 .phone a{
 	margin-left: 5%;
 }
