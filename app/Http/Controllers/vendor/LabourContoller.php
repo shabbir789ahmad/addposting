@@ -8,6 +8,7 @@ use App\Models\Labour;
 use App\Models\Cart;
 use App\Models\AAd;
 use App\Models\Ad;
+use Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Traits\ImageTrait;
 class LabourContoller extends Controller
@@ -47,7 +48,7 @@ class LabourContoller extends Controller
         $request->validate([
           
              'employee_name'=>'required',
-             'labour_email'=>['required', 'string', 'email', 'max:255', 'unique:labours'],
+             'email'=>['required', 'string', 'email', 'max:255', 'unique:labours'],
              'employee_password'=>['required', 'string', 'min:8'],
              'image'=>'required',
              'employee_phone'=>['required', 'min:6', ],
@@ -56,12 +57,13 @@ class LabourContoller extends Controller
         $data=[
           
              'labour_name'=>$request->employee_name,
-             'labour_email'=>$request->labour_email,
-             'labour_password'=>Hash::make($request->employee_password),
+             'email'=>$request->email,
+             'password'=>Hash::make($request->employee_password),
              'labour_image'=>$this->image(),
              'labour_phone'=>$request->employee_phone,
+             'user_id'=>Auth::id(),
         ];
-
+        //dd($data);
          return \App\Helpers\Form::CreateEloquent(new Labour, $data);
     }
 

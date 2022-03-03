@@ -124,7 +124,7 @@ hr{
 .input_checkbox input,.input_checkbox2 input,.input_checkbox6 input,.input_checkbox3 input,.input_checkbox4 input{
 	display: none;
 }
-.property_for_sale,.property_for_sale2{
+.property_for_sale,.property_for_sale2,.property_for_sale3{
 	border: .2px solid #002F34;
 	width: 100%;
 	height: 3rem;
@@ -134,7 +134,7 @@ hr{
 	cursor: pointer;
 	text-decoration: none;
 }
-.category_append{
+.category_append,.category_append3{
 	display: flex;
 	flex-direction: column;
 }

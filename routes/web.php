@@ -142,7 +142,9 @@ Route::group(['prefix'=>'admin'],function()
   //ads order route
   
    Route::get('order',[OrderController::class,'index'])->name('order.index');
-   Route::get('orders/destroy',[OrderController::class,'destroy']);
+   Route::get('orders/destroy',[OrderController::class,'approve']);
+   Route::delete('orders/{id}/delete',[OrderController::class,'destroy'])->name('order.destroy');
+
   });
 });
 
@@ -190,6 +192,7 @@ Route::group(['middleware'=>['auth','vendor']],function()
    Route::get('/remove-from-cart/{id}','remove');
    Route::patch('/update-from-cart/{id}','update');
    Route::post('/buy/package','order')->name('buy.package');
+  
    
    });
    Route::view('/cart','vendor.package.cart')->name('cart');
@@ -211,22 +214,3 @@ Route::group(['middleware'=>'user'],function()
 });
 
 
-
-Route::group(['prefix'=>'agent'],function()
-{
-  Route::group(['middleware'=>'labour.guest'],function()
-  {
-    Route::view('login','admin.agent_login')->name('agent.login');
-    Route::post('authenticate',[AgentLoginController::class,'agentLogin'])->name('agent.authenticate');
-  });
-
-  //loggedin route
-  Route::group(['middleware'=>'labour.auth'],function()
-  {
-    Route::post('logout',[AgentLoginController::class,'logout'])->name('agent.logout');
-    Route::get('dashboard',[AgentLoginController::class,'index'])->name('agent.dashboard');
-   
-
-  });
-
-});

@@ -1,8 +1,8 @@
-@extends('vendor.admin')
+@extends('employee.admin')
       
 @section('content')
 
-<form action="{{route('profile.update',['id'=>Auth::user()->id])}}" method="POST" enctype="multipart/form-data">
+<form action="{{route('agent.profile.update',['id'=>Auth::user()->id])}}" method="POST" enctype="multipart/form-data">
    @csrf
    @method('PUT')
    <div class="row justify-content-center">
@@ -19,8 +19,8 @@
                         <label for="" class="font-weight-bold mt-2">
                      Name <span class="text-danger">*</span>
                   </label>
-                  <input type="text" class="form-control input_border" name="user_name"  value="{{Auth::user()->user_name}}">
-                  <span class="text-danger">@error ('user_name') {{$message}}@enderror</span>
+                  <input type="text" class="form-control input_border" name="labour_name"  value="{{Auth::user()->labour_name}}">
+                  <span class="text-danger">@error ('labour_name') {{$message}}@enderror</span>
                 </div>
                </div>
                <div class="form-group">
@@ -35,8 +35,8 @@
                    <label for="" class="font-weight-bold mt-4">
                        Phone Number<span class="text-danger">*</span>
                    </label>
-                   <input type="text" class="form-control input_border" name="phone"  value="{{Auth::user()->phone}}">
-                   <span class="text-danger">@error ('phone') {{$message}}@enderror</span>
+                   <input type="text" class="form-control input_border" name="labour_phone"  value="{{Auth::user()->labour_phone}}">
+                   <span class="text-danger">@error ('labour_phone') {{$message}}@enderror</span>
                  </div>
                  <div class="col-md-6">
                   <label for="" class="font-weight-bold mt-4">
@@ -50,9 +50,9 @@
                <label for="" class="font-weight-bold mt-3">
                  Select  Images <span class="text-danger">*</span>
                </label>
-               <input type="file" class="form-control input_border" name="user_image"  >
-               <span class="text-danger ">@error ('user_image') {{$message}}@enderror</span><br>
-                <img src="{{asset('uploads/img/'.Auth::user()->user_image)}}" width="10%">
+               <input type="file" class="form-control input_border" name="labour_image"  >
+               <span class="text-danger ">@error ('labour_image') {{$message}}@enderror</span><br>
+                <img src="{{asset('uploads/img/'.Auth::user()->labour_image)}}" width="10%">
                </div>
                <hr class="card_color2">
                <div class="">

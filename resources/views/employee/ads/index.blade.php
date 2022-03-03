@@ -1,10 +1,10 @@
-@extends('vendor.admin')
+@extends('employee.admin')
 @section('content')
 
 <div class="row ml-2">
 	<div class="col-12">
 		<div class="form-group">
-         	<x-btn-component route="ads.index2"></x-btn-component>
+         	<x-btn-component route="agent.ads.index2"></x-btn-component>
 		</div>
 	</div>
 </div>
@@ -46,7 +46,7 @@
 </div>
 	@else
 	  <div class="col-12">
-	  	<x-resource-empty resource="package" new="package.create"></x-resource-empty>
+	  	<x-resource-empty resource="Ads" new="agent.ads.index2"></x-resource-empty>
 	  </div>
 	  </div>
    @endif

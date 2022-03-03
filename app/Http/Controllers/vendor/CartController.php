@@ -75,16 +75,16 @@ class CartController extends Controller
               'user_id'=>Auth::user()->id,
           ];
          }
-         try{
+         //try{
 
              $order =Cart::create($data);
              session()->forget('cart');
              Notification::send($order, new NewOrderNotification($order));
             return to_route('vendor.dashboard')->with('success','Your Order Has Been Placed');
-         }catch(\Exception $e)
-        {
-            return redirect()->back()->with('success','Could Not Place Order');
-        }
+        // }catch(\Exception $e)
+       // {
+        //    return redirect()->back()->with('success','Could Not Place Order');
+       // }
            
         
     }

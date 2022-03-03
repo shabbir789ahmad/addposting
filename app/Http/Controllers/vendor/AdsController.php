@@ -74,12 +74,28 @@ class AdsController extends Controller
       
         DB::transaction(function() use($request)
         {
-            $data=$request->only('name','detail','location','price','areaunit','total_area','furnished','category_id','bedroom','bathroom','user_id','type');
+            
             $ads=Ad::where('user_id',Auth::id())->where('total_ads','>',0)->first('total_ads');
         // dd($ads);
             if(!$ads==null)
             {
-               $product=Product::create($data);
+               $product=Product::create([
+               
+               'name'=>$request->name,
+               'detail'=>$request->detail,
+               'location'=>$request->location,
+               'price'=>$request->price,
+               'areaunit'=>$request->areaunit,
+               'total_area'=>$request->total_area,
+               'furnished'=>$request->furnished,
+               'category_id'=>$request->category_id,
+               'bedroom'=>$request->bedroom,
+               'bathroom'=>$request->bathroom,
+               'user_id'=>$request->user_id,
+               'labour_id'=>null,
+               'type'=>$request->type,
+
+               ]);
                if($request->feature)
               {
                 for($i=0; $i<count($request->feature);$i++)
@@ -106,13 +122,15 @@ class AdsController extends Controller
               }
               
               Ad::where('user_id',Auth::id())->where('total_ads','>',0)->first()->decrement('total_ads');
-              //Ad::where('user_id',Auth::id())->where('total_ads','>',0)->first()->increment('used_ads');
+              Ad::where('user_id',Auth::id())->where('total_ads','>',0)->first()->increment('used_ads');
+
             }else{
                
                return redirect()->back()->with('success','Ads Quota is Empty');
             } 
             
         });
+        
         return to_route('ads.index')->with('success','Ads Created');
     }
 

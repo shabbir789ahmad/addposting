@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('a_ads', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('total_ads');
-            $table->bigInteger('used_ads')->nullable();
+            $table->bigInteger('used_ads')->default(0)->nullable();
             $table->bigInteger('ad_id')->unsigned();
             $table->foreign('ad_id')->references('id')->on('ads')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('labour_id')->unsigned();

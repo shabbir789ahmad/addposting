@@ -84,7 +84,7 @@
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-          <img src="{{asset('uploads/img/'.Auth::user()->user_image)}}">
+          <img src="{{asset('uploads/img/'.Auth::user()->labour_image)}}">
         </div>
       </a>
       <hr class="sidebar-divider my-0">
@@ -94,35 +94,31 @@
       <hr class="sidebar-divider">
      
        <li class="nav-item ">
-        <a class="nav-link " href="{{route('vendor.dashboard')}}">
+        <a class="nav-link " href="{{route('agent.dashboard')}}">
           <i class="fas fa-window-maximize text-light"></i>
           <span>Dashboard</span>
         </a>
        </li>
+      
        <li class="nav-item ">
-        <a class="nav-link " href="{{route('package.index')}}">
-         <i class="fas fa-ad text-light"></i>
-          <span>Buy Ads</span>
-        </a>
-       </li>
-       <li class="nav-item ">
-        <a class="nav-link " href="{{route('ads.index')}}">
+        <a class="nav-link " href="{{route('agent.ads.index')}}">
           <i class="fas fa-ad text-light"></i>
           <span>All Ads</span>
         </a>
        </li>
+        <li class="nav-item ">
+        <a class="nav-link " href="{{route('agent.ads.index2')}}">
+          <i class="fas fa-ad text-light"></i>
+          <span>Create Ads</span>
+        </a>
+       </li>
        <li class="nav-item ">
-        <a class="nav-link " href="{{route('profile.index')}}">
+        <a class="nav-link " href="{{route('agent.profile.index')}}">
           <i class="fas fa-address-card text-light"></i>
           <span>Your Profile</span>
         </a>
        </li>
-       <li class="nav-item ">
-        <a class="nav-link " href="{{route('labour.index')}}">
-          <i class="fas fa-address-card text-light"></i>
-          <span>Your User</span>
-        </a>
-       </li>
+      
     
       
       
@@ -146,7 +142,7 @@
                         @else
             <li class="nav-item border rounded p-2 bg-light border-danger dropdown d-block mt-2 ml-5 bookname">
          <a id="navbarDropdown" class=" bg-light dropdown-toggle  text-light mt-4" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-         <a href="" class="mt-5  text-dark " > {{ucwords( Auth::user()->name )}}</a>
+         <a href="" class="mt-5  text-dark " > {{ucwords( Auth::user()->labour_name )}}</a>
                                 </a>
 
   <div class="dropdown-menu " aria-labelledby="navbarDropdown">
@@ -156,7 +152,7 @@
           {{ __('Logout') }}
           </a>
 
-  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-hidden">
+  <form id="logout-form" action="{{ route('agent.logout') }}" method="POST" class="d-hidden">
                                         @csrf
                                     </form>
                                 </div>
@@ -216,85 +212,11 @@ function myFunction(id,res) {
 }
 
 
- $(".add_to_cart").change(function (e) 
- { 
-   $(this).is(':checked')
-    if($(this).is(':checked')==true)
-    {
-       e.preventDefault();
-       var id=$(this).data('id');
-      $.ajax({
-            url : '/add-to-cart/' +id,
-            method: "GET",
-            data: {
-                _token: '{{ csrf_token() }}', 
-              
-            },
-      }).done(function(res){
-
-        myFunction(id=1,res)
-      }).fail(function(e){
-        console.log('erro')
-      });
-    }else if($(this).is(':checked')==false)
-    {
-       e.preventDefault();
-       var id=$(this).data('id');
-      $.ajax({
-            url : '/remove-from-cart/' +id,
-            method: "GET",
-            data: {
-                _token: '{{ csrf_token() }}', 
-              
-            },
-      }).done(function(res){
-
-        myFunction(id=1,res)
-      }).fail(function(e){
-        console.log('erro')
-      });
-    }
-       
-});
- //remove from cart
- $('.remove_from_cart').click(function(){
-   
-   let id=$(this).parents('td').parents('tr').children('.id').find('input').val();
  
-  $.ajax({
 
-      url:'remove-from-cart/'+id,
-      method:'GET',
-  }).done(function(res){
-    window.location.reload();
-
-  }).fail(function(){
-
-  });
-
-
- });
- //update cart
-  $(".update_cart").change(function (e) {
-       
-       
-        let id=$(this).parents('td').parents('tr').children('.id').find('input').val();
-
-       $.ajax({
-            url:'update-from-cart/'+id,
-            method: "patch",
-            data: {
-                _token: '{{ csrf_token() }}', 
-                id: id, 
-                quentity: $(this).val()
-            },
-            success: function (response) {
-               // window.location.reload();
-            }
-        });
-    });
- 
 </script>
+@section('script')
+@show
 </body>
 
 </html>

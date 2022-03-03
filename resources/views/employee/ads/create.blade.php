@@ -1,8 +1,8 @@
-@extends('vendor.admin')
+@extends('employee.admin')
 		
 @section('content')
 
-<form action="{{ route('ads.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('agent.ads.store') }}" method="POST" enctype="multipart/form-data">
 	@csrf
 	<div class="row justify-content-center">
 	  <div class="col-md-12 text-center">
@@ -15,7 +15,8 @@
 					<!-- <input type="text" name="category_id" value="{{$categories->category_type}}"> -->
 					<input type="hidden" name="category_id" value="{{$categories->id}}">
 				
-					<input type="hidden" name="user_id" value="{{Auth::id()}}">
+					
+					<input type="text" name="labour_id" value="{{Auth::id()}}">
 					<div class="row">
 					 <div class="col-md-12 col-12">
                         <label for="" class="font-weight-bold mt-2">

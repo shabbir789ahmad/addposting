@@ -14,7 +14,7 @@ use App\Models\SubCategory;
 use App\Models\Feature;
 use App\Http\Traits\ProductTrait;
 use Illuminate\Http\Request;
-
+use Cookie;
 class HomeController extends Controller
 {
     use ProductTrait;
@@ -41,13 +41,22 @@ class HomeController extends Controller
 
     function adsDetail($id)
     {
+         if(Cookie::get($id)!='')
+         { 
+            Cookie::set('$id', '1', 60);
+            $pro=new Product;
+            $pro->incrementReadCount($id);
+          }
+
+          
         $products=Product::
          join('categories','categories.id','products.category_id')
-         ->join('users','users.id','products.user_id')
+         ->leftjoin('users','users.id','products.user_id')
+         ->leftjoin('labours','labours.id','products.labour_id')
          ->select('products.*','users.user_name','users.email','areaunit','total_area','users.phone','users.created_at','users.user_image')
          ->where('products.id',$id)
          ->first();
-         
+         //dd($products);
         $features=Feature::where('product_id',$products->id)->get();
       
         $images=Image::where('product_id',$id)->get();

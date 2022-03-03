@@ -52,7 +52,7 @@
      <div class="card card_border mt-4 p-0">
       <div class="card-body p-0 pt-4">
        <p class="description">Seller Description</p>
-       <a href="{{route('vendor.product',['id'=>$products['user_id']])}}" class="mt-3  text-dark link">
+       <a href="" class="mt-3  text-dark link">
        <div class="selller_description">
         <img src="{{asset('uploads/img/'.$products->user_image)}}" width="20%">
         <div class="seller_name mt-2">

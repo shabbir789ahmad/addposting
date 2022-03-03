@@ -1,4 +1,4 @@
-@extends('vendor.admin')
+@extends('employee.admin')
 
 @section('content')
 
@@ -14,10 +14,10 @@
 					<div class="row">
 					 <div class="col-md-6 col-12 ">
                      @foreach($properties as $pro)
-					 <div class="property_for_sale mt-2" data-id="{{$pro['id']}}"><i class="fas fa-home ml-3 mt-4 text-dark fa-lg mr-2"></i>{{$pro['property']}}<i class="fas fa-arrow-right float-right mr-3 mt-4 text-dark fa-lg"></i>	 </div>
+					 <div class="property_for_sale3 mt-2" data-id="{{$pro['id']}}"><i class="fas fa-home ml-3 mt-4 text-dark fa-lg mr-2"></i>{{$pro['property']}}<i class="fas fa-arrow-right float-right mr-3 mt-4 text-dark fa-lg"></i>	 </div>
 					 @endforeach
 					</div>
-					<div class="col-md-6 col-12 category_append ">
+					<div class="col-md-6 col-12 category_append3 ">
 					   
 					</div>
 				</div>
@@ -25,5 +25,42 @@
 		</div>
 	</div>
 
+
+@endsection
+@section('script')
+<script type="text/javascript">
+	$('.property_for_sale3').click(function() {
+
+   let id=$(this).data('id');
+  $.ajax({
+            url : 'get-al-category2/' +id,
+            method: "GET",
+            data: {
+                _token: '{{ csrf_token() }}', 
+              
+            },
+      }).done(function(res)
+      {  let da;
+         if(id==1)
+         {
+           da= 'ads/create2/';
+        }else{
+           da= 'ads/create2/';
+        }
+        $('.category_append3').empty();
+        $.each(res,function(index,val)
+        { 
+          $('.category_append3').append(`
+
+            <a href="${da+val.id}" class="property_for_sale2 mt-2"><i class="fas fa-home ml-3 mt-4 text-dark fa-lg mr-2"></i>${val.category_name}</a>
+          `);
+
+        })
+       
+      }).fail(function(e){
+        console.log('erro')
+      });
+});
+</script>
 
 @endsection

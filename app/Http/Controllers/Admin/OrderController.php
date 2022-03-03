@@ -11,16 +11,17 @@ class OrderController extends Controller
    
     public function index()
     {
-        $cart=Cart::all();
+        $cart=Cart::where('approved','=',0)->get();
         return view('Dashboard.adorder.index',compact('cart'));
     }
 
    
-    public function destroy(Request $req)
+    public function approve(Request $req)
     {
         $cart=Cart::findorfail($req->id);
-        $cart->delete();
-        // dd($cart);
+        $cart->approved=1;
+        $cart->save();
+        
         Ad::create([
     
         'total_ads'=>$cart['item_ads'],
@@ -29,5 +30,10 @@ class OrderController extends Controller
 
         ]);
         return response()->json('sdsd');
+    }
+     public function destroy($id)
+    {
+  
+         return \App\Helpers\Form::DeleteEloquent(new Cart,$id);
     }
 }

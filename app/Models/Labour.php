@@ -18,10 +18,13 @@ class Labour extends Authenticatable
      */
     protected $fillable = [
         'labour_name',
-        'labour_email',
+        'email',
         'email_verified_at',
         'labour_image',
         'labour_phone',
+        'about_me',
+        'user_id',
+        'password',
     ];
 
     /**
@@ -30,7 +33,7 @@ class Labour extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'labour_password',
+        
         'remember_token',
     ];
 

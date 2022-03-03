@@ -8,7 +8,7 @@ class Form {
 
 		$route = explode('.', \Route::currentRouteName())[0];
 		
-		try {
+		//try {
 
 			$model::create($data);
 
@@ -16,11 +16,11 @@ class Form {
 
 			return redirect()->route($route . ".index")->with('success', $route.' Data Uploaded');
 			
-		} catch (\Exception $e) {
+		//} catch (\Exception $e) {
 
-			return redirect()->route($route . ".index")->with('success', $route.' Failed To Upload ');
+			//return redirect()->route($route . ".index")->with('success', $route.' Failed To Upload ');
 			
-		}
+		//}
 
 	}
 

@@ -41,6 +41,13 @@
 									
 								<td>
 								<button class="btn btn-warning cart" data-id="{{$car['id']}}">Approve</button>
+								<form action="{{ route('order.destroy', ['id' => $car->id]) }}" method="POST" class="d-inline" onsubmit="return confirmDelete()">
+				@method('DELETE')
+				@csrf
+				 <button type="submit" class="btn btn-xs btn-danger mt-3 mb-3">
+						Reject
+				 </button>
+				</form>
 								</td>
 							</tr>
 							@endforeach

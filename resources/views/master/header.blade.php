@@ -43,9 +43,9 @@
           @endif
      @endguest
     <ul class="ul">
-        <li class="li"><a class="active" href="{{url('/')}}">Home</a></li>
-        <li class="li"><a href="#">About</a></li>
-        <li class="li"><a href="#">Contact</a></li>
+        <li class="li"><a  class="  {{ (request()->is('/')) ? 'active' : '' }}"  href="{{url('/')}}">Home</a></li>
+        <li class="li"><a href="{{url('about')}}"   class="  {{ (request()->is('about')) ? 'active' : '' }}">About</a></li>
+        <li class="li"><a href="{{url('contact')}}" class="  {{ (request()->is('contact')) ? 'active' : '' }}">Contact</a></li>
       </ul>
 
     </nav>

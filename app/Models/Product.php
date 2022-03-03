@@ -20,6 +20,8 @@ class Product extends Model
         'bedroom',
         'bathroom',
         'user_id',
+        'labour_id',
+        'type',
     ];
 
 
@@ -31,5 +33,12 @@ class Product extends Model
         ->orderBy('products.created_at','Desc')->take(20)->get();
        
         return $products;
+    }
+
+
+    public function incrementReadCount($id) {
+
+    $this->where('id',$id)->increment('reads');
+   
     }
 }

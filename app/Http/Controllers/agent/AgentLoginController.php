@@ -8,26 +8,26 @@ use Auth;
 class AgentLoginController extends Controller
 {
 
-  public function index()
+  // public function index()
+  // {
+  //   return view('employee.a');
+  // }
+  function agentLogin(Request $req)
   {
-    return view('employee.dashboard');
-  }
-     function agentLogin(Request $req)
-    {
      
      $cred=$req->only('email','password');
      
       if(Auth::guard('labour')->attempt($cred,$req->remember))
         {
-         //dd("klkjk");
+         
           return redirect()->route('agent.dashboard');
         
         }else
         {
             
-          return redirect()->back()->with('error','something is wrong');
+          return redirect()->back()->with('error','These credentials Does not match our record');
         }
-    }
+  }
 
 
 

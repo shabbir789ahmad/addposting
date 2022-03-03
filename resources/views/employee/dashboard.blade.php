@@ -1,4 +1,4 @@
-@extends('vendor.admin')
+@extends('employee.admin')
 @section('content')
 
         <!-- Container dffFluid-->
@@ -14,7 +14,7 @@
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Total Ads</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Total Product</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">{{$total_ads}}</div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <span class="text-success mr-2"> 0%</span>
@@ -35,7 +35,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1"> User</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1"> Total Ads Left</div>
                       <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0</div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <span class="text-success mr-2"> 0%</span>
@@ -55,8 +55,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Total ads Packages</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{$total_package}}</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Total ads Used</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{$used_ads}}</div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <span class="text-success mr-2"></i>0%</span>
                         <span>Since last Month</span>
@@ -94,7 +94,7 @@
             <div class="col-xl-8 col-lg-7">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-light">Top Selling Product</h6>
+                  <h6 class="m-0 font-weight-bold text-dark">Per Ads Views</h6>
                   
                 </div>
                 <div class="card-body">
@@ -141,11 +141,11 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Task', 'product pr sell'],
-          
+          <?php echo $chartdata ?>
         ]);
 
         var options = {
-          title: 'Top Selling Products'
+          title: 'Per Ads Views'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -153,6 +153,5 @@
         chart.draw(data, options);
       }
     </script>
-
 
 @endsection

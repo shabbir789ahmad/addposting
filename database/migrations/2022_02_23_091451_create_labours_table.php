@@ -16,11 +16,14 @@ return new class extends Migration
         Schema::create('labours', function (Blueprint $table) {
             $table->id();
             $table->string('labour_name');
-            $table->string('labour_email')->unique();
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('labour_password');
+            $table->string('password');
             $table->string('labour_image');
             $table->string('labour_phone');
+            $table->string('about_me')->nullable();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
