@@ -49,31 +49,56 @@
       </div>
      </div>
      <!-- //seller description -->
+     @if($users && !$labours)
      <div class="card card_border mt-4 p-0">
       <div class="card-body p-0 pt-4">
-       <p class="description">Seller Description</p>
-       <a href="" class="mt-3  text-dark link">
+       <p class="description">Seller Description </p>
+       <a href="{{route('vendor.product',['id'=>$users['id']])}}" class="mt-3  text-dark link">
        <div class="selller_description">
-        <img src="{{asset('uploads/img/'.$products->user_image)}}" width="20%">
+        <img src="{{asset('uploads/img/'.$users->user_image)}}" width="20%">
         <div class="seller_name mt-2">
-         <h6 class="p-0">{{ucfirst($products['user_name'])}}</h6>
-         <p class="p-0">Member since  {{date('Y',strtotime($products['created_at']))}}</p>
+         <h6 class="p-0">{{ucfirst($users['user_name'])}}</h6>
+         <p class="p-0">Member since  {{date('Y',strtotime($users['created_at']))}}</p>
          
         </div>
         <i class="fa-solid fa-arrow-right-long fa-lg "></i>
         
        </div></a>
        <div class="d-flex mb-4">
-         <button  class="btn btn_chat pl-0 email" data-id="{{$products['id']}}" data-name="{{$products['name']}}" data-agent="{{ucfirst($products['user_name'])}}">Email</button>
-         @if(Auth::user())
-            <button  class="btn btn_chat"><i class="fa-solid fa-phone fa-lg">.</i>{{$products['phone']}}</button>
-          @else
-         <button  class="btn btn_chat">Call</button>
-         @endif
-        </div>
+         <button  class="btn btn_chat pl-0 email" data-id="{{$users['id']}}" data-name="{{$products['name']}}" data-agent="{{ucfirst($users['user_name'])}}">Email</button>
+         <button class="btn btn_chat">Call {{$users['phone']}}</button>
+       </div>
         
       </div>
      </div>
+      @endif
+      @if($labours)
+     <div class="card card_border mt-4 p-0">
+      <div class="card-body p-0 pt-3">
+       <div class="d-flex ">
+       <p class="description">Seller Description </p>
+       <a href="{{route('vendor.product',['id'=>$labours['user_id']])}}" class="link ms-auto" style="width: 15%;">
+         <img src="{{asset('uploads/img/'.$labours->user_image)}}" width="90%" class=" border border-dark " style="border-radius: 50%; object-fit: cover;"></a>
+       </div>
+       <a href="{{route('agent.product',['id'=>$labours['id']])}}" class="mt-3  text-dark link">
+       <div class="selller_description">
+        <img src="{{asset('uploads/user/'.$labours->labour_image)}}" >
+        <div class="seller_name mt-2">
+         <h6 class="p-0">{{ucfirst($labours['labour_name'])}}</h6>
+         <p class="p-0">Member since  {{date('Y',strtotime($labours['created_at']))}}</p>
+         
+        </div>
+        <i class="fa-solid fa-arrow-right-long fa-lg "></i>
+        
+       </div></a>
+       <div class="d-flex mb-4">
+         <button  class="btn btn_chat pl-0 email" data-id="{{$labours['id']}}" data-name="{{$products['name']}}" data-agent="{{ucfirst($labours['labour_name'])}}">Email</button>
+         <button class="btn btn_chat">Call {{$labours['labour_phone']}}</button>
+       </div>
+        
+      </div>
+     </div>
+      @endif
    </div>
   </div>
 </div>
@@ -160,23 +185,23 @@
     @foreach($products2 as $product)
      <div class="card shadow">
        <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image">
-       <div class="card-body p-1">
+       <div class="card-body pt-1">
         <div class="category_data mb-0">
          <p>{{$product['category_name']}}</p>
-         <i class="fa-solid fa-heart text-danger"></i>
+        </div>
+        <div class="product_data mb-0 mt-0 d-flex">
+          <h5>{{ucfirst($product['name'])}}</h5>
+          
+         <i class="fa-solid fa-heart text-danger ms-auto"></i>
         </div>
         <div class="product_data mb-0 mt-0">
-          <h5>{{ucfirst($product['name'])}}</h5>
-          <p>{{ucfirst($product['location'])}}</p>
-          <div class="text-center">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-          </div>
-         </div>
+          <p class="m-0">{{ucfirst($product['location'])}} <span class="text-center">${{$product['price']}}</span></p>
+        </div>
+        
       </div>
+      @php $now = time(); @endphp
+        @php $datediff = $now - strtotime($product['created_at']); @endphp
+        <p class="mt-0 p-0 text-center text-dark card-footer">{{floor($datediff / (60 * 60 * 24))}} days ago</p>
      </div>
      @endforeach
     

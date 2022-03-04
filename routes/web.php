@@ -20,6 +20,7 @@ use App\Http\Controllers\vendor\AdsController;
 use App\Http\Controllers\vendor\CartController;
 use App\Http\Controllers\vendor\VendorContoller;
 use App\Http\Controllers\vendor\LabourContoller;
+use App\Http\Controllers\vendor\BuyAdController;
 
 use App\Http\Controllers\agent\AgentLoginController;
 
@@ -37,6 +38,7 @@ Route::get('ads/{id}detail',[HomeController::class,'adsdetail'])->name('ads.deta
 Route::get('all/{id}/ads',[HomeController::class,'allAds'])->name('all.ads');
 Route::get('sort/ads',[HomeController::class,'sortAds'])->name('sort.ads');
 Route::get('vendor/{id}/product',[HomeController::class,'vendorProduct'])->name('vendor.product');
+Route::get('agent/{id}/product',[HomeController::class,'agentProduct'])->name('agent.product');
 Route::get('searchresult',[SearchResultController::class,'searchResut'])->name('searchresult');
 
 //ajax call data route 
@@ -199,7 +201,10 @@ Route::group(['middleware'=>['auth','vendor']],function()
   
    //vendor create user route
    Route::resource('labour', LabourContoller::class);
-   Route::post('assign/ads',[LabourContoller::class,'assignAd'])->name('asign.ads');
+  Route::post('assign/ads',[LabourContoller::class,'assignAd'])->name('asign.ads');
+   //vendor ad Buy data  route
+  Route::get('all/add/vendor', [BuyAdController::class,'index'])->name('vendor.all.add');
+  Route::put('cart/{id}/reorder', [BuyAdController::class,'reOrder'])->name('cart.reorder');
 });
 
 

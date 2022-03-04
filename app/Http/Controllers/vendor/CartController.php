@@ -73,18 +73,19 @@ class CartController extends Controller
               'item_ads'=>$cart['package_ads'],
               'item_total'=>$cart['package_price']*$cart['package_quentity'],
               'user_id'=>Auth::user()->id,
+              'approved'=>0,
           ];
          }
-         //try{
+         try{
 
              $order =Cart::create($data);
              session()->forget('cart');
              Notification::send($order, new NewOrderNotification($order));
             return to_route('vendor.dashboard')->with('success','Your Order Has Been Placed');
-        // }catch(\Exception $e)
-       // {
-        //    return redirect()->back()->with('success','Could Not Place Order');
-       // }
+         }catch(\Exception $e)
+        {
+            return redirect()->back()->with('success','Could Not Place Order');
+        }
            
         
     }

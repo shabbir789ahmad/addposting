@@ -45,4 +45,9 @@ class Labour extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getLabourNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
 }

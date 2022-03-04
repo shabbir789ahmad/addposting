@@ -56,9 +56,10 @@ overflow-x: auto;
 	margin-top: 8%;
 }
 .selller_description img{
-	width: 50px;
-	height: 50%;
+	width: 15%;
+	height: 3.9rem;
 	border-radius: 50%;
+	object-fit: cover;
 	border: 2px solid black;
 }
 .phone a{

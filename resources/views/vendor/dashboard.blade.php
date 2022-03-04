@@ -141,11 +141,11 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Task', 'product pr sell'],
-          
+          <?php echo $chartdata ?>
         ]);
 
         var options = {
-          title: 'Top Selling Products'
+          title: 'Per Ads Views'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));

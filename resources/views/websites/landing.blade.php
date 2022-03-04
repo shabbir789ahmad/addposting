@@ -68,28 +68,7 @@
      
    
     <div class="row more_filter" style="display:none">
-     <!-- <div class="col-md-2 col-6 col-sm-12 mt-2">
-      <select class="form-control" name="min_area" >
-       <option selected disabled hidden> Area Sqrt (min area)</option>
-       
-       <option>500</option>
-              <option>600</option>
-              <option>700</option>
-              <option>800</option>
-              <option>900</option>
-              <option>1000</option>
-              <option>1100</option>
-              <option>1200</option>
-              <option>1300</option>
-              <option>1500</option>
-              <option>1600</option>
-              <option>1700</option>
-              <option>1800</option>
-              <option>1900</option>
-              <option>2000</option>
-              <option>2100</option>
-      </select>
-    </div> -->
+    
     <div class="col-md-3 col-6 col-sm-12 mt-2 p-1">
       <select class="form-control border border-secondary" name="areaunit" >
         <option selected disabled hidden> Area Unit</option>
@@ -167,23 +146,24 @@
     <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
      <div class="card shadow card_height" >
        <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image">
-       <div class="card-body p-1">
+       <div class="card-body pt-1">
         <div class="category_data mb-0">
          <p>{{$product['category_name']}}</p>
-         <i class="fa-solid fa-heart text-danger"></i>
+        </div>
+        <div class="product_data mb-0 mt-0 d-flex">
+          <h5>{{ucfirst($product['name'])}}</h5>
+          
+         <i class="fa-solid fa-heart text-danger ms-auto"></i>
         </div>
         <div class="product_data mb-0 mt-0">
-          <h5>{{ucfirst($product['name'])}}</h5>
           <p class="m-0">{{ucfirst($product['location'])}} <span class="text-center">${{$product['price']}}</span></p>
         </div>
+        
       </div>
-      <div class="text-center card-footer">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star "></span>
-            <span class="fa fa-star"></span>
-          </div>
+      @php $now = time(); @endphp
+        @php $datediff = $now - strtotime($product['created_at']); @endphp
+        <p class="mt-0 p-0 text-center text-dark card-footer">{{floor($datediff / (60 * 60 * 24))}} days ago</p>
+     
      </div>
    </a>
   @endforeach
@@ -210,10 +190,44 @@
 </div>
 
 <!-- prodduct with category -->
+<div class="container mt-5">
+  <p class="browser ">Tranding Today</p>
+   
+   <div class="owl-carousel">
+  
+    @foreach($products as $product)
+    <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
+     <div class="card shadow card_height" >
+       <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image">
+       <div class="card-body pt-1">
+        <div class="category_data mb-0">
+         <p>{{$product['category_name']}}</p>
+        </div>
+        <div class="product_data mb-0 mt-0 d-flex">
+          <h5>{{ucfirst($product['name'])}}</h5>
+          
+         <i class="fa-solid fa-heart text-danger ms-auto"></i>
+        </div>
+        <div class="product_data mb-0 mt-0">
+          <p class="m-0">{{ucfirst($product['location'])}} <span class="text-center">${{$product['price']}}</span></p>
+        </div>
+        
+      </div>
+      @php $now = time(); @endphp
+        @php $datediff = $now - strtotime($product['created_at']); @endphp
+        <p class="mt-0 p-0 text-center text-dark card-footer">{{floor($datediff / (60 * 60 * 24))}} days ago</p>
 
+       
+     
+     </div>
+   </a>
+  @endforeach
+
+  </div>
+</div>
 <!-- products -->
 
- <div class="container  mt-5">
+<!--  <div class="container  mt-5">
 
   <p class="browser">Tranding Today</p>
   <div class="container mt-4">
@@ -235,13 +249,7 @@
           <div class="product_data mb-0 mt-4">
            <h5>{{ucfirst($product['name'])}}</h5>
            <p>{{ucfirst($product['location'])}}<span class="mr-3">${{ucfirst($product['price'])}}</span></p>
-           <!-- <div class="text-center">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-           </div> -->
+           
           </div>
        </div>
      </div>
@@ -254,7 +262,7 @@
    
   </div>
 </div>
-</div>
+</div> -->
 
 
 <!-- //dfdsf -->
@@ -267,23 +275,24 @@
       <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
      <div class="card shadow card_height" >
        <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image">
-       <div class="card-body p-1">
+       <div class="card-body pt-1">
         <div class="category_data mb-0">
-         <p>{{ucfirst($product['category_name'])}}</p>
-         <i class="fa-solid fa-heart text-danger"></i>
+         <p>{{$product['category_name']}}</p>
+        </div>
+        <div class="product_data mb-0 mt-0 d-flex">
+          <h5>{{ucfirst($product['name'])}}</h5>
+          
+         <i class="fa-solid fa-heart text-danger ms-auto"></i>
         </div>
         <div class="product_data mb-0 mt-0">
-          <h5>{{ucfirst($product['name'])}}</h5>
-          <p class="m-0">{{ucfirst($product['location'])}}</p>
+          <p class="m-0">{{ucfirst($product['location'])}} <span class="text-center">${{$product['price']}}</span></p>
         </div>
+        
       </div>
-      <div class="text-center card-footer">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star "></span>
-            <span class="fa fa-star"></span>
-          </div>
+      @php $now = time(); @endphp
+        @php $datediff = $now - strtotime($product['created_at']); @endphp
+        <p class="mt-0 p-0 text-center text-dark card-footer">{{floor($datediff / (60 * 60 * 24))}} days ago</p>
+      
      </div>
    </a>
       </div>

@@ -8,5 +8,10 @@ class State extends Model
 {
     use HasFactory;
     protected $fillable=['states'];
-    
+ 
+
+    public function getStateAttribute($value)
+    {
+        return ucfirst($value);
+    }   
 }

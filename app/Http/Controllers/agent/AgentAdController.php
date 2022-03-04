@@ -17,11 +17,17 @@ use App\Models\Image;
 use App\Models\Feature;
 use Auth;
 use DB;
+use App\Http\Traits\UserTrait;
 class AgentAdController extends Controller
 {
+     use UserTrait;
     function index()
     {
-        $products=Product::where('labour_id',Auth::user()->id)->get();
+       $user_id=null;
+       $labour_id=Auth::id();
+
+      $products= $this->userData($labour_id,$user_id);
+
         return view('employee.ads.index',compact('products'));
     }
     public function index2()
@@ -112,7 +118,7 @@ class AgentAdController extends Controller
               }
               
               AAd::where('labour_id',Auth::id())->where('total_ads','>',0)->first()->decrement('total_ads');
-              //Ad::where('user_id',Auth::id())->where('total_ads','>',0)->first()->increment('used_ads');
+              AAd::where('labour_id',Auth::id())->where('total_ads','>',0)->first()->increment('used_ads');
             }else{
                
                return redirect()->back()->with('success','Ads Quota is Empty');

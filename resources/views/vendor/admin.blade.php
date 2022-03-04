@@ -106,6 +106,12 @@
         </a>
        </li>
        <li class="nav-item ">
+        <a class="nav-link " href="{{route('vendor.all.add')}}">
+          <i class="fas fa-address-card text-light"></i>
+          <span>Your Ad Data</span>
+        </a>
+       </li>
+       <li class="nav-item ">
         <a class="nav-link " href="{{route('ads.index')}}">
           <i class="fas fa-ad text-light"></i>
           <span>All Ads</span>
@@ -123,6 +129,7 @@
           <span>Your User</span>
         </a>
        </li>
+
     
       
       

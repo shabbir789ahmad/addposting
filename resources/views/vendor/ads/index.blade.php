@@ -20,23 +20,24 @@
     <a href="#" class="link">
      <div class="card shadow card_height" >
        <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image">
-       <div class="card-body p-1">
+       <div class="card-body pt-1">
         <div class="category_data mb-0">
-         <p>Real Estate</p>
-         <i class="fa-solid fa-heart text-danger"></i>
+         <p>{{$product['category_name']}}</p>
+        </div>
+        <div class="product_data mb-0 mt-0 d-flex">
+          <h5>{{ucfirst($product['name'])}}</h5>
+          
+         <i class="fa-solid fa-heart text-danger ml-auto"></i>
         </div>
         <div class="product_data mb-0 mt-0">
-          <h5>{{$product['name']}}</h5>
-          <p class="m-0">{{$product['location']}}</p>
+          <p class="m-0">{{ucfirst($product['location'])}} <span class="text-center">${{$product['price']}}</span></p>
         </div>
+        
       </div>
-      <div class="text-center card-footer">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star "></span>
-            <span class="fa fa-star"></span>
-          </div>
+      @php $now = time(); @endphp
+        @php $datediff = $now - strtotime($product['created_at']); @endphp
+        <p class="mt-0 p-0 text-center text-dark card-footer">{{floor($datediff / (60 * 60 * 24))}} days ago</p>
+      
      </div>
    </a>
     </div>

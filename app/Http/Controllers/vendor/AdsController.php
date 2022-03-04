@@ -18,13 +18,16 @@ use App\Models\Image;
 use App\Http\Traits\ImageTrait;
 use DB;
 use Auth;
+use App\Http\Traits\UserTrait;
 class AdsController extends Controller
 {
      use ImageTrait;
-    
+    use UserTrait;
     public function index()
     {
-        $products=Product::where('user_id',Auth::user()->id)->get();
+        $user_id=Auth::id();
+       $labour_id=null;
+        $products= $this->userData($labour_id,$user_id);
         return view('vendor.ads.index',compact('products'));
     }
     public function index2()

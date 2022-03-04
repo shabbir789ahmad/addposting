@@ -11,9 +11,11 @@ use App\Models\Ad;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Traits\ImageTrait;
+use App\Http\Traits\UserTrait;
 class LabourContoller extends Controller
 {
     use ImageTrait;
+    use UserTrait;
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +24,7 @@ class LabourContoller extends Controller
     public function index()
     {
         $ads=Cart::join('ads','carts.id','=','ads.cart_id')->select('carts.item_name','ads.*')->where('total_ads','>',0)->withTrashed()->get();
-        $labours=labour::all();
+        $labours=$this->allAgent(Auth::id());//user trait
         $aads=AAd::get();
         return view('vendor.user.index',compact('labours','ads','aads'));
     }

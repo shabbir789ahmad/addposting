@@ -112,13 +112,31 @@
 							Area Unit<span class="text-danger">*</span>
 						</label>
                <div class="all_checkbox2">
-                  @foreach($areas as $area)
 				         <div type="button" class="input_checkbox2 ml-3 p-2 mt-2">
-                     <label >{{$area['areaunit']}}</label>
-                       <input type="checkbox" name="areaunit" value="{{$area['areaunit']}}" class="check_btn2" >
+                     <label >Kanal</label>
+                       <input type="checkbox" name="areaunit" value="kanal" class="check_btn2" >
                        <span class="text-danger">@error ('areaunit') {{$message}}@enderror</span>
                    </div>
-                  @endforeach
+                    <div type="button" class="input_checkbox2 ml-3 p-2 mt-2">
+                     <label >Marla</label>
+                       <input type="checkbox" name="areaunit" value="marla" class="check_btn2" >
+                       <span class="text-danger">@error ('areaunit') {{$message}}@enderror</span>
+                   </div>
+                    <div type="button" class="input_checkbox2 ml-3 p-2 mt-2">
+                     <label >Square Feet</label>
+                       <input type="checkbox" name="areaunit" value="square feet" class="check_btn2" >
+                       <span class="text-danger">@error ('areaunit') {{$message}}@enderror</span>
+                   </div>
+                    <div type="button" class="input_checkbox2 ml-3 p-2 mt-2">
+                     <label >Square Meter</label>
+                       <input type="checkbox" name="areaunit" value="square meter" class="check_btn2" >
+                       <span class="text-danger">@error ('areaunit') {{$message}}@enderror</span>
+                   </div>
+                   <div type="button" class="input_checkbox2 ml-3 p-2 mt-2">
+                     <label >Square Yard</label>
+                       <input type="checkbox" name="areaunit" value="square yard" class="check_btn2" >
+                       <span class="text-danger">@error ('areaunit') {{$message}}@enderror</span>
+                   </div>
 			           </div>
            @if($categories->category_type=='floor' || $categories->category_type=='apartment' || $categories->category_type=='shop')
 					 <div class="row">

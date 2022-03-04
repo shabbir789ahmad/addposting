@@ -17,5 +17,10 @@ class Cart extends Model
        'item_total',
        'item_ads',
        'user_id',
+       'approved',
     ];
+     public function getItemNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
 }

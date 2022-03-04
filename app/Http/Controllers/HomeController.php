@@ -10,14 +10,18 @@ use App\Models\City;
 use App\Models\Area;
 use App\Models\Image;
 use App\Models\Price;
+use App\Models\User;
+use App\Models\Labour;
 use App\Models\SubCategory;
 use App\Models\Feature;
 use App\Http\Traits\ProductTrait;
 use Illuminate\Http\Request;
 use Cookie;
+use App\Http\Traits\UserTrait;
 class HomeController extends Controller
 {
     use ProductTrait;
+    use UserTrait;
     function index()
     {
         $categories=Category::latest()->select('category_name','category_image','id')->get();
@@ -28,6 +32,7 @@ class HomeController extends Controller
         $areas=Area::all();
         $prices=Price::latest()->select('price1','id')->get();
         $products=Product::products();
+   
          return view('websites.landing',compact('categories','sliders','banners','products','cities','areas','prices','features'));
     }
     function allAds($id)
@@ -41,28 +46,26 @@ class HomeController extends Controller
 
     function adsDetail($id)
     {
-         if(Cookie::get($id)!='')
-         { 
-            Cookie::set('$id', '1', 60);
-            $pro=new Product;
-            $pro->incrementReadCount($id);
-          }
-
-          
-        $products=Product::
+         
+        $pro=new Product;
+        $pro->incrementReadCount($id);
+        
+         $products=Product::
          join('categories','categories.id','products.category_id')
-         ->leftjoin('users','users.id','products.user_id')
-         ->leftjoin('labours','labours.id','products.labour_id')
-         ->select('products.*','users.user_name','users.email','areaunit','total_area','users.phone','users.created_at','users.user_image')
+         ->select('products.*')
          ->where('products.id',$id)
          ->first();
          //dd($products);
-        $features=Feature::where('product_id',$products->id)->get();
+         $features=Feature::where('product_id',$products->id)->get();
+        
+            $users=$this->user($products->user_id);//usertrait
+            $labours=$this->agent($products->labour_id);
+        
       
         $images=Image::where('product_id',$id)->get();
         $products2=$this->products($products->category_id);
-       
-        return view('websites.detail',compact('products','images','products2','features'));
+       //dd($labour);
+        return view('websites.detail',compact('products','images','products2','features','users','labours'));
     }
 
     function sortAds()
@@ -83,7 +86,8 @@ class HomeController extends Controller
        }
         
         $categories = Category::with('products')->has('products')->get();
-        
+          $labours=$this->allAgent($id);//user trait
+      
         $query=Product::
          join('categories','categories.id','products.category_id')
          ->join('users','users.id','products.user_id')
@@ -94,6 +98,30 @@ class HomeController extends Controller
             $query=$query->where('category_id',$category_id);
          }
           $products=$query->take(20)->get();
-        return view('websites.vendor_account',compact('products','categories'));
+        return view('websites.vendor_account',compact('products','categories','labours'));
+    }
+
+    //get data for agent record
+
+    function agentProduct($id, Request $request)
+    {  $category_id='';
+       if($request->category_id != null)
+       {
+         $category_id=$request->category_id;
+       }
+        
+        $categories = Category::with('products')->has('products')->get();
+        
+        $query=Product::
+         join('categories','categories.id','products.category_id')
+         ->join('labours','labours.id','products.labour_id')
+         ->select('products.name','products.location','categories.category_name','products.id','products.price','labours.labour_name','labours.labour_phone','products.detail','areaunit','total_area','products.category_id','labours.created_at','labours.labour_image','labours.about_me')
+          ->where('labour_id',$id);
+         if($category_id)
+         {
+            $query=$query->where('category_id',$category_id);
+         }
+          $products=$query->take(20)->get();
+        return view('websites.agent_account',compact('products','categories'));
     }
 }
