@@ -66,7 +66,12 @@
        </div></a>
        <div class="d-flex mb-4">
          <button  class="btn btn_chat pl-0 email" data-id="{{$users['id']}}" data-name="{{$products['name']}}" data-agent="{{ucfirst($users['user_name'])}}">Email</button>
-         <button class="btn btn_chat">Call {{$users['phone']}}</button>
+         
+        @if(Auth::user())
+           <button class="btn btn_chat">Call {{$users['phone']}}</button>
+         @else
+           <button class="btn btn_chat show_number">Show Number</button>
+         @endif
        </div>
         
       </div>
@@ -93,7 +98,11 @@
        </div></a>
        <div class="d-flex mb-4">
          <button  class="btn btn_chat pl-0 email" data-id="{{$labours['id']}}" data-name="{{$products['name']}}" data-agent="{{ucfirst($labours['labour_name'])}}">Email</button>
+         @if(Auth::user())
          <button class="btn btn_chat">Call {{$labours['labour_phone']}}</button>
+         @else
+           <button class="btn btn_chat show_number">Show Number</button>
+         @endif
        </div>
         
       </div>
@@ -125,24 +134,39 @@
         <h5>Detail</h5>
         <div class="row">
         	<div class="col-md-6 ">
-        		<div class="price"><p>Price</p><p>Rs.{{$products['price']}}</p></div>
-            @if($products['bedroom'])
-        		<div class="price"><p>Bedrooms</p><p>{{$products['bedroom']}}</p></div>
-            @endif
-        		<div class="price"><p>{{$products['areaunit']}}</p><p>{{$products['total_area']}}</p></div>
+        		<div class="price"><p>Price</p><p>${{$products['price']}}</p></div>
+            <div class="price"><p>Area</p><p>{{$products['total_area'] }} {{ucfirst($products['areaunit'])}}</p></div>
         	</div>
+          <div class="col-md-6 ">
+            <div class="price"><p>City</p><p>{{ucfirst($products['city'])}}</p></div>
+             @if($products['furnished'])
+            <div class="price"><p>Furnished</p><p>{{$products['furnished']}}</p></div>
+            @endif
+          </div>
         	<div class="col-md-6">
-            @if($products['furnished'])
-        		<div class="price"><p>Furnished</p><p>{{$products['furnished']}}</p></div>
+           
+            @if($products['bedroom'])
+            <div class="price"><p>Bedrooms</p><p>{{$products['bedroom']}}</p></div>
             @endif
-            @if($products['furnished'])
-        		<div class="price"><p>Bathrooms</p><p>{{$products['bathroom']}}</p></div>
+            
+        	</div>
+          <div class="col-md-6">
+           
+            @if($products['bathroom'])
+            <div class="price"><p>Bathrooms</p><p>{{$products['bathroom']}}</p></div>
             @endif
+           
+          </div>
+          <div class="col-md-6">
             @if($products['type'])
             <div class="price"><p>Type</p><p>{{$products['type']}}</p></div>
             @endif
-        		<div class="price"><p>Area</p><p>200</p></div>
-        	</div>
+          </div>
+          <div class="col-md-6">
+             @if($products['plot_type'])
+            <div class="price"><p>Type</p><p>{{$products['plot_type']}}</p></div>
+            @endif
+          </div>
         </div>
        </div>
        <hr>
@@ -183,6 +207,7 @@
   <div class="container mt-4">
    <div class="owl-carousel">
     @foreach($products2 as $product)
+    <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
      <div class="card shadow">
        <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image">
        <div class="card-body pt-1">
@@ -203,6 +228,7 @@
         @php $datediff = $now - strtotime($product['created_at']); @endphp
         <p class="mt-0 p-0 text-center text-dark card-footer">{{floor($datediff / (60 * 60 * 24))}} days ago</p>
      </div>
+   </a>
      @endforeach
     
    </div>
@@ -247,6 +273,9 @@
     $('#agent').text(agent)
     
     document.getElementById("product_image").src=document.getElementById("imgs").src
+  })
+  $('.show_number').click(function(){
+    $('#exampleModal').modal('show')
   })
 </script>
 @endsection

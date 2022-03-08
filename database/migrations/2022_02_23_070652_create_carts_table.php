@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('item_quentity');
             $table->string('item_ads');
             $table->string('item_total');
+            $table->string('approved')->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->dateTime('deleted_at')->nullable();

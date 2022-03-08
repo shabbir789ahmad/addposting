@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Labour;
 use App\Models\Cart;
 use App\Models\Ad;
 use Auth;
@@ -53,6 +54,7 @@ class VendorContoller extends Controller
         $total_ads=Product::where('user_id',Auth::user()->id)->count();
         $total_package=Cart::where('user_id',Auth::user()->id)->count();
         $left_ads=Ad::where('user_id',Auth::user()->id)->sum('total_ads');
+        $labour=Labour::where('user_id',Auth::user()->id)->count();
        //dd($left_ads);
         $chart= DB::table('products')->select(DB::raw(' count(*) as total_product, reads_count'))
                      ->where('user_id', Auth::id())
@@ -64,6 +66,6 @@ class VendorContoller extends Controller
             $chartdata.="['".$char->reads_count."',     ".$char->reads_count."],";
             }
             $arr['chartdata']=rtrim($chartdata,",");
-        return view('vendor.dashboard',$arr,compact('total_ads','total_package','left_ads'));
+        return view('vendor.dashboard',$arr,compact('total_ads','total_package','left_ads','labour'));
     }
 }

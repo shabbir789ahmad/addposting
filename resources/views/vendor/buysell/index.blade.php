@@ -47,7 +47,7 @@
 								<td class="text-dark">$ {{ ucfirst($cart->item_total) }}</td>
 							    <td>
 							    	@if($cart['approved']==1 )
-								  <span class="badge badge-success">Primary</span>
+								  <span class="badge badge-success">Approved</span>
                                  @elseif($cart['aproved']==0  && $cart['deleted_at']==null)
                                  <span class="badge badge-warning">Pending</span>
 								  @endif

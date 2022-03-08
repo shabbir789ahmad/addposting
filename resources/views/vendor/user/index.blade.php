@@ -88,21 +88,13 @@
       <form method="POST" action="{{route('asign.ads')}}">
         @csrf
       <div class="modal-body">
- <input type="text" name="labour_id" id="labour">
-        <label class="mt-4">Select Package</label>
-        <div class="all_checkbox6">
-                  @foreach($ads as $area)
-                 <div type="button" class="input_checkbox6 ml-3 p-2 mt-2">
-                     <label class="total">{{$area['total_ads']}}</label>
-                     <label >{{$area['item_name']}}</label>
-                       <input type="checkbox" name="ads_id" value="{{$area['id']}}" class="check_btn6 " >
-                       <span class="text-danger">@error ('areaunit') {{$message}}@enderror</span>
-                   </div>
-                  @endforeach
-          </div>
-          <span id="message" class="text-danger mt-4"></span><br>
-         <label class="mt-4">Number Of Ads To This User</label>
-         <input type="text" name="total_ads" class="form-control" id="new_ads">
+        <input type="hidden" name="labour_id" id="labour">
+        <label class="mt-4">Total Ads In Wallet</label>    
+        <input type="number" name="all_ads" class="form-control" value="{{$ads}}" id="all_ads">
+         
+        <span id="message" class="text-danger"></span><br>
+         <label class="">Number Of Ads To This User</label>
+         <input type="number" name="total_ads" class="form-control" id="new_ads">
          
       </div>
       <div class="modal-footer">
@@ -126,17 +118,14 @@
     $('#labour').val(id)
    })
 
-  $('#new_ads').change(function(){
+  $('#new_ads').keyup(function(){
    
    let value=$(this).val();
-   let total=$(this).siblings('.all_checkbox6').children('.input_checkbox6').find('input:checked').siblings('.total').text();
-   if(!parseInt(total))
-   {
-       $('#message').text('please Select At least One Package')
-   }{
-     if(value >= parseInt(total))
+   let total=$('#all_ads').val();
+  
+     if(parseInt(value) >= parseInt(total))
      {
-    
+   
       $(this).css('border','1px solid red');
        $('.create').prop('disabled',true);
      }else
@@ -145,7 +134,7 @@
        $('.create').prop('disabled',false);
 
      }
-   }
+   
   });
 
   });

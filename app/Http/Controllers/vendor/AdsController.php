@@ -49,13 +49,14 @@ class AdsController extends Controller
 
     public function create($id)
     {
-        $categories=Category::where('id',$id)->select('id','category_type')->first();
+        $categorie=Category::where('categories.id',$id)->select('categories.id','category_type','categories.property_id')->first();
         $areas=Area::all();
         $states=State::all();
         $ads=Ad::where('user_id',Auth::id())->sum('total_ads');
         $types=Type::where('type_id',$id)->get();
         $subcategories=SubCategory::where('category_id',$id)->get();
-        return view('vendor.ads.create',compact('categories','subcategories','areas','states','categories','types','ads'));
+    
+        return view('vendor.ads.create',compact('categorie','subcategories','areas','states','types','ads'));
     }
 
  
@@ -69,6 +70,8 @@ class AdsController extends Controller
            'location'=>'required',
            'price'=>'required',
            'areaunit'=>'required',
+           'city'=>'required',
+           'plot_type'=>'required',
            'total_area'=>'required',
         
            //'category_id'=>'required',
@@ -93,7 +96,9 @@ class AdsController extends Controller
                'furnished'=>$request->furnished,
                'category_id'=>$request->category_id,
                'bedroom'=>$request->bedroom,
+               'city'=>$request->city,
                'bathroom'=>$request->bathroom,
+               'plot_type'=>$request->plot_type,
                'user_id'=>$request->user_id,
                'labour_id'=>null,
                'type'=>$request->type,

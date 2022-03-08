@@ -43,7 +43,7 @@ trait ProductTrait
     
        $query=Product::
          join('categories','categories.id','products.category_id')
-         ->select('products.name','products.location','categories.category_name','products.id','products.price')
+         ->select('products.name','products.location','categories.category_name','products.id','products.price','products.created_at')
         ->orderBy('products.created_at','Desc')->take(40)->where('products.category_id',$id);
         if($small)
         {

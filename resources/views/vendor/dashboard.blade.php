@@ -36,7 +36,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1"> User</div>
-                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0</div>
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$labour}}</div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <span class="text-success mr-2"> 0%</span>
                         <span>Since last month</span>
@@ -94,7 +94,7 @@
             <div class="col-xl-8 col-lg-7">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-light">Top Selling Product</h6>
+                  <h6 class="m-0 font-weight-bold text-dark">Per Ad Views</h6>
                   
                 </div>
                 <div class="card-body">

@@ -32,8 +32,11 @@ class HomeController extends Controller
         $areas=Area::all();
         $prices=Price::latest()->select('price1','id')->get();
         $products=Product::products();
-   
-         return view('websites.landing',compact('categories','sliders','banners','products','cities','areas','prices','features'));
+        $image = $products->map(function ($item, $key) {
+       
+          return Image::where('product_id',$item['id'])->first();
+         });
+         return view('websites.landing',compact('categories','sliders','banners','products','cities','areas','prices','features','image'));
     }
     function allAds($id)
     { 
@@ -52,10 +55,8 @@ class HomeController extends Controller
         
          $products=Product::
          join('categories','categories.id','products.category_id')
-         ->select('products.*')
-         ->where('products.id',$id)
-         ->first();
-         //dd($products);
+         ->select('products.*')->where('products.id',$id)->first();
+         
          $features=Feature::where('product_id',$products->id)->get();
         
             $users=$this->user($products->user_id);//usertrait
@@ -64,7 +65,7 @@ class HomeController extends Controller
       
         $images=Image::where('product_id',$id)->get();
         $products2=$this->products($products->category_id);
-       //dd($labour);
+       
         return view('websites.detail',compact('products','images','products2','features','users','labours'));
     }
 
@@ -75,6 +76,7 @@ class HomeController extends Controller
          join('categories','categories.id','products.category_id')
          ->join('users','users.id','products.user_id')
          ->select('products.name','products.location','categories.category_name','products.id','products.price','users.user_name','users.email','products.detail','areaunit','total_area','products.category_id')->take(20)->get();
+         
         return view('websites.sort_product',compact('cities','products'));
     }
 

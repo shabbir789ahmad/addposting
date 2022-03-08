@@ -18,6 +18,11 @@
 <div class="container ">
     <div class="row justify-content-center">
         <div class="col-md-6">
+            @if(session()->has('agenerror'))
+            <div class="alert alert-danger">
+           <strong>Error!</strong>{{session()->get('agenerror')}}
+            </div>
+            @endif
             <div class="card shadow " style="border: 1.2px solid #002F34;">
                 
                 <div class="card-header text-center login">{{ __('Welcome ') }}</div>

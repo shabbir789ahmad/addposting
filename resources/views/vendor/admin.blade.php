@@ -108,7 +108,7 @@
        <li class="nav-item ">
         <a class="nav-link " href="{{route('vendor.all.add')}}">
           <i class="fas fa-address-card text-light"></i>
-          <span>Your Ad Data</span>
+          <span>Your Wallet</span>
         </a>
        </li>
        <li class="nav-item ">

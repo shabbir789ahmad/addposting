@@ -42,13 +42,13 @@ class AgentAdController extends Controller
    }
     public function create($id)
     {
-        $categories=Category::where('id',$id)->select('id','category_type')->first();
+        $categorie=Category::where('categories.id',$id)->select('categories.id','category_type','categories.property_id')->first();
         $areas=Area::all();
         $states=State::all();
         $ads=Ad::where('user_id',Auth::id())->sum('total_ads');
         $types=Type::where('type_id',$id)->get();
         $subcategories=SubCategory::where('category_id',$id)->get();
-        return view('employee.ads.create',compact('categories','subcategories','areas','states','categories','types','ads'));
+        return view('employee.ads.create',compact('categorie','subcategories','areas','states','types','ads'));
     }
 
     public function store(Request $request)
@@ -62,6 +62,8 @@ class AgentAdController extends Controller
            'price'=>'required',
            'areaunit'=>'required',
            'total_area'=>'required',
+           'plot_type'=>'required',
+           'city'=>'required',
         
            //'category_id'=>'required',
            
@@ -86,7 +88,9 @@ class AgentAdController extends Controller
                'category_id'=>$request->category_id,
                'bedroom'=>$request->bedroom,
                'bathroom'=>$request->bathroom,
-               'user_id'=>null,
+               'city'=>$request->city,
+               'plot_type'=>$request->plot_type,
+               'user_id'=>$request->user_id,
                'labour_id'=>$request->labour_id,
                'type'=>$request->type,
 

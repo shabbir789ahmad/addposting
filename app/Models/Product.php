@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
+use App\Models\Image;
 class Product extends Model
 {
     use HasFactory;
     protected $fillable=[
         'name',
         'detail',
+        'city',
         'location',
         'price',
         'areaunit',
@@ -22,6 +24,7 @@ class Product extends Model
         'user_id',
         'labour_id',
         'type',
+        'plot_type',
     ];
 
 
@@ -32,7 +35,7 @@ class Product extends Model
          ->select('products.name','products.location','categories.category_name','products.id','products.price','products.total_area','products.created_at')
         ->orderBy('products.created_at','Desc')->take(20)->get();
        
-        return $products;
+       return $products;
     }
 
 

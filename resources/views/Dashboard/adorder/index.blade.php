@@ -44,7 +44,7 @@
 								<form action="{{ route('order.destroy', ['id' => $car->id]) }}" method="POST" class="d-inline" onsubmit="return confirmDelete()">
 				@method('DELETE')
 				@csrf
-				 <button type="submit" class="btn btn-xs btn-danger mt-3 mb-3">
+				 <button type="submit" class="btn btn-xs btn-danger mt-3 mb-3 reject">
 						Reject
 				 </button>
 				</form>
@@ -74,6 +74,7 @@ $(document).ready(function()
    $('.cart').click(function () {
 
          $(this).prop('disabled',true);
+         $('.reject').prop('disabled',true);
         
         let id = $(this).data('id');
 

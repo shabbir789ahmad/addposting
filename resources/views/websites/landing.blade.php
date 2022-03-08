@@ -145,7 +145,11 @@
     @foreach($products as $product)
     <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
      <div class="card shadow card_height" >
-       <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image">
+      @foreach($image as $img)
+      @if($img['product_id']==$product['id'])
+       <img src="{{asset('uploads/product/'.$img['product_images'])}}" class="product_image">
+       @endif
+       @endforeach
        <div class="card-body pt-1">
         <div class="category_data mb-0">
          <p>{{$product['category_name']}}</p>
@@ -198,7 +202,11 @@
     @foreach($products as $product)
     <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
      <div class="card shadow card_height" >
-       <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image">
+       @foreach($image as $img)
+      @if($img['product_id']==$product['id'])
+       <img src="{{asset('uploads/product/'.$img['product_images'])}}" class="product_image">
+       @endif
+       @endforeach
        <div class="card-body pt-1">
         <div class="category_data mb-0">
          <p>{{$product['category_name']}}</p>
@@ -274,7 +282,11 @@
       <div class="col-md-3 a">
       <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
      <div class="card shadow card_height" >
-       <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image">
+      @foreach($image as $img)
+      @if($img['product_id']==$product['id'])
+       <img src="{{asset('uploads/product/'.$img['product_images'])}}" class="product_image">
+       @endif
+       @endforeach
        <div class="card-body pt-1">
         <div class="category_data mb-0">
          <p>{{$product['category_name']}}</p>

@@ -12,11 +12,17 @@
 		<div class="col-md-11">
 			<div class="card card_color shadow">
 				<div class="card-body ">
-					<!-- <input type="text" name="category_id" value="{{$categories->category_type}}"> -->
-					<input type="hidden" name="category_id" value="{{$categories->id}}">
+					@if($categorie->property_id==1)
+				  @php $pro='sale'; @endphp
+         @else
+          @php $pro='rent'; @endphp
+         @endif
+					<input type="hidden" name="plot_type" value="{{$pro}}">
+					<input type="hidden" name="category_id" value="{{$categorie->id}}">
+					<input type="hidden" name="user_id" value="{{Auth::user()->user_id}}">
 				
 					
-					<input type="text" name="labour_id" value="{{Auth::id()}}">
+					<input type="hidden" name="labour_id" value="{{Auth::id()}}">
 					<div class="row">
 					 <div class="col-md-12 col-12">
                         <label for="" class="font-weight-bold mt-2">
@@ -32,7 +38,7 @@
 						</label>
 					 <textarea class="form-control input_border" name="detail" rows="5" placeholder="Detail here"></textarea>	
 					 <span class="text-danger">@error ('detail') {{$message}}@enderror</span>
-           @if($categories->category_type=='house' || $categories->category_type=='apartment' || $categories->category_type=='rooms')
+           @if($categorie->category_type=='house' || $categorie->category_type=='apartment' || $categorie->category_type=='rooms')
 					 <label for="" class="font-weight-bold mt-4">
 							Furnished
 						</label>
@@ -111,16 +117,34 @@
 						<label for="" class="font-weight-bold mt-4">
 							Area Unit<span class="text-danger">*</span>
 						</label>
-               <div class="all_checkbox2">
-                  @foreach($areas as $area)
+                <div class="all_checkbox2">
 				         <div type="button" class="input_checkbox2 ml-3 p-2 mt-2">
-                     <label >{{$area['areaunit']}}</label>
-                       <input type="checkbox" name="areaunit" value="{{$area['areaunit']}}" class="check_btn2" >
+                     <label >Kanal</label>
+                       <input type="checkbox" name="areaunit" value="kanal" class="check_btn2" >
                        <span class="text-danger">@error ('areaunit') {{$message}}@enderror</span>
                    </div>
-                  @endforeach
+                    <div type="button" class="input_checkbox2 ml-3 p-2 mt-2">
+                     <label >Marla</label>
+                       <input type="checkbox" name="areaunit" value="marla" class="check_btn2" >
+                       <span class="text-danger">@error ('areaunit') {{$message}}@enderror</span>
+                   </div>
+                    <div type="button" class="input_checkbox2 ml-3 p-2 mt-2">
+                     <label >Square Feet</label>
+                       <input type="checkbox" name="areaunit" value="square feet" class="check_btn2" >
+                       <span class="text-danger">@error ('areaunit') {{$message}}@enderror</span>
+                   </div>
+                    <div type="button" class="input_checkbox2 ml-3 p-2 mt-2">
+                     <label >Square Meter</label>
+                       <input type="checkbox" name="areaunit" value="square meter" class="check_btn2" >
+                       <span class="text-danger">@error ('areaunit') {{$message}}@enderror</span>
+                   </div>
+                   <div type="button" class="input_checkbox2 ml-3 p-2 mt-2">
+                     <label >Square Yard</label>
+                       <input type="checkbox" name="areaunit" value="square yard" class="check_btn2" >
+                       <span class="text-danger">@error ('areaunit') {{$message}}@enderror</span>
+                   </div>
 			           </div>
-           @if($categories->category_type=='floor' || $categories->category_type=='apartment' || $categories->category_type=='shop')
+           @if($categorie->category_type=='floor' || $categorie->category_type=='apartment' || $categorie->category_type=='shop')
 					 <div class="row">
             <div class="col-md-12">
              <label for="" class="font-weight-bold mt-4">
@@ -155,17 +179,17 @@
 						<span class="text-danger ">@error ('price') {{$message}}@enderror</span>
 
        
-           <label for="" class="font-weight-bold mt-3">
+           <label for="" class="font-weight-bold ">
 							Select Multiple Images <span class="text-danger">*</span>
 						</label>
 						<input type="file" class="form-control mb-5 input_border" name="image[]"  multiple>
 						<span class="text-danger ">@error ('image') {{$message}}@enderror</span>
 
 					
-           <label for="" class="font-weight-bold ">
+           <label for="" class="font-weight-bold mb-2">
 							Your State  <span class="text-danger">*</span>
 						</label>
-				    <select class="form-control mb-5" name="" id="state">
+				    <select class="form-control " name="" id="state">
 				    	<option  selected hidden disabled>Select City</option>
                  @foreach($states as $state)
                   <option value="{{$state['id']}}">{{$state['states']}}</option>
@@ -174,12 +198,18 @@
                        
 						
 
-						<label for="" class="font-weight-bold ">
+						<label for="" class="font-weight-bold mb-2">
 							Your City <span class="text-danger">*</span>
 						</label>
-				    <select class="form-control mb-5" name="location" id="city">
+				    <select class="form-control" name="city" id="city">
 				    	
             </select>
+                       
+						<span class="text-danger ">@error ('city') {{$message}}@enderror</span>
+						<label for="" class="font-weight-bold ">
+							Your Address <span class="text-danger">*</span>
+						</label>
+						<input type="text" name="location" class="form-control">
                        
 						<span class="text-danger ">@error ('location') {{$message}}@enderror</span>
 					</div>

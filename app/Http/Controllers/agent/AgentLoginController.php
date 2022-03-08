@@ -25,7 +25,7 @@ class AgentLoginController extends Controller
         }else
         {
             
-          return redirect()->back()->with('error','These credentials Does not match our record');
+          return redirect()->back()->with('agenerror','These credentials Does not match our record');
         }
   }
 

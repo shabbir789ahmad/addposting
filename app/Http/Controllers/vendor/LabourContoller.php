@@ -23,7 +23,7 @@ class LabourContoller extends Controller
      */
     public function index()
     {
-        $ads=Cart::join('ads','carts.id','=','ads.cart_id')->select('carts.item_name','ads.*')->where('total_ads','>',0)->withTrashed()->get();
+        $ads=Ad::where('user_id',Auth::id())->where('total_ads','>',0)->sum('total_ads');
         $labours=$this->allAgent(Auth::id());//user trait
         $aads=AAd::get();
         return view('vendor.user.index',compact('labours','ads','aads'));
@@ -103,20 +103,20 @@ class LabourContoller extends Controller
     {
         $request->validate([
           
-             'employee_name'=>'required',
-             'employee_email'=>['required'],
-             'employee_password'=>['required', 'string', 'min:8'],
+             'labour_name'=>'required',
+             'email'=>['required'],
+             'password'=>['required', 'string', 'min:8'],
              'image'=>'required',
-             'employee_phone'=>['required', 'min:6', ],
+             'labour_phone'=>['required', 'min:6', ],
         ]);
        
         $data=[
           
-             'labour_name'=>$request->employee_name,
-             'labour_email'=>$request->employee_email,
-             'labour_password'=>$request->employee_password,
+             'labour_name'=>$request->labour_name,
+            'email'=>$request->email,
+            ' password'=>$request->password,
              'labour_image'=>$this->image(),
-             'labour_phone'=>$request->employee_phone,
+             'labour_phone'=>$request->labour_phone,
         ];
          return \App\Helpers\Form::UpdateEloquent(new Labour,$id, $data);
     }
@@ -134,13 +134,24 @@ class LabourContoller extends Controller
 
     function assignAd(Request $req)
     {
-        $adds=AAd::create([
+        $adds=AAd::where('labour_id',$req->labour_id)->first();
+      
+        if(!$adds==null)
+        {
            
-           'total_ads'=>$req->total_ads,
-           'ad_id'=>$req->ads_id,
-           'labour_id'=>$req->labour_id,
-        ]);
-         $ad=Ad::findOrFail($req->ads_id);
+          $adds->total_ads=$req->total_ads+$adds->total_ads;
+           $adds->save();
+
+        }else
+        {
+          $ads=new AAd;
+          $ads->total_ads=$req->total_ads;
+          $ads->labour_id=$req->labour_id;
+           $ads->save();
+
+        }
+        
+         $ad=Ad::where('user_id',Auth::id())->where('total_ads','>',0)->first();
          $ad->total_ads=$ad->total_ads-$req->total_ads;
          $ad->save();
 

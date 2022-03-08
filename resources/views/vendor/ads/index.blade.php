@@ -17,7 +17,7 @@
   <div class="row">
     @foreach($products as $product)
     <div class="col-md-4">
-    <a href="#" class="link">
+
      <div class="card shadow card_height" >
        <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image">
        <div class="card-body pt-1">
@@ -39,7 +39,7 @@
         <p class="mt-0 p-0 text-center text-dark card-footer">{{floor($datediff / (60 * 60 * 24))}} days ago</p>
       
      </div>
-   </a>
+ 
     </div>
   @endforeach
 

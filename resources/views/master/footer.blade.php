@@ -19,9 +19,9 @@
        <h5>Navigations</h5>
       </div>
       <ul class="p-0 footer_list">
-     	<li><a href="#"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>Product Guid</a></li>
-     	<li><a href="#"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>Term & Condition</a></li>
-     	<li><a href="#"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>Privacy Policy</a></li>
+     	<li><a href="{{url('/')}}"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>Home</a></li>
+     	<li><a href="{{url('about')}}"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>About</a></li>
+     	<li><a href="{{url('contact')}}"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>Contact</a></li>
      	<li><a href="#"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>Feedback</a></li>
      </ul>
     </div>
@@ -30,10 +30,9 @@
        <h5>Property By City</h5>
       </div>
       <ul class="p-0 footer_list">
-     	<li><a href="#"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>Product Guid</a></li>
-     	<li><a href="#"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>Term & Condition</a></li>
-     	<li><a href="#"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>Privacy Policy</a></li>
-     	<li><a href="#"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>Feedback</a></li>
+        @foreach($cities as $city)
+     	<li><a href="#"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>{{ucfirst($city['city'])}}</a></li>
+     	@endforeach
      </ul>
     </div>
     <div class="col-md-2 col-12 col-sm-12">
@@ -41,10 +40,9 @@
        <h5>Navigations</h5>
       </div>
       <ul class="p-0 footer_list">
-     	<li><a href="#"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>Product Guid</a></li>
-     	<li><a href="#"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>Term & Condition</a></li>
-     	<li><a href="#"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>Privacy Policy</a></li>
-     	<li><a href="#"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>Feedback</a></li>
+     	@foreach($categories as $category)
+      <li><a href="{{route('all.ads',['id'=>$category['id']])}}"><i class="fa-solid fa-arrow-right ml-2 d-inline-block d-sm-block d-md-none"></i>{{ucfirst($category['category_name'])}}</a></li>
+      @endforeach
      </ul>
     </div>
     <div class="col-md-3 v">

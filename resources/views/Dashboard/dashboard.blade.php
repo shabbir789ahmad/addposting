@@ -36,7 +36,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">Vendors</div>
-                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$user}}</div>
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$user1}}</div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <span class="text-success mr-2"> 0%</span>
                         <span>Since last month</span>
@@ -55,8 +55,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Premium Videos</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1"> Package</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{$package}}</div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <span class="text-success mr-2"></i>0%</span>
                         <span>Since last Month</span>
@@ -75,8 +75,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Non Premium Videos</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">Messages</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{$message}}</div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <span class="text-success mr-2"> 0%</span>
                         <span>Since yesterday</span>
@@ -108,12 +108,16 @@
             <div class="col-xl-4 col-lg-5">
               <div class="card">
                 <div class="card-header py-4  d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-light">Message From Customer</h6>
+                  <h6 class="m-0 font-weight-bold text-dark">Message From Customer</h6>
                 </div>
                 <div>
-                 
+                   <div class="card-body">
+                    @foreach($messages as $message)
+                    <p>{{$message['message']}}</p>
+                    @endforeach
+                   </div>
                   <div class="card-footer text-center">
-                    <a class="m-0 small text-primary card-link" href="#">View More <i
+                    <a class="m-0 small text-primary card-link" href="{{route('message.index')}}">View More <i
                         class="fas fa-chevron-right"></i></a>
                   </div>
                 </div>

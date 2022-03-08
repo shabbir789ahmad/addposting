@@ -38,8 +38,8 @@
                   <label for="" class="font-weight-bold mt-4">
                        User Email<span class="text-danger">*</span>
                    </label>
-                   <input type="text" class="form-control input_border" name="labour_email"  value="{{$labour['labour_email']}}">
-                   <span class="text-danger">@error ('labour_email') {{$message}}@enderror</span>     
+                   <input type="text" class="form-control input_border" name="email"  value="{{$labour['email']}}">
+                   <span class="text-danger">@error ('email') {{$message}}@enderror</span>     
                  </div>
                </div>
                 
@@ -52,8 +52,8 @@
                <label for="" class="font-weight-bold mt-2">
                      Password <span class="text-danger">*</span>
                   </label>
-                  <input type="password" class="form-control input_border" name="labour_password"  value="{{$labour['labour_password']}}">
-                  <span class="text-danger">@error ('labour_password') {{$message}}@enderror</span>
+                  <input type="password" class="form-control input_border" name="password"  value="{{$labour['password']}}">
+                  <span class="text-danger">@error ('password') {{$message}}@enderror</span>
                   
                </div>
                <hr class="card_color2">

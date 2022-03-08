@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Image;
 use App\Models\Category;
 use App\Models\SubCategory;
 class SearchResultController extends Controller
@@ -12,7 +13,7 @@ class SearchResultController extends Controller
     {
          $categories=Category::latest()->select('category_name','category_image','id')->get();
          $features=SubCategory::latest()->select('sub_category_name')->get();
-        $products=Product::query();
+        $products=Product::join('categories','categories.id','products.category_id');
         if($request->search)
         {
             $products->where('name','like','%'.$request->search.'%');
@@ -42,8 +43,11 @@ class SearchResultController extends Controller
       }
 
         
-        $products=$products->select('products.name','products.id','products.price','products.category_id','products.location')->paginate(30);
-        //dd($products);
-        return view('websites.searchresult',compact('products','categories','features'));
+        $products=$products->select('products.name','products.id','products.price','products.category_id','products.location','categories.category_name')->paginate(30);
+        $image = $products->map(function ($item, $key) {
+       
+          return Image::where('product_id',$item['id'])->first();
+         });
+        return view('websites.searchresult',compact('products','categories','features','image'));
     }
 }

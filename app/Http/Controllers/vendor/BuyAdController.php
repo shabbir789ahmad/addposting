@@ -5,6 +5,7 @@ namespace App\Http\Controllers\vendor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use Auth;
 class BuyAdController extends Controller
 {
     public function index(Request $req)
@@ -16,7 +17,7 @@ class BuyAdController extends Controller
         $package=$req->package;
        }
      
-        $cart=Cart::withTrashed();
+        $cart=Cart::where('user_id',Auth::id())->withTrashed();
         if($package==1)
         {
             $cart=$cart->where('approved','=',1);

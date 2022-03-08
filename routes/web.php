@@ -26,6 +26,7 @@ use App\Http\Controllers\agent\AgentLoginController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SearchResultController;
 
 Auth::routes();
@@ -138,7 +139,9 @@ Route::group(['prefix'=>'admin'],function()
     Route::delete('/vendor/{id}/destroy', 'destroy')->name('vendor.destroy');
     Route::get('/user', 'index2')->name('user.index');
   });
-
+  
+  Route::get('/mesage/index', [MessageController::class,'message'])->name('message.index');
+  Route::delete('/message/{id}/destroy', [MessageController::class,'destroy'])->name('message.destroy');
   //type route
    Route::resource('type', TypeController::class);
   //ads order route

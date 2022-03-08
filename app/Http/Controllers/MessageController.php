@@ -22,4 +22,14 @@ class MessageController extends Controller
             return redirect()->back()->with('error','Cannot Send message');
         }
     }
+
+    function message()
+    {
+        $message=Message::all();
+        return view('Dashboard.message.index',compact('message'));
+    }
+    function destroy($id)
+    {
+        return \App\Helpers\Form::DeleteEloquent(new Message,$id);
+    }
 }

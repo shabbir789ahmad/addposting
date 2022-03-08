@@ -121,6 +121,12 @@
           <span>Users</span>
         </a>
        </li>
+        <li class="nav-item ">
+        <a class="nav-link " href="{{route('message.index')}}">
+          <i class="fas fa-window-maximize text-light"></i>
+          <span>User Messages</span>
+        </a>
+       </li>
     
       
       

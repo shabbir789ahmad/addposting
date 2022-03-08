@@ -69,7 +69,36 @@
 <div class="container con mt-4">
  <div class="row">
  @foreach($products as $product)
-  <div class="col-md-8 p-0" >
+ <div class="col-md-3 a">
+      <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
+     <div class="card shadow card_height" >
+      @foreach($image as $img)
+      @if($img['product_id']==$product['id'])
+       <img src="{{asset('uploads/product/'.$img['product_images'])}}" class="product_image">
+       @endif
+       @endforeach
+       <div class="card-body pt-1">
+        <div class="category_data mb-0">
+         <p>{{$product['category_name']}}</p>
+        </div>
+        <div class="product_data mb-0 mt-0 d-flex">
+          <h5>{{ucfirst($product['name'])}}</h5>
+          
+         <i class="fa-solid fa-heart text-danger ms-auto"></i>
+        </div>
+        <div class="product_data mb-0 mt-0">
+          <p class="m-0">{{ucfirst($product['location'])}} <span class="text-center">${{$product['price']}}</span></p>
+        </div>
+        
+      </div>
+      @php $now = time(); @endphp
+        @php $datediff = $now - strtotime($product['created_at']); @endphp
+        <p class="mt-0 p-0 text-center text-dark card-footer">{{floor($datediff / (60 * 60 * 24))}} days ago</p>
+      
+     </div>
+   </a>
+      </div>
+ <!--  <div class="col-md-8 p-0" >
     <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
      <div class="card border border-secondary p-0" style="height: 70%;">
       <div class="card-body p-0">
@@ -92,14 +121,14 @@
           <div class="contact mt-2">
            <button class="btn border" type="button"><i class="fas fa-envelope"></i> Email</button>
            <button class="btn border" id="call" type="button"><i class="fas fa-phone "></i> Call</button>
-           <!-- <button class="btn border" type="button"><i class="fab fa-whatsapp"></i> WhatsApp</button> -->
+            <button class="btn border" type="button"><i class="fab fa-whatsapp"></i> WhatsApp</button>
           </div>
        </div>
      </div>
       </div>
      </div>
     </a>
-  </div>
+  </div> -->
   @endforeach
     {!! $products->links() !!}
  </div>

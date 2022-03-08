@@ -20,7 +20,7 @@ class AdminController extends Controller
         }else
         {
             
-          return redirect()->back()->with('error','something is wrong');
+          return redirect()->back()->with('adminerror','something is wrong');
         }
     }
 

@@ -5,6 +5,11 @@
 <div class="login-box row" style="overflow:hidden">
  <div class="col-md-4"></div>
     <div class="card card-outline card-primary col-md-4 " style="margin-top:10%;overflow:hidden"> 
+        @if(session()->has('adminerror'))
+            <div class="alert alert-danger">
+           <strong>Error!</strong>{{session()->get('adminerror')}}
+            </div>
+            @endif
         <div class="card-header text-center">
             <a href="#" class="h1">Admin Login </a>
         </div>

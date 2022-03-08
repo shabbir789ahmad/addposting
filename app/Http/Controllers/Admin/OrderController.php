@@ -19,16 +19,24 @@ class OrderController extends Controller
     public function approve(Request $req)
     {
         $cart=Cart::findorfail($req->id);
-        $cart->approved=1;
-        $cart->save();
+       $cart->approved=1;
+       $cart->save();
         
-        Ad::create([
-    
-        'total_ads'=>$cart['item_ads'],
-        'user_id'=>$cart['user_id'],
-        'cart_id'=>$cart['id'],
-
-        ]);
+         $ads=Ad::where('user_id',$cart['user_id'])->first();
+         
+         if(!$ads==null)
+         {
+            $ads->total_ads=$ads->total_ads+$cart['item_ads'];
+            $ads->save();
+         }else
+         {
+           $adss=new Ad;
+           $adss->total_ads=$cart['item_ads'];
+           $adss->user_id=$cart['user_id'];
+           $adss->cart_id=$cart['id'];
+           $adss->save();
+         }
+       
         return response()->json('sdsd');
     }
      public function destroy($id)
