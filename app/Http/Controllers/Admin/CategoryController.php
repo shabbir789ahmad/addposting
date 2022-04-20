@@ -17,9 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories=Category::all();
+        $category=Category::all();
         $properties=Property::all();
-        return view('Dashboard.category.index',compact('categories','properties'));
+        return view('Dashboard.category.index',compact('category','properties'));
     }
 
     /**
@@ -30,6 +30,7 @@ class CategoryController extends Controller
     public function create()
     {   
         $properties=Property::all();
+
         return view('Dashboard.category.create',compact('properties'));
     }
 
@@ -79,8 +80,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {   $properties=Property::all();
-        $categories=Category::findOrFail($id);
-        return view('Dashboard.category.edit',compact('categories','properties'));
+
+        $categ=Category::where('id',$id)->first();
+
+        return view('Dashboard.category.edit',compact('categ','properties'));
     }
 
     /**

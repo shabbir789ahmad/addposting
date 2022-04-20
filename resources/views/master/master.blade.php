@@ -90,6 +90,79 @@
 
  
   </script>
+
+  <script type="text/javascript">
+  
+  $(document).on('click','.like_by_customer',function(){
+    let id=$(this).data("id");
+    $(this).replaceWith('<i class="fa-solid fa-heart heart_search unlike_by_customer"  data-id='+id+'></i>')
+     
+
+     like(id)
+
+
+  });
+
+ 
+
+
+  $(document).on('click','.unlike_by_customer',function(){
+    let id=$(this).data("id");
+    $(this).replaceWith('<i class="fa-regular fa-heart heart_search like_by_customer" data-id='+id+'></i>')
+   
+
+   });
+
+
+   $(document).on('click','.like_by_customer2',function(){
+    let id=$(this).data("id");
+    $(this).replaceWith('<i class="fa-solid fa-heart haart_style unlike_by_customer2"  data-id='+id+'></i>')
+     
+
+     like(id)
+
+
+  });
+
+  $(document).on('click','.unlike_by_customer2',function(){
+    let id=$(this).data("id");
+    $(this).replaceWith('<i class="fa-regular fa-heart haart_style like_by_customer2" data-id='+id+'></i>')
+   
+        unlike(id);
+   });
+
+   function like(id)
+   {
+     $.ajax({
+            url: '{{ route('add.to.like') }}',
+            method: "post",
+            data: {
+                _token: '{{ csrf_token() }}', 
+                id: id,
+            },
+            success: function (response) {
+              
+            }
+        });
+
+   }
+
+
+   function unlike(id)
+   {
+     $.ajax({
+            url: '{{ route('unlike.by.user') }}',
+            method: "post",
+            data: {
+                _token: '{{ csrf_token() }}', 
+                id: id, 
+            },
+            success: function (response) {
+              
+            }
+        });
+   }
+</script>
   @section('script')
 @show
   </body>

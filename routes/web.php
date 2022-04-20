@@ -29,6 +29,9 @@ use App\Http\Controllers\PriceController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SearchResultController;
 
+
+use App\Http\Controllers\LikeController;
+
 Auth::routes();
 
  
@@ -50,9 +53,11 @@ Route::get('/get-area-all',[AreaController::class,'allArea']);
 Route::get('/get-price-all',[PriceController::class,'price']);
 
 
+Route::post('like-by-customer',[LikeController::class,'like'])->name('add.to.like');
+Route::post('unlike-by-user',[LikeController::class,'unlike'])->name('unlike.by.user');
 
-
-
+//get category by type
+Route::get('/get-al-category/{id}',[AdsController::class,'category']);
 
 Route::group(['prefix'=>'admin'],function()
 {
@@ -176,7 +181,7 @@ Route::group(['middleware'=>['auth','vendor']],function()
    Route::controller(AdsController::class)->group(function () {
     Route::get('/ads', 'index')->name('ads.index');
     Route::get('/ads2', 'index2')->name('ads.index2');
-    Route::get('/get-al-category/{id}', 'category');
+    
     Route::get('/get-city-id/{id}', 'city');
     Route::get('/ads/create/{id}', 'create')->name('ads.create');
     Route::get('/ads/{id}/edit', 'edit')->name('ads.edit');

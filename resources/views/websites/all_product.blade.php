@@ -11,33 +11,32 @@
          <div class="card">
           <div class="card-body ">
             <h6>Search properties </h6>
-            
-           <div class="min_max mt-4">
-             <select class="form-select mt-4" aria-label="Default select example" id="states2">
-             <option selected hidden disabled>Select State</option>
-             @foreach($locations as $location)
-             <option value="{{$location['id']}}">{{$location['states']}}</option>
+            <form action="{{route('all.ads',['id'=>request('id')])}}" method="GET">
+           
+             <select class="form-select mt-4" aria-label="Default select example" id="states2" name="city">
+
+             <option selected hidden disabled>Select City</option>
+             @foreach($cities as $city)
+              
+             <option value="{{$city['city']}}" @if($city['city']==request('city'))  selected  @endif>{{ucfirst($city['city'])}}</option>
              @endforeach
            </select>
-           <select class="form-select mt-4" aria-label="Default select example" id="cities">
-             
-             
-           </select>
-           </div>
+          
            
 
-           <select class="form-select mt-4" aria-label="Default select example">
+           <select class="form-select mt-4" aria-label="Default select example" name="areaunit">
              <option selected hidden disabled>Select Area Unit</option>
              @foreach($areas as $area)
-             <option value="{{$area['id']}}">{{$area['areaunit']}}</option>
+             <option value="{{$area['areaunit']}}" @if($area['areaunit']==request('areaunit'))  selected  @endif>{{$area['areaunit']}}</option>
              @endforeach
            </select>
            <div class="min_max mt-4">
-             <input type="text" name="" class="form-control" placeholder="Min">
-             <input type="text" name="" class="form-control" placeholder="Max">
+             <input type="text" name="price1" class="form-control" placeholder="Min" >
+             <input type="text" name="price2" class="form-control" placeholder="Max">
            </div>
            <button class="search_btn btn w-100 mt-4 font-weight-bold"><i class="fas fa-search fa-lg"></i>SEARCH</button>
           </div>
+        </form>
         </div>
         </div>
         <!-- <div class="col-md-8 mt-2 mt-md-0 mt-sm-2 col-12">
@@ -203,40 +202,22 @@
 </div>
 </div>
 <!-- //dfdsf -->
+ <!-- //dfdsf -->
   <div class="container  mt-5 mb-5">
-     <p class="browser ">Properties You Like</p>
+    @foreach($categories as $category)
+     @if($category['id']==Request('id'))
+     <p class="browser ">{{$category['category_name']}} Ads</p>
+     @endif
+     @endforeach
   <div class="container mt-4">
     <div class="row">
-      @if(count($products)>0)
       @foreach($products as $product)
-      <div class="col-md-3 a b">
-      <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
-     <div class="card shadow card_height" >
-       <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image">
-       <div class="card-body p-1">
-        <div class="category_data mb-0">
-         <p>Real Estate</p>
-         <i class="fa-solid fa-heart text-danger"></i>
-        </div>
-        <div class="product_data mb-0 mt-0">
-          <h5>{{ucfirst($product['name'])}}</h5>
-          <p class="m-0">{{ucfirst($product['location'])}}</p>
-        </div>
-      </div>
-      <div class="text-center card-footer">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star "></span>
-            <span class="fa fa-star"></span>
-          </div>
-     </div>
-   </a>
-      </div>
+     
+        <x-card.card2 :product="$product" />
+   
       @endforeach
-   @else
-   <x-404not-found />
-  @endif
+
+
 </div>
 <a href="#" id="seeMore" class="text-center">Show More</a>
   </div>
@@ -257,7 +238,7 @@
 </form>
 <form id="area_filter_form">
 
-  <input type="hidden" name="area" id="area_input">
+  <input type="hidden" name="areaunit" id="area_input">
 </form>
 <form id="city_filter_form">
 

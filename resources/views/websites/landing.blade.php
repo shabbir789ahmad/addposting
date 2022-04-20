@@ -10,7 +10,7 @@
   <div class="container mt-5 text-center">
     <h1 class="heading">{{ucfirst($slider->heading1)}}</h1>
    <p>{{ucfirst($slider->heading2)}}</p>
-   <div class="row bg-light rounded p-4 pb-5">
+   <div class="row bg-light rounded  pb-5">
     <div class="row">
       <form action="{{route('searchresult')}}" method="GET">
       
@@ -114,13 +114,14 @@
   <p class="browser ">Browser By Category</p>
   
   <div class="row">
+   
    @foreach($categories->slice(0,12) as $category)
   
    <div class="col-md-3 col-lg-2 col-6 col-sm-6  text-center" >
      <a href="{{route('all.ads',['id'=>$category['id']])}}" class="link text-dark">
     <div class="card card_hover mt-2  shadow" style="height: 10rem;">
 	  <div class="card-body p-0 card_items">
-       <img src="{{asset('/uploads/user/'.$category['category_image'])}}" width="40%" class="mt-1">
+       <img src="{{asset('/uploads/user/'.$category['category_image'])}}"  class="mt-1 img_size">
        <p class="p-2 mb-0">{{ucfirst($category['category_name'])}}</p>
        <button class="btn btn-lg ">{{\App\Models\Product::where(['category_id' => $category->id])->count()}}</button>
 	  </div>
@@ -138,47 +139,20 @@
 <!-- products -->
 
  <div class="container mt-5">
-  <p class="browser ">All Ads</p>
+  <p class="browser ">Premium Ads</p>
    
    <div class="owl-carousel">
-  
     @foreach($products as $product)
-    <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
-     <div class="card shadow card_height" >
-      @foreach($image as $img)
-      @if($img['product_id']==$product['id'])
-       <img src="{{asset('uploads/product/'.$img['product_images'])}}" class="product_image">
-       @endif
-       @endforeach
-       <div class="card-body pt-1">
-        <div class="category_data mb-0">
-         <p>{{$product['category_name']}}</p>
-        </div>
-        <div class="product_data mb-0 mt-0 d-flex">
-          <h5>{{ucfirst($product['name'])}}</h5>
-          
-         <i class="fa-solid fa-heart text-danger ms-auto"></i>
-        </div>
-        <div class="product_data mb-0 mt-0">
-          <p class="m-0">{{ucfirst($product['location'])}} <span class="text-center">${{$product['price']}}</span></p>
-        </div>
-        
-      </div>
-      @php $now = time(); @endphp
-        @php $datediff = $now - strtotime($product['created_at']); @endphp
-        <p class="mt-0 p-0 text-center text-dark card-footer">{{floor($datediff / (60 * 60 * 24))}} days ago</p>
-     
-     </div>
-   </a>
-  @endforeach
-
+    <x-card.card   :product="$product" />  
+    @endforeach
+  
   </div>
 </div>
 
 
 <!-- banner -->
 
-  <div class="container mt-5">
+  <!-- <div class="container mt-5">
    <div class="row">
     @foreach($banners as $banner)
     <div class="col-md-12 ">
@@ -192,121 +166,45 @@
   @endforeach
  </div>
 </div>
+ -->
+<!-- prodduct with category -->
+<div class="container mt-5">
+  <p class="browser ">Feature Ads</p>
+   
+   <div class="owl-carousel">
+    @foreach($products as $product)
+    <x-card.card   :product="$product" />  
+    @endforeach
+ 
+  </div>
+</div>
 
 <!-- prodduct with category -->
 <div class="container mt-5">
-  <p class="browser ">Tranding Today</p>
+  <p class="browser ">Tranding Ads</p>
    
    <div class="owl-carousel">
-  
     @foreach($products as $product)
-    <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
-     <div class="card shadow card_height" >
-       @foreach($image as $img)
-      @if($img['product_id']==$product['id'])
-       <img src="{{asset('uploads/product/'.$img['product_images'])}}" class="product_image">
-       @endif
-       @endforeach
-       <div class="card-body pt-1">
-        <div class="category_data mb-0">
-         <p>{{$product['category_name']}}</p>
-        </div>
-        <div class="product_data mb-0 mt-0 d-flex">
-          <h5>{{ucfirst($product['name'])}}</h5>
-          
-         <i class="fa-solid fa-heart text-danger ms-auto"></i>
-        </div>
-        <div class="product_data mb-0 mt-0">
-          <p class="m-0">{{ucfirst($product['location'])}} <span class="text-center">${{$product['price']}}</span></p>
-        </div>
-        
-      </div>
-      @php $now = time(); @endphp
-        @php $datediff = $now - strtotime($product['created_at']); @endphp
-        <p class="mt-0 p-0 text-center text-dark card-footer">{{floor($datediff / (60 * 60 * 24))}} days ago</p>
-
-       
-     
-     </div>
-   </a>
-  @endforeach
-
+    <x-card.card   :product="$product" />  
+    @endforeach
   </div>
 </div>
 <!-- products -->
 
-<!--  <div class="container  mt-5">
 
-  <p class="browser">Tranding Today</p>
-  <div class="container mt-4">
-   <div class="row">
-    @foreach($products->slice(0, 4) as $product)
-    <div class="col-md-6">
-      <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
-     <div class="card p-0" style="height: 90%;">
-      <div class="card-body p-0">
-        <div class="row">
-         <div class="col-md-6 col-12" >
-          <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" width="100%" height="90%">
-         </div>
-        <div class="col-md-6 col-12">
-          <div class="category_data mt-4 mb-0">
-            <p>{{ucfirst($product['category_name'])}}</p>
-            <i class="fa-solid fa-heart text-danger fa-2x herth" ></i>
-          </div>
-          <div class="product_data mb-0 mt-4">
-           <h5>{{ucfirst($product['name'])}}</h5>
-           <p>{{ucfirst($product['location'])}}<span class="mr-3">${{ucfirst($product['price'])}}</span></p>
-           
-          </div>
-       </div>
-     </div>
-      </div>
-     </div>
-   </a>
-    </div>
-    @endforeach
-  
-   
-  </div>
-</div>
-</div> -->
 
 
 <!-- //dfdsf -->
   <div class="container  mt-5 mb-5">
-     <p class="browser ">Properties You Like</p>
+     <p class="browser ">Hot Ads</p>
   <div class="container mt-4">
     <div class="row">
       @foreach($products as $product)
-      <div class="col-md-3 a">
-      <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
-     <div class="card shadow card_height" >
-      @foreach($image as $img)
-      @if($img['product_id']==$product['id'])
-       <img src="{{asset('uploads/product/'.$img['product_images'])}}" class="product_image">
-       @endif
-       @endforeach
-       <div class="card-body pt-1">
-        <div class="category_data mb-0">
-         <p>{{$product['category_name']}}</p>
-        </div>
-        <div class="product_data mb-0 mt-0 d-flex">
-          <h5>{{ucfirst($product['name'])}}</h5>
-          
-         <i class="fa-solid fa-heart text-danger ms-auto"></i>
-        </div>
-        <div class="product_data mb-0 mt-0">
-          <p class="m-0">{{ucfirst($product['location'])}} <span class="text-center">${{$product['price']}}</span></p>
-        </div>
-        
-      </div>
-      @php $now = time(); @endphp
-        @php $datediff = $now - strtotime($product['created_at']); @endphp
-        <p class="mt-0 p-0 text-center text-dark card-footer">{{floor($datediff / (60 * 60 * 24))}} days ago</p>
+      <div class="col-md-6 col-lg-3  a">
       
-     </div>
-   </a>
+
+    <x-card.card   :product="$product" />  
+  
       </div>
       @endforeach
 

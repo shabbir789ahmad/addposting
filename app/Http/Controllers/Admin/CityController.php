@@ -41,13 +41,21 @@ class CityController extends Controller
           'city'=>'required',
         ]);
 
-        $data=[
+        $city=City::where('city','=',$request->city)->first();
+        if(empty($city))
+        {
+         $data=[
 
           'state_id'=>  $request->state_id,
           'city'=>  $request->city,
         ];
 
        return \App\Helpers\Form::createEloquent(new City, $data);
+        }else{
+            return redirect()->back()->with('success','City Already Present in Record' );
+        }
+
+        
     }
 
     

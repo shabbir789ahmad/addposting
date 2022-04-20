@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 $('#property_category').change(function() {
-  
+
    let id=$(this).val();
   $.ajax({
             url : '/get-al-category/' +id,

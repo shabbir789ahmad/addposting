@@ -34,22 +34,22 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
  <script type="text/javascript">
+  
    $('#user_form').click(function(){
     
     $(this).prop('disabled',true)
     $('#vendor_form').prop('disabled',false)
-    $('#user').css('display','block')
-    $('#vendor').css('display','none')
+    $('#type').val(0);
    })
    $('#vendor_form').click(function(){
     
     $(this).prop('disabled',true)
     $('#user_form').prop('disabled',false)
-    $('#user').css('display','none')
-    $('#vendor').css('display','block')
+    $('#type').val(1)
    })
  </script>
 
+<!-- //add to wishlist or like -->
 
 </body>
 </html>

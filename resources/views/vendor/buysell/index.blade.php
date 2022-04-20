@@ -71,8 +71,8 @@
 				@else
 
 				<div class="image text-center">
-                 <img src="{{asset('pic/emptyOrders.2224131a3d84b6235c8dde8746ae03f5.webp')}}" width="10%">
-                 <p>Not Data Found</p>
+                 <img src="{{asset('pic/fogg-page-not-found-1.png')}}" width="20%" class="border rounded">
+                 <h3 class="font-weight-bold">Not Record Found</h3>
 				</div>
 
 				@endif

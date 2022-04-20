@@ -38,12 +38,21 @@ class StateController extends Controller
           'states'=>'required',
         ]);
 
-        $data=[
+         $state=State::where('states' ,'=', $request->states)->first();
+         if(empty($state))
+         {
+           $data=[
 
           'states'=>  $request->states,
         ];
 
-       return \App\Helpers\Form::createEloquent(new State, $data);
+           return \App\Helpers\Form::createEloquent(new State, $data);
+         
+         }else
+         {
+           return redirect()->back()->with('success','State Already In Record');
+         }
+        
     }
 
     /**

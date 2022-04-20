@@ -32,19 +32,23 @@ class HomeController extends Controller
         $areas=Area::all();
         $prices=Price::latest()->select('price1','id')->get();
         $products=Product::products();
-        $image = $products->map(function ($item, $key) {
+         foreach($products as $product)
+         {
        
-          return Image::where('product_id',$item['id'])->first();
-         });
-         return view('websites.landing',compact('categories','sliders','banners','products','cities','areas','prices','features','image'));
+          $product->img=Image::where('product_id',$product['id'])->first();
+         }
+
+         return view('websites.landing',compact('categories','sliders','banners','products','cities','areas','prices','features'));
     }
+
+    
     function allAds($id)
     { 
         $categories=Category::all();
-        $locations=State::all();
+        $cities=City::all();
         $areas=Area::all();
         $products=$this->products($id);//from product trait
-        return view('websites.all_product',compact('products','categories','locations','areas'));
+        return view('websites.all_product',compact('products','categories','cities','areas'));
     }
 
     function adsDetail($id)

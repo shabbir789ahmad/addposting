@@ -1,84 +1,60 @@
 @extends('admin.master')
-
 @section('content')
-
-<div class="login-box row" style="overflow:hidden">
- <div class="col-md-4"></div>
-    <div class="card card-outline card-primary col-md-4 " style="margin-top:10%;overflow:hidden"> 
-        @if(session()->has('adminerror'))
+<style type="text/css">
+    .sd{
+        justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .address i{
+        color: #002F34;
+    }
+    .borderleft{
+        border-left: 2px solid #002F34;
+        height: 2%;
+        margin-top: 2%;
+    }
+    .send_btn{
+        color: #ffffff;
+        background-color: #002f34;
+    }
+</style>
+<div class="">
+ <div class="card " style="width: 100%">
+  <div class="card-body ">
+   <div class="row" style="width:98%">
+    <div class="col-md-3 text-center sd">
+       
+      
+       <div class=" address ">
+        <h3>Real Estate</h3>
+       </div>
+    </div>
+    <div class="col-md-9 borderleft">
+         @if(session()->has('adminerror'))
             <div class="alert alert-danger">
            <strong>Error!</strong>{{session()->get('adminerror')}}
             </div>
             @endif
-        <div class="card-header text-center">
-            <a href="#" class="h1">Admin Login </a>
-        </div>
-        <div class="card-body">
-
-            <p class="login-box-msg text-center">Sign in to start your session</p>
-
-            <form id="login-form" action="{{ route('admin.authenticate') }}" method="post">
-                @csrf
-                <div class="row">
-                 <div class="col-12 col-md-12">
-                   <label for="">
-                        <i class="fa fa-fw fa-envelope"></i>
-                        Email
-                    </label>
-                    <input type="email" class="form-control" name="email" />
-                 </div>
-                 <div class="col-12 col-md-12 mt-2">
-                    <label for="">
-                        <i class="fa fa-fw fa-key"></i>
-                        Password
-                    </label>
-                    <input type="password" class="form-control" name="password"/>
-                 </div>
-                  <div class="col-12 col-md-12 mt-2" >
-                       <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                     <label class="form-check-label" for="inlineCheckbox1">Forgot Password</label>
-                      </div>
-                     
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                    </div>
-                    
-                </div>
-                
-             </form>
-
-            
-
-        </div>
-
-        <div class="overlay d-none">
-            <i class="fas fa-2x fa-spin fa-sync-alt"></i>
-        </div>
-
-    </div>
-
-</div>
-
-@endsection
-
-@section('script')
-
-@parent
-
-<script>
-    $(document).ready(function() {
-
-        $('#login-form').submit(function() {
-            
-            $('.overlay').removeClass('d-none');
-
-        });
+     <h5 class="mt-3 font-bold">Sign In</h5>
+     <p> Sign in to start your session</p>
+     <form id="login-form" action="{{ route('admin.authenticate') }}" method="post">
+        @csrf
+        <label class="mt-2 fw-bold">Email</label>
+        <input type="email" class="form-control py-3 border-secondary" name="email" value="{{old('email')}}" />
+        <span>@error ('name') @enderror</span>
+        <label class="mt-2 fw-bold">Password</label>
+        <input type="password" class="form-control py-3 border-secondary" name="password"/>
+        <span>@error ('email') @enderror</span>
         
-    });
-</script>
-
+        
+        <button type="submit" class="btn send_btn btn-lg mt-5 float-right">Sign In</button>
+     </form>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
 @endsection
+

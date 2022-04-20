@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Cart;
 use App\Models\Ad;
 class OrderController extends Controller
@@ -11,7 +12,7 @@ class OrderController extends Controller
    
     public function index()
     {
-        $cart=Cart::where('approved','=',0)->get();
+        $cart=User::join('carts','users.id','=','carts.user_id')->select('carts.item_name','carts.item_ads','carts.item_quentity','carts.item_total','carts.approved','users.user_name','users.email','carts.id',)->where('carts.deleted_at',null)->where('approved','=',0)->orderBy('carts.created_at','Desc')->paginate(50);
         return view('Dashboard.adorder.index',compact('cart'));
     }
 
@@ -33,12 +34,14 @@ class OrderController extends Controller
            $adss=new Ad;
            $adss->total_ads=$cart['item_ads'];
            $adss->user_id=$cart['user_id'];
-           $adss->cart_id=$cart['id'];
+           
            $adss->save();
          }
        
         return response()->json('sdsd');
     }
+
+
      public function destroy($id)
     {
   

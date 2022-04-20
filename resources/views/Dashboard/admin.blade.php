@@ -56,6 +56,12 @@
         </a>
        </li>
        <li class="nav-item ">
+        <a class="nav-link " href="{{route('slider.index')}}">
+          <i class="fas fa-window-maximize text-light"></i>
+          <span>Slider</span>
+        </a>
+       </li>
+       <li class="nav-item ">
         <a class="nav-link " href="{{route('category.index')}}">
           <i class="fas fa-window-maximize text-light"></i>
           <span>Category</span>
@@ -64,13 +70,13 @@
        <li class="nav-item ">
         <a class="nav-link " href="{{route('subcategory.index')}}">
           <i class="fas fa-window-maximize text-light"></i>
-          <span>Sub Category Feature</span>
+          <span>Sub Category </span>
         </a>
        </li>
        <li class="nav-item ">
         <a class="nav-link " href="{{route('type.index')}}">
           <i class="fas fa-window-maximize text-light"></i>
-          <span>Types </span>
+          <span>Property Types </span>
         </a>
        </li>
        <li class="nav-item ">
@@ -79,12 +85,12 @@
           <span>Slider</span>
         </a>
        </li>
-       <li class="nav-item ">
+       <!-- <li class="nav-item ">
         <a class="nav-link " href="{{route('banner.index')}}">
           <i class="fas fa-window-maximize text-light"></i>
           <span>Banner</span>
         </a>
-       </li>
+       </li> -->
        <li class="nav-item ">
         <a class="nav-link " href="{{route('packages.index')}}">
           <i class="fas fa-window-maximize text-light"></i>

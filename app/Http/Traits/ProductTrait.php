@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Traits;
 use App\Models\Product;
+use Carbon\Carbon;
 trait ProductTrait
  {
 
@@ -11,7 +12,7 @@ trait ProductTrait
      $small='';
      $new='';
      $furnish='';
-     $area='';
+     $areaunit='';
      $city='';
      $price1='';
      $price2='';
@@ -27,9 +28,9 @@ trait ProductTrait
      {
       $furnish=$req->furnish;
      }
-     if($req->area != null)
+     if($req->areaunit != null)
      {
-      $area=$req->area;
+      $areaunit=$req->areaunit;
      }
      if($req->city != null)
      {
@@ -49,6 +50,7 @@ trait ProductTrait
         {
           $query=$query->where('products.bedroom','<=',2);
         }
+        
         if($new)
         {
           $query=$query->whereMonth('products.created_at', date('m'));
@@ -57,13 +59,13 @@ trait ProductTrait
         {
           $query=$query->where('products.furnished','furnished');
         }
-        if($area)
+        if($areaunit)
         {
-          $query=$query->where('products.areaunit',$area);
+          $query=$query->where('products.areaunit',$areaunit);
         }
         if($city)
         {
-          $query=$query->where('products.location',$city);
+          $query=$query->where('products.city',$city);
         }
         if($price1 && $price2)
         {

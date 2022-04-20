@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form action="{{ route('category.update',['id' => $categories->id]) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('category.update',['id' => $categ->id]) }}" method="POST" enctype="multipart/form-data">
 	@csrf
 	@method('PUT')
 	<div class="row justify-content-center">
@@ -22,7 +22,7 @@
 							
 							@foreach($properties as $property)
 							
-							<option value="{{$property['id']}}" @if($property['id']==$categories['property_id']) selected @endif>{{$property['property']}}</option>
+							<option value="{{$property['id']}}" @if($property['id']==$categ['property_id']) selected @endif>{{$property['property']}}</option>
 							
 							@endforeach
 						</select>
@@ -30,7 +30,7 @@
 						<label for="" class="font-weight-bold mt-2">
 							Category Name <span class="text-danger">*</span>
 						</label>
-						<input type="text" class="form-control" name="category_name" value="{{$categories->category_name}}">
+						<input type="text" class="form-control" name="category_name" value="{{$categ->category_name}}">
 						
                          <label for="" class="font-weight-bold mt-3">
 							Category Type <span class="text-danger">*</span>

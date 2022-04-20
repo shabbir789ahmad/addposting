@@ -2,11 +2,12 @@
     <nav class="navbar_list">
       <input type="checkbox" id="check">
       <label for="check" class="checkbtn">
-        <i class="fas fa-bars"></i>
+        <i class="fas fa-bars fa-lg"></i>
       </label>
       <label class="logo"><a href="{{url('/')}}" class="link text-dark">Real<span>Estate</span></a></label>
-      <button class="btn btn_upload_adds"><i class="fa-solid fa-plus"></i>Post Adds</button>
-      @guest
+
+      <!-- <button class="btn btn_upload_adds"><i class="fa-solid fa-plusd"></i>Post Adds</button> -->
+             @guest
           @if (Route::has('login'))
           <a class="btn_upload_login btn float-right" href="{{ route('login') }}">{{ __('Login') }}</a>
           @endif
@@ -42,6 +43,11 @@
           </div>
           @endif
      @endguest
+
+    <!--  <a href="{{url('get-wishlist')}}" class=>
+       <i class="fa-regular fa-heart   btn_upload_adds "  aria-hidden="true"><span class="number2">0</span></i>
+    </a> -->
+
     <ul class="ul">
         <li class="li"><a  class="  {{ (request()->is('/')) ? 'active' : '' }}"  href="{{url('/')}}">Home</a></li>
         <li class="li"><a href="{{url('about')}}"   class="  {{ (request()->is('about')) ? 'active' : '' }}">About</a></li>

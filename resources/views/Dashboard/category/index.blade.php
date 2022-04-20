@@ -15,7 +15,7 @@
 		<div class="card">
 			<div class="card-body pb-0">
 
-				@if(count($categories) > 0)
+				@if(count($category) > 0)
 
 				<div class="table-responsive">
 					<table class="table table-striped table-bordered table-hover">
@@ -28,7 +28,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($categories as $category)
+							@foreach($category as $category)
 							<tr>
 								
 								<td class="text-dark col-1"><img src="{{asset('uploads/user/'.$category->category_image)}}" width="100%"></td>

@@ -22,9 +22,11 @@
 					<table class="table table-striped table-bordered table-hover">
 						<thead class="thead-light">
 							<tr>
+								<th scope="col">User Name</th>
+								<th scope="col">User email</th>
 								<th scope="col">Package Name</th>
-								<th scope="col">Package Quentity</th>
-								<th scope="col">Package Ads</th>
+								<th scope="col"> Quentity</th>
+								<th scope="col"> Ads</th>
 								<th scope="col">Total Price</th>
 								<th scope="col">Approve Package</th>
 							</tr>
@@ -33,6 +35,8 @@
 							@foreach($cart as $car)
 							<tr>
 							
+								<td class="text-dark">{{ ucfirst($car->user_name) }}</td>
+								<td class="text-dark">{{ ucfirst($car->email) }}</td>
 								<td class="text-dark">{{ ucfirst($car->item_name) }}</td>
 								<td class="text-dark">{{$car->item_quentity}}</td>
 								<td class="text-dark">{{$car->item_ads }}</td>
@@ -54,8 +58,12 @@
 						</tbody>
 					</table>
 				</div>
-
-				
+				{{ $cart->links() }}
+             @else
+				<div class="image text-center">
+                 <img src="{{asset('pic/fogg-page-not-found-1.png')}}" width="20%" class="border rounded">
+                 <h3 class="font-weight-bold">Not Record Found</h3>
+				</div>
 
 				@endif
 							

@@ -129,6 +129,14 @@ class LabourContoller extends Controller
      */
     public function destroy($id)
     {
+        $labour_ads=Labour::join('a_ads','labours.id','=','a_ads.labour_id')->select('a_ads.total_ads','labours.user_id')->where('labour_id',$id)->first();
+         
+          $ads=Ad::where('user_id',$labour_ads['user_id'])->first();
+           
+           $ads->total_ads=$ads->total_ads + $labour_ads->total_ads;
+           $ads->save();
+           
+ 
         return \App\Helpers\Form::DeleteEloquent(new Labour,$id);
     }
 

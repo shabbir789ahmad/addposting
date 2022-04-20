@@ -39,7 +39,7 @@
 										@method('DELETE')
 										@csrf
 										<button type="submit" class="btn btn-xs btn-danger">
-											Read
+											Delete
 										</button>
 									</form>
 								</td>

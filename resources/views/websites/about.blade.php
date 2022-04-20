@@ -6,24 +6,24 @@
 		color: #ffffff;
 	}
 
-	@media only screen and (max-width: 500px) 
+	@media  (max-width: 480px)
 	{
 		.back_img img{
-			height: 10rem;
+			height: 15rem;
 		}
 	  .back_img::before{
          position: absolute;
          content: "";
-         height: 18.7%;
+         height: 15.6%;
          width: 100%;
-         top: 9%;
+         top: 5.5%;
          left: 0;
          background: #000;
          opacity: 0.6;
 	  }
 	.back_img h4{
 		position: absolute;
-		top: 15%;
+		top: 10%;
 		left: 30%;
 		font-size: 2rem;
 		font-weight: 700;
@@ -31,7 +31,7 @@
 	}
 	.back_img .link_type{
 		position: absolute;
-		top: 19%;
+		top: 13%;
 		left: 33%;
 		font-size: 1.2rem;
 		color: #ffffff;
@@ -40,24 +40,24 @@
 		width:100%;
 	}
 	}
-	@media only screen and (min-width: 500px) 
+	@media (min-width: 481px) and (max-width: 768px) 
 	{
 		.back_img img{
-			height: 10rem;
+			height: 17rem;
 		}
 	  .back_img::before{
          position: absolute;
          content: "";
-         height: 19%;
+         height: 18.4%;
          width: 100%;
-         top: 9%;
+         top: 5%;
          left: 0;
          background: #000;
          opacity: 0.6;
 	  }
 	.back_img h4{
 		position: absolute;
-		top: 17%;
+		top: 10%;
 		left: 45%;
 		font-size: 2rem;
 		font-weight: 700;
@@ -65,7 +65,7 @@
 	}
 	.back_img .link_type{
 		position: absolute;
-		top: 21%;
+		top: 13%;
 		left: 46%;
 		font-size: 1.2rem;
 		color: #ffffff;
@@ -74,24 +74,24 @@
 		width:60%;
 	}
 	}
-	@media only screen and (min-width: 900px) 
+	@media (min-width: 768px) and (max-width: 1024px) 
 	{
 		.back_img img{
-			height: 20rem;
+			height: 30rem;
 		}
 	  .back_img::before{
          position: absolute;
          content: "";
-         height: 44%;
+         height: 32%;
          width: 100%;
-         top: 10%;
+         top: 5%;
          left: 0;
          background: #000;
          opacity: 0.6;
 	  }
 	.back_img h4{
 		position: absolute;
-		top: 28%;
+		top: 16%;
 		left: 45%;
 		font-size: 2rem;
 		font-weight: 700;
@@ -99,7 +99,7 @@
 	}
 	.back_img .link_type{
 		position: absolute;
-		top: 33%;
+		top: 20%;
 		left: 46%;
 		font-size: 1.2rem;
 		color: #ffffff;
@@ -112,7 +112,7 @@
     border-radius: 50%;
     background: transparent;
     border: 2px solid #e84444;
-    top: 75%;
+    top: 47.5%;
     left: 51%;
 	}
 	.text_color h2::after{
@@ -122,13 +122,125 @@
     width: 50px;
     
     background: #e84444;
-    top: 75.5%;
+    top: 48%;
     left: 52%;
 	}
 	.video_width{
 		width:50%;
 	}
 	}
+
+	@media (min-width: 1024px) and (max-width: 1500px) 
+	{
+		.back_img img{
+			height: 30rem;
+		}
+	  .back_img::before{
+         position: absolute;
+         content: "";
+         height: 32%;
+         width: 100%;
+         top: 5%;
+         left: 0;
+         background: #000;
+         opacity: 0.6;
+	  }
+	.back_img h4{
+		position: absolute;
+		top: 16%;
+		left: 45%;
+		font-size: 2rem;
+		font-weight: 700;
+		color: #ffffff;
+	}
+	.back_img .link_type{
+		position: absolute;
+		top: 20%;
+		left: 46%;
+		font-size: 1.2rem;
+		color: #ffffff;
+	}
+	.text_color h2::before{
+		    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid #e84444;
+    top: 47.5%;
+    left: 51%;
+	}
+	.text_color h2::after{
+		       position: absolute;
+    content: "";
+    height: 2px;
+    width: 50px;
+    
+    background: #e84444;
+    top: 48%;
+    left: 52%;
+	}
+	.video_width{
+		width:50%;
+	}
+	}
+	@media (min-width: 1501px) and (max-width: 2100px) 
+	{
+		.back_img img{
+			height: 30rem;
+		}
+	  .back_img::before{
+         position: absolute;
+         content: "";
+         height: 32%;
+         width: 100%;
+         top: 5%;
+         left: 0;
+         background: #000;
+         opacity: 0.6;
+	  }
+	.back_img h4{
+		position: absolute;
+		top: 16%;
+		left: 45%;
+		font-size: 2rem;
+		font-weight: 700;
+		color: #ffffff;
+	}
+	.back_img .link_type{
+		position: absolute;
+		top: 20%;
+		left: 46%;
+		font-size: 1.2rem;
+		color: #ffffff;
+	}
+	.text_color h2::before{
+		    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid #e84444;
+    top: 47.5%;
+    left: 51%;
+	}
+	.text_color h2::after{
+		       position: absolute;
+    content: "";
+    height: 2px;
+    width: 50px;
+    
+    background: #e84444;
+    top: 48%;
+    left: 52%;
+	}
+	.video_width{
+		width:50%;
+	}
+	}
+
 	.text_color p{
 		color: #666666;
 	}

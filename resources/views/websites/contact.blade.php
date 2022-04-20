@@ -20,15 +20,15 @@
 		background-color: #002f34;
 	}
 </style>
-<div class="container con mt-5 mb-5">
- <div class="card">
-  <div class="card-body">
-   <div class="row">
+<div class="">
+ <div class="card " style="width: 100%">
+  <div class="card-body ">
+   <div class="row" style="width:98%">
     <div class="col-md-3 text-center sd">
        <div class=" address text-center ">
          <i class="fa-solid fa-location-dot fa-2x"></i>
          <h6 class="mb-0">Address</h6>
-         <p class=" p-0"> After reading the article and watching the video </p>
+         <p class=" p-0">This is our address  </p>
         
        </div>
        <div class=" address ">
@@ -38,7 +38,7 @@
        </div>
        <div class=" address ">
        	 <i class="fa-solid fa-envelope fa-2x"></i>
-         <h6 class="mb-0">Address</h6>
+         <h6 class="mb-0">Email</h6>
          <p class=" p-0"> dummy@gmail.com </p>
        </div>
     </div>
@@ -49,7 +49,7 @@
            </div>
     	@endif
      <h5 class="mt-3 font-bold">Send Message</h5>
-     <p> After reading the article and watching the video tutorial that I have given below, you can definitely create a beautiful contact form that I have given as an image.</p>
+     <p> Contact Us About your queries. We would love to help you.</p>
      <form method="POST" action="{{route('send.message')}}">
      	@csrf
      	<label class="mt-2 fw-bold">Name</label>

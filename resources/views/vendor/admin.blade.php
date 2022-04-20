@@ -223,11 +223,11 @@ function myFunction(id,res) {
 }
 
 
- $(".add_to_cart").change(function (e) 
+ $(".add_to_cart").click(function (e) 
  { 
-   $(this).is(':checked')
-    if($(this).is(':checked')==true)
-    {
+   // $(this).is(':checked')
+   //  if($(this).is(':checked')==true)
+   //  {
        e.preventDefault();
        var id=$(this).data('id');
       $.ajax({
@@ -243,24 +243,25 @@ function myFunction(id,res) {
       }).fail(function(e){
         console.log('erro')
       });
-    }else if($(this).is(':checked')==false)
-    {
-       e.preventDefault();
-       var id=$(this).data('id');
-      $.ajax({
-            url : '/remove-from-cart/' +id,
-            method: "GET",
-            data: {
-                _token: '{{ csrf_token() }}', 
+      
+    // }else if($(this).is(':checked')==false)
+    // {
+    //    e.preventDefault();
+    //    var id=$(this).data('id');
+    //   $.ajax({
+    //         url : '/remove-from-cart/' +id,
+    //         method: "GET",
+    //         data: {
+    //             _token: '{{ csrf_token() }}', 
               
-            },
-      }).done(function(res){
+    //         },
+    //   }).done(function(res){
 
-        myFunction(id=1,res)
-      }).fail(function(e){
-        console.log('erro')
-      });
-    }
+    //     myFunction(id=1,res)
+    //   }).fail(function(e){
+    //     console.log('erro')
+    //   });
+    // }
        
 });
  //remove from cart

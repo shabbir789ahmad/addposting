@@ -26,7 +26,7 @@
        	<h5>Rs. {{$products['price']}}</h5>
        	<div class="icon">
           <i class="fa-solid fa-share-nodes fa-lg pr-3"></i>
-         <i class="fa-solid fa-heart fa-lg"></i>
+         <i class="fa-regular fa-heart fa-lg"></i>
         </div>
        </div>
        <div class="item_pri">
@@ -217,7 +217,7 @@
         <div class="product_data mb-0 mt-0 d-flex">
           <h5>{{ucfirst($product['name'])}}</h5>
           
-         <i class="fa-solid fa-heart text-danger ms-auto"></i>
+         <i class="fa-regular fa-heart text-danger ms-auto"></i>
         </div>
         <div class="product_data mb-0 mt-0">
           <p class="m-0">{{ucfirst($product['location'])}} <span class="text-center">${{$product['price']}}</span></p>

@@ -1,7 +1,18 @@
 @extends('vendor.admin')
 
 @section('content')
+<style type="text/css">
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
 
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+</style>
 <div class="row">
   <div class="col-12">
     <div class="form-group ml-2">
@@ -90,11 +101,11 @@
       <div class="modal-body">
         <input type="hidden" name="labour_id" id="labour">
         <label class="mt-4">Total Ads In Wallet</label>    
-        <input type="number" name="all_ads" class="form-control" value="{{$ads}}" id="all_ads">
+        <input type="number" name="all_ads" class="form-control" value="{{$ads}}" id="all_ads" readonly>
          
         <span id="message" class="text-danger"></span><br>
          <label class="">Number Of Ads To This User</label>
-         <input type="number" name="total_ads" class="form-control" id="new_ads">
+         <input type="number" name="total_ads" class="form-control" id="new_ads" step="0.01">
          
       </div>
       <div class="modal-footer">
