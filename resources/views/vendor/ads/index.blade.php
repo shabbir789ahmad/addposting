@@ -34,9 +34,12 @@
         </div>
         
       </div>
-      @php $now = time(); @endphp
-        @php $datediff = $now - strtotime($product['created_at']); @endphp
-        <p class="mt-0 p-0 text-center text-dark card-footer">{{floor($datediff / (60 * 60 * 24))}} days ago</p>
+      <form action="{{route('ads.destroy',['id'=>$product['id']])}}" method="POST" class="text-center  card-footer">
+        @csrf
+        @method('DELETE')
+        <button class="btn btn-danger w-50 text-center btn-sm">Delete</button>
+      </form>
+      
       
      </div>
  
@@ -47,7 +50,7 @@
 </div>
 	@else
 	  <div class="col-12">
-	  	<x-resource-empty resource="ads" new="ads.create"></x-resource-empty>
+	  	<x-resource-empty resource="ads" new="ads.index2"></x-resource-empty>
 	  </div>
 	  </div>
    @endif

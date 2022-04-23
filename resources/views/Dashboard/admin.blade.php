@@ -79,12 +79,7 @@
           <span>Property Types </span>
         </a>
        </li>
-       <li class="nav-item ">
-        <a class="nav-link " href="{{route('slider.index')}}">
-          <i class="fas fa-window-maximize text-light"></i>
-          <span>Slider</span>
-        </a>
-       </li>
+      
        <!-- <li class="nav-item ">
         <a class="nav-link " href="{{route('banner.index')}}">
           <i class="fas fa-window-maximize text-light"></i>
@@ -156,7 +151,7 @@
                         @else
             <li class="nav-item border rounded p-2 bg-light border-danger dropdown d-block mt-2 ml-5 bookname" style="z-index:900" >
          <a id="navbarDropdown" class=" bg-light dropdown-toggle  text-light mt-4" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-         <a href="" class="mt-5  text-dark " > {{ucwords( Auth::user()->name )}}</a>
+         <a href="#" class="mt-5  text-dark " > {{ucwords( Auth::user()->name )}}</a>
                                 </a>
 
   <div class="dropdown-menu " aria-labelledby="navbarDropdown">

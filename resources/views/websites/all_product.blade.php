@@ -127,20 +127,16 @@
   </div>
 
 
-<div class="container mt-5 ">
- <div class="pill-nav">
+<!-- <div class="container mt-5 "> -->
+ <!-- <div class="pill-nav">
   <a  href="#" class="click active" data-id='1'>Populer</a>
-<!--   <a href="#" class="click"  data-id='2'>Categories</a> -->
+
   <a href="#" class="click" data-id='3'>Area Unit</a>
   <a href="#" class="click" data-id='4'>Cities</a>
   <a href="#" class="click" data-id='5'>Price Ranges</a>
-</div>
-<div class="container mt-5">
- <!-- <div class="category display_item">
- <div class="row categorys "> 
+</div> -->
+<!-- <div class="container mt-5">
  
- </div>
- </div> -->
  <div class="populer ">
   <div class="row">
     <div class="col-md-2">
@@ -200,20 +196,22 @@
 
  </div>
 </div>
-</div>
+</div> -->
 <!-- //dfdsf -->
  <!-- //dfdsf -->
-  <div class="container  mt-5 mb-5">
+  <div class="container-fluid  mt-5 mb-5">
     @foreach($categories as $category)
      @if($category['id']==Request('id'))
      <p class="browser ">{{$category['category_name']}} Ads</p>
      @endif
      @endforeach
-  <div class="container mt-4">
+  <div class="container-fluid mt-4">
     <div class="row">
       @foreach($products as $product)
      
-        <x-card.card2 :product="$product" />
+        <div class="col-md-3">
+       <x-card.card2 :product="$product" />
+     </div>
    
       @endforeach
 

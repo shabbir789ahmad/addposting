@@ -79,8 +79,9 @@
     <div class="row">
       @if(count($products)>0)
       @foreach($products as $product)
-      
+      <div class="col-md-3">
        <x-card.card2 :product="$product" />
+     </div>
       @endforeach
    @else
    <x-404not-found />

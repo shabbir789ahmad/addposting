@@ -10,7 +10,7 @@ trait UserTrait
   
    function user($id)
    {
-      $user= User::where('id',$id)->select('user_name','user_image','created_at','id','phone')->first();
+      $user= User::where('id',$id)->select('user_name','user_image','created_at','id','phone','about_me')->first();
       return $user;
    }
 

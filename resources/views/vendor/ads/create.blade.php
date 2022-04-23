@@ -189,7 +189,7 @@
 							Your State  <span class="text-danger">*</span>
 						</label>
 				    <select class="form-control mb-2" name="" id="state">
-				    	<option  selected hidden disabled>Select City</option>
+				    	<option  selected hidden disabled>Select State</option>
                  @foreach($states as $state)
                   <option value="{{$state['id']}}">{{$state['states']}}</option>
                  @endforeach

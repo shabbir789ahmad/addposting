@@ -74,8 +74,9 @@ class SubCategoryController extends Controller
      */
     public function edit($id)
     {   $properties=Property::all();
+        $categories=Category::all();
         $subcategories=SubCategory::findOrFail($id);
-        return view('Dashboard.sub_category.edit',compact('subcategories','properties'));
+        return view('Dashboard.sub_category.edit',compact('subcategories','properties','categories'));
     }
 
     /**

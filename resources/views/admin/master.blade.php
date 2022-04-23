@@ -35,18 +35,18 @@
  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
  <script type="text/javascript">
   
-   $('#user_form').click(function(){
+   // $('#user_form').click(function(){
     
-    $(this).prop('disabled',true)
-    $('#vendor_form').prop('disabled',false)
-    $('#type').val(0);
-   })
-   $('#vendor_form').click(function(){
+   //  $(this).prop('disabled',true)
+   //  $('#vendor_form').prop('disabled',false)
+   //  $('#type').val(0);
+   // })
+   // $('#vendor_form').click(function(){
     
-    $(this).prop('disabled',true)
-    $('#user_form').prop('disabled',false)
-    $('#type').val(1)
-   })
+   //  $(this).prop('disabled',true)
+   //  $('#user_form').prop('disabled',false)
+   //  $('#type').val(1)
+   // })
  </script>
 
 <!-- //add to wishlist or like -->

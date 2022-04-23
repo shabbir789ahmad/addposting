@@ -1,10 +1,17 @@
 
-    <nav class="navbar_list">
+    <nav class="navbar_list" style="overflow:hidden;">
       <input type="checkbox" id="check">
       <label for="check" class="checkbtn">
         <i class="fas fa-bars fa-lg"></i>
       </label>
-      <label class="logo"><a href="{{url('/')}}" class="link text-dark">Real<span>Estate</span></a></label>
+      <label class="logo"><a href="{{url('/')}}" class="link text-light">Real<span>Estate</span></a></label>
+
+      <ul class="ul mb-0">
+        <li class="li"><a  class="  {{ (request()->is('/')) ? 'active' : '' }}"  href="{{url('/')}}">Home</a></li>
+        <li class="li"><a href="{{url('searchresult')}}"   class="  {{ (request()->is('searchresult')) ? 'active' : '' }}">Buy</a></li>
+        <li class="li"><a href="{{url('searchresult')}}" class="  {{ (request()->is('searchresult')) ? 'active' : '' }}">Rent</a></li>
+        <li class="li"><a href="{{url('agent')}}" class="  {{ (request()->is('agent')) ? 'active' : '' }}">Find Agent</a></li>
+      </ul>
 
       <!-- <button class="btn btn_upload_adds"><i class="fa-solid fa-plusd"></i>Post Adds</button> -->
              @guest
@@ -44,15 +51,9 @@
           @endif
      @endguest
 
-    <!--  <a href="{{url('get-wishlist')}}" class=>
-       <i class="fa-regular fa-heart   btn_upload_adds "  aria-hidden="true"><span class="number2">0</span></i>
-    </a> -->
+ 
 
-    <ul class="ul">
-        <li class="li"><a  class="  {{ (request()->is('/')) ? 'active' : '' }}"  href="{{url('/')}}">Home</a></li>
-        <li class="li"><a href="{{url('about')}}"   class="  {{ (request()->is('about')) ? 'active' : '' }}">About</a></li>
-        <li class="li"><a href="{{url('contact')}}" class="  {{ (request()->is('contact')) ? 'active' : '' }}">Contact</a></li>
-      </ul>
+    
 
     </nav>
  

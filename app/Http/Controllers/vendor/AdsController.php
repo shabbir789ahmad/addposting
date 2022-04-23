@@ -170,7 +170,8 @@ class AdsController extends Controller
      */
     public function destroy($id)
     {
-        $ads=Ad::destroy($id);
+        $ads=Product::destroy($id);
+
         return redirect()->back()->with('success','Ads Deleted Successfully');
     }
 }

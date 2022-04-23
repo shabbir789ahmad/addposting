@@ -32,7 +32,7 @@ class Product extends Model
     {
         $products=Product::
          join('categories','categories.id','products.category_id')
-         ->select('products.name','products.location','categories.category_name','products.id','products.price','products.total_area','products.created_at')
+         ->select('products.name','categories.category_name','products.id','products.price','products.total_area','products.created_at','products.areaunit','products.bedroom','products.bathroom','products.city')
         ->orderBy('products.created_at','Desc')->take(20)->get();
        
        return $products;

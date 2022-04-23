@@ -69,10 +69,11 @@ class SearchResultController extends Controller
 
         
         $products=$products->paginate(4);
-        $image = $products->map(function ($item, $key) {
+         foreach($products as $product) {
        
-          return Image::where('product_id',$item['id'])->first();
-         });
-        return view('websites.searchresult',compact('products','categories','features','image','cities','areas'));
+          $product->img= Image::where('product_id',$product['id'])->first();
+         }
+
+        return view('websites.searchresult',compact('products','categories','features','cities','areas'));
     }
 }

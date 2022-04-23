@@ -159,7 +159,7 @@
         <ul>
             <li><b>{{$package['package_ads']}}</b> Ads</li>
             <li><b>VAlid Till: </b>{{date('d-m-Y', strtotime($package['package_duration']))}} </li>
-            <li><b>${{$package['discount']}}</b> Discount</li>
+            <li><b>${{$package['package_discount']}}</b> Discount</li>
           
         </ul>
         <a  href="#" data-id="{{$package['id']}}" class="form-control  add_to_cart  signup">Add To Cart</a>         

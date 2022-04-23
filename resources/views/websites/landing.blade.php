@@ -3,14 +3,14 @@
 
 @foreach($sliders as $slider)
 <img class="d-block w-100" src="{{asset('uploads/user/'.$slider->slider)}}" alt="Third slide" width="100%" height="600rem" class="img">
-<div class="container_background3 text-center">
-   
-</div>
+<!-- <div class="container_background3 text-center">
+ -->   
+
 <div class="container_background2 ">
-  <div class="container mt-5 text-center">
+  <div class="container mt-5 text-center ">
     <h1 class="heading">{{ucfirst($slider->heading1)}}</h1>
    <p>{{ucfirst($slider->heading2)}}</p>
-   <div class="row bg-light rounded  pb-5">
+   <div class="row  rounded  p-4" style="background-color:#0E2E50;color:#fff">
     <div class="row">
       <form action="{{route('searchresult')}}" method="GET">
       
@@ -59,9 +59,9 @@
        @endforeach
       </select>
     </div>
-    <div class="col-md-2 col-12 col-sm-12 mt-2 p-2">
+    <div class="col-md-2 col-12 col-sm-12 mt-1 p-2">
       <button class="btn btn-lg  search_btn w-100" type="submit"> Search</button>
-     <label class="show_more_filter mt-2">More Filter  <i class="fas fa-arrow-down rounded border border-dark py-1 px-2 "></i></label>
+     <label class="show_more_filter mt-2">More Filter  <i class="fas fa-arrow-down rounded border border-light py-1 px-2 "></i></label>
     </div>
 
    
@@ -101,7 +101,7 @@
        @endforeach
       </select>
       <label class="hide_more_filter mt-2 float-right">Hide Filter
-      <i class="fas fa-arrow-up rounded border border-dark py-1 px-2 "></i></label>
+      <i class="fas fa-arrow-up rounded border border-light py-1 px-2 "></i></label>
     </div>
     </div>
    </div>
@@ -110,7 +110,7 @@
 </form>
 @endforeach
 
- <div class="container mt-5">
+<!--  <div class="container-fluid mt-5">
   <p class="browser ">Browser By Category</p>
   
   <div class="row">
@@ -133,19 +133,22 @@
  
 
  </div>
-</div>
+</div> -->
 
 
 <!-- products -->
-
- <div class="container mt-5">
-  <p class="browser ">Premium Ads</p>
+<div class="populer_text text-center mt-5">
+  <h3 class="browser ">Premium Ads</h3>
+  <p class="br2">Properties In Most Populer Category</p>
+</div>
+<div class="container-fluid pb-5 pt-5 " style="background-color:#B0D1FF;">
+ 
    
-   <div class="owl-carousel">
+  <div class="owl-carousel owl-theme "  >
     @foreach($products as $product)
     <x-card.card   :product="$product" />  
     @endforeach
-  
+ 
   </div>
 </div>
 
@@ -168,10 +171,14 @@
 </div>
  -->
 <!-- prodduct with category -->
-<div class="container mt-5">
-  <p class="browser ">Feature Ads</p>
+<div class="populer_text text-center mt-5">
+  <h3 class="browser ">Feature Ads</h3>
+  <p class="br2">Properties In Most Populer Category</p>
+</div>
+ <div class="container-fluid pb-5 pt-5 " style="background-color:#B0D1FF;">
+ 
    
-   <div class="owl-carousel">
+  <div class="owl-carousel owl-theme "  >
     @foreach($products as $product)
     <x-card.card   :product="$product" />  
     @endforeach
@@ -180,10 +187,15 @@
 </div>
 
 <!-- prodduct with category -->
-<div class="container mt-5">
-  <p class="browser ">Tranding Ads</p>
+<div class="populer_text text-center mt-5">
+  <h3 class="browser ">Tranding Ads</h3>
+  <p class="br2">Properties In Most Populer Category</p>
+</div>
+ <div class="container-fluid pb-5 pt-5 " style="background-color:#B0D1FF;">
+ 
+
    
-   <div class="owl-carousel">
+   <div class="owl-carousel owl-theme "  >
     @foreach($products as $product)
     <x-card.card   :product="$product" />  
     @endforeach
@@ -195,24 +207,23 @@
 
 
 <!-- //dfdsf -->
-  <div class="container  mt-5 mb-5">
-     <p class="browser ">Hot Ads</p>
-  <div class="container mt-4">
-    <div class="row">
-      @foreach($products as $product)
-      <div class="col-md-6 col-lg-3  a">
-      
-
-    <x-card.card   :product="$product" />  
-  
-      </div>
-      @endforeach
-
-
+  <div class="populer_text text-center mt-5">
+  <h3 class="browser ">Hot Ads</h3>
+  <p class="br2">Properties In Most Populer Category</p>
 </div>
-<a href="#" id="seeMore" class="text-center">Show More</a>
+<div class="container-fluid pb-5 pt-5 " style="background-color:#B0D1FF;">
+ 
+<!-- <x-seeallcomponent  /> -->
+   
+   <div class="owl-carousel owl-theme "  >
+    @foreach($products as $product)
+    <x-card.card   :product="$product" />  
+    @endforeach
   </div>
-  </div>
+</div>
+
+
+
 
 <div class="container-fluid">
  <div class="card">

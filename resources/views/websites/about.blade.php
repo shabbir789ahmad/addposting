@@ -14,16 +14,16 @@
 	  .back_img::before{
          position: absolute;
          content: "";
-         height: 15.6%;
+         height: 15rem;
          width: 100%;
-         top: 5.5%;
+         top: 9.5%;
          left: 0;
          background: #000;
          opacity: 0.6;
 	  }
 	.back_img h4{
 		position: absolute;
-		top: 10%;
+		top: 20%;
 		left: 30%;
 		font-size: 2rem;
 		font-weight: 700;
@@ -31,7 +31,7 @@
 	}
 	.back_img .link_type{
 		position: absolute;
-		top: 13%;
+		top: 24%;
 		left: 33%;
 		font-size: 1.2rem;
 		color: #ffffff;
@@ -48,25 +48,29 @@
 	  .back_img::before{
          position: absolute;
          content: "";
-         height: 18.4%;
+         height: 17rem;
          width: 100%;
-         top: 5%;
+         top: 9.5%;
          left: 0;
          background: #000;
          opacity: 0.6;
 	  }
 	.back_img h4{
 		position: absolute;
-		top: 10%;
-		left: 45%;
+		top: 20%;
+		left: 0;
+		text-align: center;
+		right: 0;
 		font-size: 2rem;
 		font-weight: 700;
 		color: #ffffff;
 	}
 	.back_img .link_type{
 		position: absolute;
-		top: 13%;
-		left: 46%;
+		top: 25%;
+		left: 0;
+		text-align: center;
+		right: 0;
 		font-size: 1.2rem;
 		color: #ffffff;
 	}
@@ -82,29 +86,33 @@
 	  .back_img::before{
          position: absolute;
          content: "";
-         height: 32%;
+         height: 30rem;
          width: 100%;
-         top: 5%;
+         top: 9%;
          left: 0;
          background: #000;
          opacity: 0.6;
 	  }
 	.back_img h4{
 		position: absolute;
-		top: 16%;
-		left: 45%;
+		top: 30%;
+		left: 0;
+		text-align: center;
+		right: 0;
 		font-size: 2rem;
 		font-weight: 700;
 		color: #ffffff;
 	}
 	.back_img .link_type{
 		position: absolute;
-		top: 20%;
-		left: 46%;
+		top: 35%;
+		left: 0;
+		text-align: center;
+		right: 0;
 		font-size: 1.2rem;
 		color: #ffffff;
 	}
-	.text_color h2::before{
+/*	.text_color h2::before{
 		    position: absolute;
     content: "";
     height: 10px;
@@ -124,7 +132,7 @@
     background: #e84444;
     top: 48%;
     left: 52%;
-	}
+	}*/
 	.video_width{
 		width:50%;
 	}
@@ -138,16 +146,16 @@
 	  .back_img::before{
          position: absolute;
          content: "";
-         height: 32%;
+         height: 30rem;
          width: 100%;
-         top: 5%;
+       
          left: 0;
          background: #000;
          opacity: 0.6;
 	  }
 	.back_img h4{
 		position: absolute;
-		top: 16%;
+		top: 40%;
 		left: 45%;
 		font-size: 2rem;
 		font-weight: 700;
@@ -155,12 +163,12 @@
 	}
 	.back_img .link_type{
 		position: absolute;
-		top: 20%;
+		top: 45%;
 		left: 46%;
 		font-size: 1.2rem;
 		color: #ffffff;
 	}
-	.text_color h2::before{
+	/*.text_color h2::before{
 		    position: absolute;
     content: "";
     height: 10px;
@@ -180,7 +188,7 @@
     background: #e84444;
     top: 48%;
     left: 52%;
-	}
+	}*/
 	.video_width{
 		width:50%;
 	}
@@ -193,9 +201,9 @@
 	  .back_img::before{
          position: absolute;
          content: "";
-         height: 32%;
+         height: 30rem;
          width: 100%;
-         top: 5%;
+         top: 10%;
          left: 0;
          background: #000;
          opacity: 0.6;
@@ -215,7 +223,7 @@
 		font-size: 1.2rem;
 		color: #ffffff;
 	}
-	.text_color h2::before{
+	/*.text_color h2::before{
 		    position: absolute;
     content: "";
     height: 10px;
@@ -235,7 +243,7 @@
     background: #e84444;
     top: 48%;
     left: 52%;
-	}
+	}*/
 	.video_width{
 		width:50%;
 	}

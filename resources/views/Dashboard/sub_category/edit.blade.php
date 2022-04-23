@@ -22,15 +22,17 @@
 						<select class="form-control" name="property_id" id="property_category" required>
 							<option selected disabled hidden>Select Property Type</option>
 							@foreach($properties as $property)
-							<option value="{{$property['id']}}">{{$property['property']}}</option>
+							<option value="{{$property['id']}}" @if($property['id']==$subcategories['property_id']) selected @endif>{{$property['property']}}</option>
 							@endforeach
 						</select>
 						<label for="" class="font-weight-bold mt-2">
-							Select Property Type <span class="text-danger">*</span>
+							Select Category <span class="text-danger">*</span>
 						</label>
-						<select class="form-control category_id" name="category_id" required>
+						<select class="form-control " name="category_id" required>
 							
-							
+							@foreach($categories as $category)
+							<option value="{{$category['id']}}"  @if($category['id']==$subcategories['category_id']) selected @endif>{{$category['category_name']}}</option>
+							@endforeach
 						</select>
 						<label for="" class="font-weight-bold mt-3">
 							Sub Category Name <span class="text-danger">*</span>

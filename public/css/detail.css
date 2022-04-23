@@ -43,21 +43,27 @@ overflow-x: auto;
  font-size: 1.5rem;
  white-space: nowrap;
   overflow: hidden;
+  
+  margin-left: 4%;
   text-overflow: ellipsis;
   width: 190px;
   text-transform: capitalize;
 }
 .seller_name p{
-  font-size: .8rem;
-  
+  font-size: 1rem;
+  margin-left: 4%;
+  color: #403b45;
 }
-.selller_description i{
-	margin-left: 30%;
+.language{
+	margin-left: 3rem;
+}
+/*.selller_description i{
+	margin-left: 10%;
 	margin-top: 8%;
-}
+}*/
 .selller_description img{
-	width: 15%;
-	height: 3.9rem;
+  width: 7rem;
+	height: 7rem;
 	border-radius: 50%;
 	object-fit: cover;
 	border: 2px solid black;
@@ -82,7 +88,7 @@ overflow-x: auto;
 	color: #ffffff;
 	margin: 1%;
 	margin-top: 3%;
-	background-color: #002F34;
+	background-color: #0E2E50;
 }
 .card_border{
 	border: 1px solid #002F34;

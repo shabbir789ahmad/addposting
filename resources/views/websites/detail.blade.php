@@ -23,7 +23,7 @@
      <div class="card card_border">
       <div class="card-body">
        <div class="item_price">
-       	<h5>Rs. {{$products['price']}}</h5>
+       	<h5> {{$products['price']}} AED</h5>
        	<div class="icon">
           <i class="fa-solid fa-share-nodes fa-lg pr-3"></i>
          <i class="fa-regular fa-heart fa-lg"></i>
@@ -52,26 +52,28 @@
      @if($users && !$labours)
      <div class="card card_border mt-4 p-0">
       <div class="card-body p-0 pt-4">
-       <p class="description">Seller Description </p>
+       <p class="description">Company Detail</p>
        <a href="{{route('vendor.product',['id'=>$users['id']])}}" class="mt-3  text-dark link">
        <div class="selller_description">
-        <img src="{{asset('uploads/img/'.$users->user_image)}}" width="20%">
+        <img src="{{asset('uploads/img/'.$users->user_image)}}" width="100%">
         <div class="seller_name mt-2">
-         <h6 class="p-0">{{ucfirst($users['user_name'])}}</h6>
-         <p class="p-0">Member since  {{date('Y',strtotime($users['created_at']))}}</p>
+         <h6 class="p-0 text-primary">{{ucfirst($users['user_name'])}}</h6>
+         <p class="p-0">{{ucfirst($users['about_me'])}}<br> (<span class="text-primary">12 Properties</span>)</p>
          
         </div>
-        <i class="fa-solid fa-arrow-right-long fa-lg "></i>
+
+        <!-- <i class="fa-solid fa-arrow-right-long fa-lg "></i> -->
         
        </div></a>
+       <p><span class="fw-bold language">Language</span>   <span>English</span>, <span>Urdu</span>, <span>Arabic</span></p>
        <div class="d-flex mb-4">
-         <button  class="btn btn_chat pl-0 email" data-id="{{$users['id']}}" data-name="{{$products['name']}}" data-agent="{{ucfirst($users['user_name'])}}">Email</button>
+         <button  class="btn btn_chat pl-0 call"><i class="fa-solid fa-phone"></i> Call</button>
+
+         <button  class="btn btn_chat pl-0 email bg-danger" data-id="{{$users['id']}}" data-name="{{$products['name']}}" data-agent="{{ucfirst($users['user_name'])}}"><i class="fa-solid fa-envelope"></i> Email</button>
          
-        @if(Auth::user())
-           <button class="btn btn_chat">Call {{$users['phone']}}</button>
-         @else
-           <button class="btn btn_chat show_number">Show Number</button>
-         @endif
+      
+           <button class="btn btn_chat show_number bg-success"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+      
        </div>
         
       </div>
@@ -81,7 +83,7 @@
      <div class="card card_border mt-4 p-0">
       <div class="card-body p-0 pt-3">
        <div class="d-flex ">
-       <p class="description">Seller Description </p>
+       <p class="description">Agent </p>
        <a href="{{route('vendor.product',['id'=>$labours['user_id']])}}" class="link ms-auto" style="width: 15%;">
          <img src="{{asset('uploads/img/'.$labours->user_image)}}" width="90%" class=" border border-dark " style="border-radius: 50%; object-fit: cover;"></a>
        </div>
@@ -201,39 +203,22 @@
 </div>
 
 <!-- products -->
-
- <div class="container mt-5">
-  <p class="browser ">Related Ads</p>
-  <div class="container mt-4">
-   <div class="owl-carousel">
+<div class="populer_text text-center mt-5">
+  <h3 class="browser ">Related  Ads</h3>
+  <p class="br2">Properties In Most Populer Category</p>
+</div>
+<div class="container-fluid pb-5 pt-5 " style="background-color:#B0D1FF;">
+ 
+   
+  <div class="owl-carousel owl-theme "  >
     @foreach($products2 as $product)
-    <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
-     <div class="card shadow">
-       <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image">
-       <div class="card-body pt-1">
-        <div class="category_data mb-0">
-         <p>{{$product['category_name']}}</p>
-        </div>
-        <div class="product_data mb-0 mt-0 d-flex">
-          <h5>{{ucfirst($product['name'])}}</h5>
-          
-         <i class="fa-regular fa-heart text-danger ms-auto"></i>
-        </div>
-        <div class="product_data mb-0 mt-0">
-          <p class="m-0">{{ucfirst($product['location'])}} <span class="text-center">${{$product['price']}}</span></p>
-        </div>
-        
-      </div>
-      @php $now = time(); @endphp
-        @php $datediff = $now - strtotime($product['created_at']); @endphp
-        <p class="mt-0 p-0 text-center text-dark card-footer">{{floor($datediff / (60 * 60 * 24))}} days ago</p>
-     </div>
-   </a>
-     @endforeach
-    
-   </div>
+    <x-card.card2   :product="$product" />  
+    @endforeach
+ 
   </div>
 </div>
+
+ 
 
  <x-email--component />
 

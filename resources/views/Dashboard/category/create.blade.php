@@ -28,7 +28,7 @@
 						<label for="" class="font-weight-bold mt-3">
 							Category Name <span class="text-danger">*</span>
 						</label>
-						<input type="text" class="form-control border-secondary" name="category_name" placeholder="Sub Category ">
+						<input type="text" class="form-control border-secondary" name="category_name" placeholder="Select Category ">
                          <span class="text-danger">@error ('category_name') {{$message}} @enderror</span><br>
 
 						<label for="" class="font-weight-bold mt-3">

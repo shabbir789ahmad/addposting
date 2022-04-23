@@ -28,6 +28,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SearchResultController;
+use App\Http\Controllers\AgentController;
 
 
 use App\Http\Controllers\LikeController;
@@ -44,6 +45,7 @@ Route::get('sort/ads',[HomeController::class,'sortAds'])->name('sort.ads');
 Route::get('vendor/{id}/product',[HomeController::class,'vendorProduct'])->name('vendor.product');
 Route::get('agent/{id}/product',[HomeController::class,'agentProduct'])->name('agent.product');
 Route::get('searchresult',[SearchResultController::class,'searchResut'])->name('searchresult');
+Route::get('agent',[AgentController::class,'index'])->name('agent');
 
 //ajax call data route 
 Route::get('/get-city-id/{id}',[AdsController::class,'allAds']);

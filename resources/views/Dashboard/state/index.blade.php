@@ -29,7 +29,7 @@
 							@foreach($states as $state)
 							<tr>
 								
-								<td class="text-dark">{{ $state->states }}</td>
+								<td class="text-dark">{{ ucfirst($state->states) }}</td>
 							
 									
 								<td>
