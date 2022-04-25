@@ -1,13 +1,21 @@
 @extends('vendor.admin')
 @section('content')
 
-
+ 
+<div class="card backgorund" >
+  <div class="card-body ">
+    <h4>
+      Your Cart
+    </h4>
+    
+  </div>
+</div>
 
 <div class="card">
   <div class="card-body">
  <div class="table-responsive">
           <table class="table table-striped table-bordered table-hover">
-            <thead class="thead-light">
+            <thead class="backgorund">
               <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
@@ -22,13 +30,17 @@
             @foreach(session('cart') as $id => $details)
               @php $total=$details['package_price']*$details['package_quentity']
               @endphp
-              <tr>
+              <tr style="align-items: center;">
                 <td class="id d-none"><input type="text"  value="{{$details['id']}}"></td>
                 <td class="text-dark">{{ucwords($details['package_name'] )}}</td>
-                <td class="text-dark">{{$details['package_price']}}</td>
-                <td class="text-dark col-2"><input type="number" value="{{ $details['package_quentity'] }}" class="form-control  update_cart mt-3" /></td>
-                <td class="text-dark">Rs. {{ (int)$details['package_price'] * $details['package_quentity'] }}</td>
-                <td class="text-dark"><button class="btn btn-danger btn-md mt-3 remove_from_cart"><i class="fas fa-trash-alt"></i></button></td>
+
+                <td class="text-dark price_c">{{$details['package_price']}}</td>
+
+                <td class="text-dark col-2"><input type="number" value="{{ $details['package_quentity'] }}" class="form-control  update_cart " /></td>
+
+                <td class="text-dark "><span class="sub_total"> {{ (int)$details['package_price'] * $details['package_quentity'] }}</span>  AED</td>
+
+                <td class="text-dark"><button class="btn btn-danger btn-md  remove_from_cart"><i class="fas fa-trash-alt"></i></button></td>
               </tr>
               @endforeach
               @else
@@ -64,9 +76,9 @@
         <h3 class="card-header text-light header">CheckOut</h3>
         <div class="card-body ">
        
-       <p class=" mt-2 ">SubTotal:<span class="float-right"> Rs. {{ $total }}</span></p>
+       <h6 class=" mt-2 font-weight-bold text-dark">SubTotal:<span class="float-right">AED</span>  <span class="float-right sub_total "> {{ $total }}</span></h6>
       
-     <form action="{{route('buy.package')}}" method="POST">
+     <form action="{{route('buy.package')}}" method="POST" class="text-center mt-5">
       @csrf
        <button class=" btn_color " id="checkout">Checkout</button>
      </form>

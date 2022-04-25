@@ -27,7 +27,7 @@ $(document).ready(function(){
      }
   });
 
-  $('.input_checkbox3').click(function(){
+  $('.input_checkbox_furnished').click(function(){
   
      let checked=$(this).children('.check_btn3').is(':checked')
      if(checked==true)
@@ -38,8 +38,8 @@ $(document).ready(function(){
 
        $(this).children('.check_btn3').prop('checked',true)
        $(this).css('border','2px solid #002F34')
-       $(this).siblings('.input_checkbox3').children('.check_btn3').prop('checked',false)
-       $(this).siblings('.input_checkbox3').css('border','0.2px solid #002F34')
+       $(this).siblings('.input_checkbox_furnished').children('.check_btn3').prop('checked',false)
+       $(this).siblings('.input_checkbox_furnished').css('border','0.2px solid #002F34')
      }
   });
 

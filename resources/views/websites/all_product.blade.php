@@ -199,27 +199,31 @@
 </div> -->
 <!-- //dfdsf -->
  <!-- //dfdsf -->
-  <div class="container-fluid  mt-5 mb-5">
-    @foreach($categories as $category)
+
+ <div class="populer_text text-center mt-5">
+   @foreach($categories as $category)
      @if($category['id']==Request('id'))
-     <p class="browser ">{{$category['category_name']}} Ads</p>
+     <h3 class="browser ">{{$category['category_name']}} Ads</h3>
      @endif
      @endforeach
-  <div class="container-fluid mt-4">
-    <div class="row">
-      @foreach($products as $product)
-     
-        <div class="col-md-3">
-       <x-card.card2 :product="$product" />
-     </div>
-   
-      @endforeach
 
-
+  <p class="br2">Properties In Most Populer Category</p>
 </div>
-<a href="#" id="seeMore" class="text-center">Show More</a>
-  </div>
-  </div>
+
+
+<div class="container-fluid pb-5 pt-5 " style="background-color:#B0D1FF;">
+ 
+ <div class="row"  >
+     @foreach($products as $product)
+     <div class="col-md-3">
+    <x-card.card2   :product="$product" />
+    </div>  
+    @endforeach
+  
+ </div>
+</div>
+
+  
 
 <form id="filter_form">
   <input type="hidden" name="small" id="small_input">

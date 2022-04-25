@@ -13,8 +13,11 @@ class SubCategoryController extends Controller
     {
         
         $properties=Property::all();
-        $sub_categories=Category::join('sub_categories','categories.id','=','sub_categories.category_id')
-        ->select('sub_categories.sub_category_name','categories.category_name','sub_categories.id','categories.property_id')->get();
+        $sub_categories=Category::
+        join('sub_categories','categories.id','=','sub_categories.category_id')
+        ->select('sub_categories.sub_category_name','categories.category_name','sub_categories.id','categories.property_id')
+        ->get();
+
         return view('Dashboard.sub_category.index',compact('sub_categories','properties'));
     }
 
@@ -102,7 +105,7 @@ class SubCategoryController extends Controller
           'property_id'=>$request->property_id,
         ];
 
-       return \App\Helpers\Form::UpdateEloquent(new SubCategory,$id, $data);
+       return \App\Helpers\Form::updateEloquent(new SubCategory,$id,$data);
     }
 
     /**

@@ -10,8 +10,7 @@ class State extends Model
     protected $fillable=['states'];
  
 
-    public function getStateAttribute($value)
-    {
-        return ucfirst($value);
-    }   
+   
+
+   
 }

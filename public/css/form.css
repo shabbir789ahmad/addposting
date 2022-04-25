@@ -1,3 +1,9 @@
+.backgorund
+{
+     background-color:#0E2E50;
+     color: #fff;
+      border-radius: 0 !important;
+}
 .h2{
 
 	font-size: 2rem;
@@ -26,7 +32,7 @@ h5 {
 .icn{
 	color: #002F34;
 }
-.card_color,.input_border,.input_checkbox,.input_checkbox2,.input_checkbox3,.input_checkbox4{
+.card_color,.input_border,.input_checkbox,.input_checkbox2,.input_checkbox_furnished,.input_checkbox4{
 	border: 0.2px solid #002F34;
 }
 .card_color2{
@@ -35,7 +41,7 @@ h5 {
 }
 
 .btn_color2{
-	background-color: #002F34;
+	background-color: #0E2E50;
 	color: #ffffff;
 	font-size: 1.2vw;
     display: inline-block;
@@ -47,11 +53,11 @@ h5 {
 }
 
 .btn_color,.btn_ads{
-	background-color: #002F34;
+	background-color: #0E2E50;
 	color: #ffffff;
 	font-size: 1.2vw;
     display: inline-block;
-    padding: 12px 90px;
+    padding: 10px 50px;
   
     border-radius: 30px;
     margin-bottom: 20px;
@@ -116,7 +122,7 @@ hr{
 	color: #002F34;
 }
 
-.input_checkbox,.input_checkbox2,.input_checkbox3,.input_checkbox4{
+.input_checkbox,.input_checkbox2,.input_checkbox_furnished,.input_checkbox4{
   display: flex;
   width: 13%;
   height: 3rem;
@@ -135,7 +141,7 @@ hr{
   align-items: center;
   border-radius: 3%;
 }
-.input_checkbox label,.input_checkbox2 label,.input_checkbox3 label,.input_checkbox4 label{
+.input_checkbox label,.input_checkbox2 label,.input_checkbox_furnished label,.input_checkbox4 label{
 	 font-size: 1vw;
 	 font-weight: 600;
 }
@@ -144,7 +150,7 @@ hr{
    height: 5rem;
    flex-wrap: wrap;
 }
-.input_checkbox input,.input_checkbox2 input,.input_checkbox3 input,.input_checkbox4 input{
+.input_checkbox input,.input_checkbox2 input,.input_checkbox_furnished input,.input_checkbox4 input{
 	display: none;
 }
 .property_for_sale,.property_for_sale2,.property_for_sale3{

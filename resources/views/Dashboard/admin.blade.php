@@ -70,7 +70,7 @@
        <li class="nav-item ">
         <a class="nav-link " href="{{route('subcategory.index')}}">
           <i class="fas fa-window-maximize text-light"></i>
-          <span>Sub Category </span>
+          <span>Property Feature</span>
         </a>
        </li>
        <li class="nav-item ">

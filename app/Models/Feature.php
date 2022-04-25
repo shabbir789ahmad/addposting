@@ -9,4 +9,6 @@ class Feature extends Model
 {
     use HasFactory;
     protected $fillable=['product_feature','product_id'];
+
+    
 }

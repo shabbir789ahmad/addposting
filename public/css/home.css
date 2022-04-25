@@ -78,9 +78,7 @@ transition: .5s ease;
 	border-top-left-radius: 1%;
 	border-top-right-radius: 1%;
 }
-.product_image:hover{
-  transform: scale(1.2);
-}
+
 .link{
     text-decoration: none;
 }
@@ -112,17 +110,16 @@ transition: .5s ease;
 .card_height{
   height:19rem
 }
-.category_data {
+.category_data ,.varified{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-
   text-decoration: none;
  position: absolute;
  top: 62%;
  left: 0;
 }
-.category_data p, .category_data2 p{
+.category_data p , .varified p{
 	font-size: 11px;
     display: inline-block;
     padding: 4px 20px;
@@ -132,6 +129,17 @@ transition: .5s ease;
     color: #fff;
     font-weight: bold;
 }
+
+.varified 
+{
+  top: 2% !important;
+}
+.varified p
+{
+  background-color: #0E2E50;
+
+}
+
  .category_data2 p{
   position: absolute;
   left: 0;
@@ -230,12 +238,18 @@ color: #666666;
 
 @media (max-width: 480px)
 {
-   .area{
-    font-size:4vw
+.area, .product_data2{
+  display: flex;
+  flex-direction: row;
+}
+  
+   .icon_size{
+    font-size:5vw;
+    color: #000;
   }
   .haart_style{
   position: absolute;
-  bottom: 30%;
+  bottom: 20%;
   right: 2%;
   font-size: 6vw;
   color: red;
@@ -286,7 +300,7 @@ color: #666666;
 }
 
 .product_data h5{
-  font-size: 2vw;
+  font-size: 4vw;
 }
 #seeMore{
   width: 30%;
@@ -319,14 +333,21 @@ color: #666666;
 
 
 @media (min-width: 481px) and (max-width: 768px) {
-  .area{
-    font-size:2.5vw
+  .area, .product_data2{
+  display: flex;
+  flex-direction: row;
+}
+  
+   .icon_size,.price{
+    font-size:3vw;
+    color: #000;
   }
+  
 .haart_style{
   position: absolute;
-  bottom: 30%;
+  bottom: 20%;
   right: 2%;
-  font-size: 4vw;
+  font-size: 5vw;
   color: red;
 }
 
@@ -374,7 +395,7 @@ color: #666666;
 }
 
 .product_data h5{
-  font-size: 4vw;
+  font-size: 3vw;
 }
 #seeMore{
   width: 30%;
@@ -391,8 +412,17 @@ color: #666666;
   }
 
 @media (min-width: 769px) and (max-width: 1024px) {
+.area, .product_data2{
+  display: flex;
+  flex-direction: row;
+}
+  
+   .icon_size,.price{
+    font-size:1.5vw;
+    color: #000;
+  }
+/* .container_background3
 
- .container_background3
 {
   position: absolute;
   height: 37.8rem;
@@ -400,7 +430,7 @@ color: #666666;
   width: 100%;
   background-color: #8D9194;
   opacity: 80%;
-}
+}*/
 .container_background2
 {
  position: absolute;
@@ -449,8 +479,26 @@ color: #666666;
 
 @media (min-width: 1025px) and (max-width: 1500px) {
 
+.area, .product_data2{
+  display: flex;
+  flex-direction: row;
+  }
+  
+   .icon_size,.price{
+    font-size:1.2vw;
+  
+  }
 
- .container_background3
+
+  .haart_style{
+  position: absolute;
+  bottom: 20%;
+  right: 2%;
+  font-size: 1.8vw;
+  color: red;
+  cursor: pointer;
+}
+/* .container_background3
 {
   position: absolute;
   height: 39rem;
@@ -458,7 +506,7 @@ color: #666666;
   width: 100%;
   background-color: #8D9194;
   opacity: 80%;
-}
+}*/
 .container_background2
 {
  position: absolute;
@@ -518,7 +566,10 @@ font-family: Roboto;
 
 
 @media (min-width: 1501px) and (max-width: 2100px) {
-
+.area , .product_data2{
+  display: flex;
+  flex-direction: row;
+}
  .container_background3
 {
   position: absolute;

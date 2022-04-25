@@ -102,6 +102,8 @@ class CategoryController extends Controller
           'property_id'=>'required',
         ]);
 
+         if($request->hasfile('image'))
+         {
         $data=[
 
           'category_name'=>  $request->category_name,
@@ -110,7 +112,18 @@ class CategoryController extends Controller
           'property_id'=>$request->property_id,
         ];
 
-       return \App\Helpers\Form::UpdateEloquent(new Category,$id, $data);
+    }else
+    {
+
+      $data=[
+
+          'category_name'=>  $request->category_name,
+          'category_type'=>  $request->category_type,
+          'property_id'=>$request->property_id,
+        ];
+    }
+
+       return \App\Helpers\Form::updateEloquent(new Category,$id, $data);
     }
 
     /**
@@ -121,8 +134,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $categories=Category::destroy($id);
-        return redirect()->back()->with('success','Category Deleted Successfully');
+        return \App\Helpers\Form::deleteEloquent(new Category,$id);
     }
 
     function allCategory()

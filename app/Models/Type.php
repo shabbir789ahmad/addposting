@@ -11,6 +11,11 @@ class Type extends Model
     protected $fillable=['type','type_id'];
 
   
-
+   protected function TypeName(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => ucfirst($value),
+        );
+    }
     
 }

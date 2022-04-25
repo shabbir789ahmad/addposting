@@ -40,11 +40,12 @@ class CartController extends Controller
   
    public function update(Request $request)
     {
-        if($request->id && $request->quantity){
+
+        if($request->id && $request->quentity){
             $cart = session()->get('cart');
             $cart[$request->id]["package_quentity"] = $request->quentity;
             session()->put('cart', $cart);
-            session()->flash('successs', 'Cart updated successfully');
+            return response()->json(['success', 'Cart updated successfully']);
         }
     }
     
@@ -81,7 +82,7 @@ class CartController extends Controller
              $order =Cart::create($data);
              session()->forget('cart');
              Notification::send($order, new NewOrderNotification($order));
-            return to_route('vendor.dashboard')->with('success','Your Order Has Been Placed');
+            return to_route('vendor.all.add')->with('success','Your Order Has Been Placed');
          }catch(\Exception $e)
         {
             return redirect()->back()->with('success','Could Not Place Order');

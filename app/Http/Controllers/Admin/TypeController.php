@@ -96,7 +96,7 @@ class TypeController extends Controller
           'type_id'=>$request->type_id,
         ];
 
-       return \App\Helpers\Form::UpdateEloquent(new Type,$id, $data);
+       return \App\Helpers\Form::updateEloquent(new Type,$id, $data);
     }
 
     /**

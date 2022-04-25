@@ -91,9 +91,9 @@ class HomeController extends Controller
          $category_id=$request->category_id;
        }
         
-        $categories = Category::with('products')->has('products')->get();
+        $categories = Category::all();
           $labours=$this->allAgent($id);//user trait
-      
+  
         $query=Product::
          join('categories','categories.id','products.category_id')
          ->join('users','users.id','products.user_id')

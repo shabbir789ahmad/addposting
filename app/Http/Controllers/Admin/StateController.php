@@ -99,7 +99,7 @@ class StateController extends Controller
           'states'=>  $request->states,
         ];
 
-       return \App\Helpers\Form::UpdateEloquent(new State,$id, $data);
+       return \App\Helpers\Form::updateEloquent(new State,$id, $data);
     }
 
     /**

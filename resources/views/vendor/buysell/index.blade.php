@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="card">
+<div class="card backgorund " >
 	<div class="card-body d-flex">
 		<h4>
 			All  Packages
@@ -22,19 +22,19 @@
 <div class="row mt-1">
 	<div class="col-12">
 		<div class="card">
-			<div class="card-body pb-0">
+			<div class="card-body p-0">
 
 				@if(count($carts) > 0)
 
 				<div class="table-responsive">
 					<table class="table table-striped table-bordered table-hover">
-						<thead class="thead-light">
+						<thead class="backgorund" >
 							<tr>
 								<th scope="col">Package Name</th>
 								<th scope="col">Order Quentity</th>
 								<th scope="col">Total Ads</th>
 								<th scope="col">Package Price</th>
-								<th scope="col"></th>
+								<th scope="col">Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -44,7 +44,7 @@
 								<td class="text-dark ">{{$cart->item_name}}</td>
 								<td class="text-dark">{{ ucfirst($cart->item_quentity) }}</td>
 								<td class="text-dark">{{ ucfirst($cart->item_ads) }}</td>
-								<td class="text-dark">$ {{ ucfirst($cart->item_total) }}</td>
+								<td class="text-dark"> {{ ucfirst($cart->item_total) }}  AED</td>
 							    <td>
 							    	@if($cart['approved']==1 )
 								  <span class="badge badge-success">Approved</span>

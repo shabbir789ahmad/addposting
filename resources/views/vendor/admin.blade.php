@@ -287,17 +287,21 @@ function myFunction(id,res) {
        
        
         let id=$(this).parents('td').parents('tr').children('.id').find('input').val();
-
+  let price=$('.price_c').text();
+  let qu=$(this).val();
+  let sub_total=parseInt(price) * parseInt(qu);
+  $('.sub_total').text(sub_total);
        $.ajax({
             url:'update-from-cart/'+id,
             method: "patch",
             data: {
                 _token: '{{ csrf_token() }}', 
                 id: id, 
-                quentity: $(this).val()
+                quentity: qu,
             },
-            success: function (response) {
-               // window.location.reload();
+            success: function (res) {
+              
+               myFunction(1,res)
             }
         });
     });

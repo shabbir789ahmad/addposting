@@ -1,5 +1,8 @@
- <div class="card shadow " >
-    
+
+
+
+
+     <div class="card shadow " >
     <i class="fa-regular fa-heart  haart_style like_by_customer2" data-id="{{$product['id']}}"></i>
       <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
      
@@ -20,17 +23,27 @@
           </p>
          </div>
 
-        <div class="product_data mb-0 mt-0">
-          <p class="m-0 area"><i class="fa-solid fa-box text-dark"></i> {{$product['total_area']}} {{ucfirst($product['areaunit'])}}
-           
-           @if($product['bedroom'])
-           <i class="fa-solid fa-bed text-dark p-1 ml-3"></i>  {{$product['bedroom']}}
-           @endif 
-           @if($product['bathroom'])
-            <i class="fa-solid fa-bath text-dark"></i>
-            {{$product['bathroom']}}
-            @endif
-            <span class="text-center text-danger">{{$product['price']}}AED</span></p>
+        <div class="product_data2 mb-0 mt-0">
+
+            <div class="area">
+              <div class="icon_size">
+                <i class="fa-solid fa-box icon_size text-dark"></i>  {{$product['total_area']}} {{ucfirst($product['areaunit'])}}
+              </div>
+             @if($product['bedroom'])
+              <div class="icon_size">
+                <i class="fa-solid fa-bed icon_size p-1 ml-3 text-dark"></i>{{$product['bedroom']}}
+              </div>
+              @endif 
+             @if($product['bathroom'])
+              <div class="icon_size">
+                <i class="fa-solid fa-bath icon_size text-dark"></i> {{$product['bathroom']}}
+              </div>
+             @endif
+            </div>
+             <div class="ms-auto price">
+            <span class="text-center text-danger">  {{$product['price']}}  AED</span>
+            </div>
+          
         </div>
         
          
@@ -46,3 +59,4 @@
      </a>
      </div>
    
+ 

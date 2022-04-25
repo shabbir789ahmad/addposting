@@ -23,13 +23,25 @@
 				
 					<input type="hidden" name="user_id" value="{{Auth::id()}}">
 					<div class="row">
-					 <div class="col-md-12 col-12">
+
+					 <div class="col-md-6 col-12">
                         <label for="" class="font-weight-bold mt-2">
 							Ad Title here <span class="text-danger">*</span>
 						</label>
 						<input type="text" class="form-control input_border" name="name" placeholder="Ads Title Here" value="{{old('name')}}">
 						<span class="text-danger">@error ('name') {{$message}}@enderror</span>
 					 </div>
+
+					 <div class="col-md-6 col-12">
+                        <label for="" class="font-weight-bold mt-2">
+							Select Add Type <span class="text-danger">*</span>
+						</label>
+						 <select class="form-control input_border" name="ads_type">
+						 	<option value>Free</option>
+						 </select>
+						<span class="text-danger">@error ('ads_type') {{$message}}@enderror</span>
+					 </div>
+
 					</div>
 					<div class="form-group">
 						<label for="" class="font-weight-bold mt-4">
@@ -42,11 +54,11 @@
 							Furnished
 						</label>
             <div class="all_checkbox">
-             <div type="button" class="input_checkbox3  p-2 mt-2">
+             <div type="button" class="input_checkbox_furnished  p-2 mt-2">
                 <label>Furnished</label>
                 <input type="checkbox" name="furnished" value="Furnished" class="check_btn3" >
              </div>
-             <div type="button" class="input_checkbox3 ml-3 p-2 mt-2">
+             <div type="button" class="input_checkbox_furnished ml-3 p-2 mt-2">
                 <label>Un Furnished</label>
                 <input type="checkbox" name="furnished" value="Un Furnished" class="check_btn3" >
              </div>
@@ -147,9 +159,9 @@
 					 <div class="row">
             <div class="col-md-12">
              <label for="" class="font-weight-bold mt-4">
-							   Floor Level<span class="text-danger">*</span>
+							  Number of Floor Level<span class="text-danger">*</span>
 						 </label>
-              <select class="form-control" name="floor_level">
+              <select class="form-control input_border" name="floor_level">
                <option  selected hidden disabled>Select Floor Level</option>
                <option>0</option>
                <option>1</option>
@@ -170,13 +182,33 @@
 						<input type="text" class="form-control input_border" name="total_area" placeholder="Area" value="{{old('total_area')}}">
 						<span class="text-danger">@error ('total_area') {{$message}}@enderror</span>
 
-
+               
+               <div class="row mt-3">
+                @if($pro=='rent')
+               	<div class="col-md-6">
+               		@else
+                 <div class="col-md-12">
+               		@endif
                  <label for="" class="font-weight-bold ">
-							Set Price <span class="text-danger">*</span>
-						</label>
-						<input type="text" class="form-control mb-5 input_border" name="price" placeholder="Price" value="{{old('price')}}">
-						<span class="text-danger ">@error ('price') {{$message}}@enderror</span>
-
+						       	Set Price <span class="text-danger">*</span>
+						     </label>
+						     <input type="text" class="form-control mb-5 input_border" name="price" placeholder="Price" value="{{old('price')}}">
+						     <span class="text-danger ">@error ('price') {{$message}}@enderror</span>
+                </div>
+                
+                @if($pro=='rent')
+                <div class="col-md-6">
+                 <label for="" class="font-weight-bold ">
+						       	Rent Per <span class="text-danger">*</span>
+						     </label>
+						     <select class="form-control input_border" name="rent_per">
+						     	<option>Month</option>
+						     	<option>Year</option>
+						     </select>
+						     <span class="text-danger ">@error ('price') {{$message}}@enderror</span>
+                </div>
+                @endif
+               </div>  
        
            <label for="" class="font-weight-bold mt-3">
 							Select Multiple Images <span class="text-danger">*</span>

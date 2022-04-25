@@ -32,12 +32,12 @@
           </div>
         </div>
        <div class="col-md-6 col-12 mr-5">
-         <div class="card">
-          <div class="card-body " style="height:19rem;overflow: auto;">
+         <div class="card" >
+          <div class="card-body " style="height:19rem;overflow: auto; background: #0E2E50; color: #fff;">
             <h6 class="p-0">Top Categories</h6>
             <div class="row">
              @foreach($categories as $category)
-              <div class="col-md-3 col-lg-4 col-6 col-sm-6  text-center">
+              <div class="col-md-3 col-lg-4 col-6 col-sm-6  text-center text-dark">
                <div class="card card_hover mt-2  shadow">
 	            <div class="card-body p-0 card_items category" data-id="{{$category['id']}}">
                 <img src="{{asset('/uploads/user/'.$category['category_image'])}}" width="40%" class="mt-1" style="height:4rem">
@@ -58,24 +58,26 @@
 
 
 <!-- //dfdsf -->
-<div class="container  mt-5 mb-5">
-  <div class="row">
-    <div class="col-md-5">
-     <p class="browser ">Properties You Like</p>
-    </div>
-    <div class="col-md-7 d-flex">
-      <p class="browser mt-3">Sort By Agent:</p>
+<div class="container-fluid  mt-5 mb-5">
+  <div class="row justify-content-center">
+
+    <div class="col-md-2 " >
+      <h3 class=" mt-3">Sort By Agent:</h3>
        @foreach($labours as $labour)
-       <div class="card border-secondary" style="width:15%" >
+      
+       <a href="{{route('vendor.product',['id'=>$labour['user_id']])}}">
+       <div class="card border-secondary" style="width:100%" >
           <div class="card-body p-0">
            <img src="{{asset('uploads/user/'.$labour['labour_image'])}}" width="100%" class="" style="height:4rem">
            <h6 class="text-center mt-2">{{$labour['labour_name']}}</h6>
           </div>
-        </div>
+        </div></a>
+   
        @endforeach
     </div>
   </div>
-  <div class="container mt-4">
+    <p class="browser ">Properties You Like</p>
+  <div class="container-fluid mt-4 p-5" style="background-color:#B0D1FF;">
     <div class="row">
       @if(count($products)>0)
       @foreach($products as $product)
@@ -87,7 +89,7 @@
    <x-404not-found />
   @endif
 </div>
-<a href="#" id="seeMore" class="text-center">Show More</a>
+
 <h6 id="h1" class="text-center mt-5 text-danger " style="display:none">No More Product In This Category</h6>
   </div>
   </div>

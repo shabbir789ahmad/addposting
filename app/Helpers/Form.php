@@ -8,19 +8,20 @@ class Form {
 
 		$route = explode('.', \Route::currentRouteName())[0];
 		
-		//try {
+		try {
 
 			$model::create($data);
 
-			// \App\Helpers\Logger::logActivity(\Route::currentRouteName());
+			 \App\Helpers\Logger::logActivity(\Route::currentRouteName(),1);
 
 			return redirect()->route($route . ".index")->with('success', $route.' Data Uploaded');
 			
-		//} catch (\Exception $e) {
-
-			//return redirect()->route($route . ".index")->with('success', $route.' Failed To Upload ');
+		} catch (\Exception $e) {
+          
+          \App\Helpers\Logger::logActivity(\Route::currentRouteName(),$e);
+			return redirect()->route($route . ".index")->with('success', $route.' Failed To Upload ');
 			
-		//}
+		}
 
 	}
 
@@ -32,12 +33,12 @@ class Form {
 
 			$d=$model::findOrFail($id)->update($data);
             
-			// \App\Helpers\Logger::logActivity(\Route::currentRouteName());
+			 \App\Helpers\Logger::logActivity(\Route::currentRouteName(),1);
 
 			return redirect()->route($route . ".index")->with('success', $route.' Data Updated');
 			
 		} catch (\Exception $e) {
-
+         App\Helpers\Logger::logActivity(\Route::currentRouteName(),$e);
 			return redirect()->back()->withInput()->with('success', ' Failed to Update '.$route);
 			
 		}
@@ -51,12 +52,12 @@ class Form {
 
 			$model::destroy($id);
               
-			// \App\Helpers\Logger::logActivity(\Route::currentRouteName());
+			 \App\Helpers\Logger::logActivity(\Route::currentRouteName(),1);
 
 			return redirect()->route($route . ".index")->with('success', $route.' Deleted ');
 			
 		} catch (\Exception $e) {
-
+App\Helpers\Logger::logActivity(\Route::currentRouteName(),$e);
 			return redirect()->back()->withInput()->with('success', ' Failed to Delete '.$route);
 			
 		}

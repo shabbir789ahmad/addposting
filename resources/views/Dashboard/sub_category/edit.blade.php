@@ -8,7 +8,7 @@
 	<div class="row justify-content-center">
 		<div class="col-md-8 text-center">
           <i class="fas fa-boxes fa-3x icn"></i>
-          <h2 class="h2 mt-3">Update Sub Category</h2>
+          <h2 class="h2 mt-3">Update Feature</h2>
 		</div>
 		<div class="col-md-6">
 			<div class="card card_color shadow">
@@ -35,7 +35,7 @@
 							@endforeach
 						</select>
 						<label for="" class="font-weight-bold mt-3">
-							Sub Category Name <span class="text-danger">*</span>
+							Feature <span class="text-danger">*</span>
 						</label>
 						<input type="text" class="form-control" name="sub_category_name" value="{{$subcategories['sub_category_name']}}" required>
 						

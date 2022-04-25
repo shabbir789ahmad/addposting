@@ -9,19 +9,26 @@
 		</div>
 	</div>
 </div>
-
+<div class="card backgorund " >
+	<div class="card-body d-flex">
+		<h4>
+			All  Features
+		</h4>
+		
+	</div>
+</div>
 <div class="row">
 	<div class="col-12">
 		<div class="card">
-			<div class="card-body pb-0">
+			<div class="card-body px-0">
 
 				@if(count($sub_categories) > 0)
 
 				<div class="table-responsive">
 					<table class="table table-striped table-bordered table-hover">
-						<thead class="thead-light">
+						<thead class="backgorund">
 							<tr>
-								<th scope="col">Sub Category</th>
+								<th scope="col">Feature</th>
 								<th scope="col">Category</th>
 								<th scope="col">Property Type</th>
 								<th scope="col"></th>
@@ -42,7 +49,7 @@
 									@endif
 									@endforeach
 								<td>
-									<a href="{{ route('subcategory.edit', ['id' => $subcategory->id]) }}" type="submit" class="btn btn-xs btn-info">
+									<a href="{{ route('subcategory.edit', ['id' => $subcategory->id]) }}" type="submit" class="btn btn-xs backgorund2">
 										Edit
 									</a>
 									<form action="{{ route('subcategory.destroy', ['id' => $subcategory->id]) }}" method="POST" class="d-inline" onsubmit="return confirmDelete()">

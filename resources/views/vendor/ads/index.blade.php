@@ -8,46 +8,58 @@
 		</div>
 	</div>
 </div>
+
+<div class="card backgorund " >
+  <div class="card-body d-flex">
+    <h4>
+      All Ads
+    </h4>
+   
+  </div>
+</div>
 <div class="row">
 	@if(count($products) > 0)
-	<div class="container mt-5">
-  <p class="browser ">All Product</p>
+	<div class="container-fluid mt-3">
+ 
    
-   
-  <div class="row">
-    @foreach($products as $product)
-    <div class="col-md-4">
 
-     <div class="card shadow card_height" >
-       <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image">
-       <div class="card-body pt-1">
-        <div class="category_data mb-0">
-         <p>{{$product['category_name']}}</p>
-        </div>
-        <div class="product_data mb-0 mt-0 d-flex">
-          <h5>{{ucfirst($product['name'])}}</h5>
-          
-         <i class="fa-solid fa-heart text-danger ml-auto"></i>
-        </div>
-        <div class="product_data mb-0 mt-0">
-          <p class="m-0">{{ucfirst($product['location'])}} <span class="text-center">${{$product['price']}}</span></p>
-        </div>
-        
-      </div>
-      <form action="{{route('ads.destroy',['id'=>$product['id']])}}" method="POST" class="text-center  card-footer">
+   <div class="table-responsive card p-0">
+          <table class="table table-striped table-bordered table-hover">
+            <thead class="backgorund">
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Category</th>
+                <th scope="col">Name</th>
+                <th scope="col">Location</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+               @foreach($products as $product)
+              <tr>
+                
+                <td class="text-dark col-1"><img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" width="100%" class="rounded"></td>
+                <td class="text-dark">{{ ucfirst($product->category_name)}}</td>
+                <td class="text-dark">{{ucfirst($product['name'])}}</td>
+                <td class="text-dark">{{ucfirst($product['location'])}}</td>
+                <td class="text-dark ">${{$product['price']}}</td>
+              
+               
+                <td>
+                 <form action="{{route('ads.destroy',['id'=>$product['id']])}}" method="POST" class="text-center ">
         @csrf
         @method('DELETE')
         <button class="btn btn-danger w-50 text-center btn-sm">Delete</button>
       </form>
-      
-      
-     </div>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+   
  
-    </div>
-  @endforeach
-
- 
-</div>
 	@else
 	  <div class="col-12">
 	  	<x-resource-empty resource="ads" new="ads.index2"></x-resource-empty>

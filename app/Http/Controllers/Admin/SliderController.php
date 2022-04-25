@@ -46,14 +46,13 @@ class SliderController extends Controller
           'image'=>'required',
         ]);
 
-        Slider::create([
+        $data=[
 
           'heading1'=>  $request->heading1,
           'heading2'=>  $request->heading2,
           'slider'=>$this->image(),
-        ]);
-
-        return to_route('slider.index')->with('success','Slider Created');
+        ];
+          return \App\Helpers\Form::createEloquent(new Slider, $data);
     }
 
     /**
@@ -92,11 +91,28 @@ class SliderController extends Controller
           
           'heading1'=>'required',
           'heading2'=>'required',
-          'image'=>'required',
+         
         ]);
         
-        $sliders=Slider::where('id',$id)->update(['heading1'=>$request->heading1,'heading2'=>$request->heading2,'slider'=>$this->image()]);
-        return to_route('slider.index')->with('success','Sliders Updated Successfully');
+        if($request->hasfile('image'))
+        {
+            $data=[
+            'heading1'=>$request->heading1,
+            'heading2'=>$request->heading2,
+            'slider'=>$this->image()
+        ];
+
+        }else{
+            $data=[
+            'heading1'=>$request->heading1,
+            'heading2'=>$request->heading2,
+            
+        ];
+        }
+        
+
+        return \App\Helpers\Form::updateEloquent(new Slider,$id, $data);
+       
     }
 
     /**
@@ -107,7 +123,6 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-        $sliders=Slider::destroy($id);
-        return redirect()->back()->with('success','Slider Deleted Successfully');
+        return \App\Helpers\Form::deleteEloquent(new Slider,$id);
     }
 }

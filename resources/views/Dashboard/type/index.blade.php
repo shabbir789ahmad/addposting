@@ -9,19 +9,26 @@
 		</div>
 	</div>
 </div>
-
+<div class="card backgorund " >
+	<div class="card-body d-flex">
+		<h4>
+			All  Type
+		</h4>
+		
+	</div>
+</div>
 <div class="row">
 	<div class="col-12">
 		<div class="card">
-			<div class="card-body pb-0">
+			<div class="card-body px-0">
 
 				@if(count($types) > 0)
 
 				<div class="table-responsive">
 					<table class="table table-striped table-bordered table-hover">
-						<thead class="thead-light">
+						<thead class="backgorund">
 							<tr>
-								<th scope="col">Tope</th>
+								<th scope="col">Type</th>
 								<th scope="col">Category</th>
 								<th scope="col"></th>
 							</tr>
@@ -36,8 +43,8 @@
 							<td class="text-dark">{{ $type->category_name }}</td>
 								
 								
-								<td>
-									<a href="{{ route('type.edit', ['type' => $type->id]) }}" type="submit" class="btn btn-xs btn-info">
+								<td >
+									<a href="{{ route('type.edit', ['type' => $type->id]) }}" type="submit" class="btn btn-xs backgorund2">
 										Edit
 									</a>
 									<form action="{{ route('type.destroy', ['type' => $type->id]) }}" method="POST" class="d-inline" onsubmit="return confirmDelete()">

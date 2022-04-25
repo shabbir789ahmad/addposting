@@ -51,6 +51,7 @@ class CityController extends Controller
         ];
 
        return \App\Helpers\Form::createEloquent(new City, $data);
+       
         }else{
             return redirect()->back()->with('success','City Already Present in Record' );
         }
@@ -88,7 +89,7 @@ class CityController extends Controller
           'city'=>  $request->city,
         ];
 
-       return \App\Helpers\Form::UpdateEloquent(new City,$id, $data);
+       return \App\Helpers\Form::updateEloquent(new City,$id, $data);
     }
 
     /**

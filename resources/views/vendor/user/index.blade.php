@@ -13,6 +13,8 @@ input[type=number] {
     -moz-appearance:textfield; /* Firefox */
 }
 </style>
+
+
 <div class="row">
   <div class="col-12">
     <div class="form-group ml-2">
@@ -20,17 +22,24 @@ input[type=number] {
     </div>
   </div>
 </div>
-
+<div class="card backgorund " >
+  <div class="card-body d-flex">
+    <h4>
+      All Agent
+    </h4>
+   
+  </div>
+</div>
 <div class="row">
   <div class="col-12">
     <div class="card">
-      <div class="card-body pb-0">
+      <div class="card-body px-0">
 
         @if(count($labours) > 0)
 
         <div class="table-responsive">
           <table class="table table-striped table-bordered table-hover">
-            <thead class="thead-light">
+            <thead class="backgorund">
               <tr>
                 <th scope="col">Image</th>
                 <th scope="col">Name</th>
@@ -45,7 +54,7 @@ input[type=number] {
               @foreach($labours as $user)
               <tr>
                 
-                <td class="text-dark col-1"><img src="{{asset('uploads/user/'.$user->labour_image)}}" width="100%"></td>
+                <td class="text-dark col-1 p-1"><img src="{{asset('uploads/user/'.$user->labour_image)}}" width="100%" class="rounded"></td>
                 <td class="text-dark">{{ ucfirst($user->labour_name) }}</td>
                 <td class="text-dark">{{ ucfirst($user->labour_email) }}</td>
                 <td class="text-dark">{{ ucfirst($user->labour_phone) }}</td>
@@ -92,8 +101,8 @@ input[type=number] {
 <div class="modal fade" id="ads_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+      <div class="modal-header backgorund">
+        <h5 class="modal-title" id="exampleModalLabel">Assign Ads</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form method="POST" action="{{route('asign.ads')}}">
@@ -137,13 +146,13 @@ input[type=number] {
      if(parseInt(value) >= parseInt(total))
      {
    
-      $(this).css('border','1px solid red');
+       $(this).css('border','1px solid red');
        $('.create').prop('disabled',true);
      }else
     {
        $(this).css('border','1px solid black');
        $('.create').prop('disabled',false);
-
+       
      }
    
   });

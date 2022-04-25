@@ -21,7 +21,30 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+ <style type="text/css">
+   .owl-prev,.owl-next{
+    position: absolute;
+    top: 35%;
+    border: 2px solid black;
+   padding: 1rem 1.2rem !important;
+   color: #000 !important;
+    background-color: #fff !important;
+}
+.owl-next{
+   
+    right: 2%; 
+}
+.owl-prev{
+   
+    left: 2%; 
+}
 
+.owl-prev:hover , .owl-next:hover  {
+    outline: none;
+    border: 1px solid #580631 !important;
+    color: #580631 !important;
+}
+ </style>
   </head>
   <body>
     {{View::make('master.header')}}
@@ -34,9 +57,10 @@
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
@@ -52,7 +76,7 @@
       nav: true,
       dots:false,
       loop:true,
-      navText: ["<div class='nav-button owl-prev'>‹</div>", "<div class='nav-button owl-next'>›</div>"],
+       navText : ["<i class='fas fa-angle-left fa-2x p-3 border-secondary'></i> </i>","<i class='fas fa-angle-right fa-2x p-3'></i>"],
       responsive: {
         0: {
           items: 1

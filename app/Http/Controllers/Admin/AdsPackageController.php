@@ -101,6 +101,7 @@ class AdsPackageController extends Controller
         ];
         return \App\Helpers\Form::updateEloquent(new Package,$id, $data);
     }
+    
     public function discount(Request $request)
     {   
         $id=$request->id;

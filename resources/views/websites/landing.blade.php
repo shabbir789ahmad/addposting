@@ -141,15 +141,16 @@
   <h3 class="browser ">Premium Ads</h3>
   <p class="br2">Properties In Most Populer Category</p>
 </div>
+
+
 <div class="container-fluid pb-5 pt-5 " style="background-color:#B0D1FF;">
  
-   
-  <div class="owl-carousel owl-theme "  >
-    @foreach($products as $product)
+ <div class="owl-carousel owl-theme ml-2"  >
+     @foreach($products as $product)
     <x-card.card   :product="$product" />  
     @endforeach
- 
-  </div>
+  
+ </div>
 </div>
 
 

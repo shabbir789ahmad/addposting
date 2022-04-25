@@ -24,16 +24,16 @@
 							@endforeach
 						</select>
 						<label for="" class="font-weight-bold mt-2">
-							Select Property Type <span class="text-danger">*</span>
+							Select Category<span class="text-danger">*</span>
 						</label>
 						<select class="form-control category_id" name="category_id" required>
 							
 							
 						</select>
 						<label for="" class="font-weight-bold mt-3">
-							Sub Category Name <span class="text-danger">*</span>
+							Feature  <span class="text-danger">*</span>
 						</label>
-						<input type="text" class="form-control" name="sub_category_name" placeholder="Sub Category " required>
+						<input type="text" class="form-control" name="sub_category_name" placeholder="Feature " required>
 						
 					</div>
 					<div class="text-center">

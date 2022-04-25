@@ -102,7 +102,7 @@
         </select>
 
      </div>
-     <div class="col-md-9 col-12">
+     <div class="col-md-9 col-12" style="background-color:#B0D1FF;">
   
        @foreach($products as $product)
       
