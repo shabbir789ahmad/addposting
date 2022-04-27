@@ -24,6 +24,9 @@ class Product extends Model
         'user_id',
         'labour_id',
         'type',
+        'ads_type',
+        'floor_level',
+        'rent_per',
         'plot_type',
     ];
 
@@ -32,7 +35,7 @@ class Product extends Model
     {
         $products=Product::
          join('categories','categories.id','products.category_id')
-         ->select('products.name','categories.category_name','products.id','products.price','products.total_area','products.created_at','products.areaunit','products.bedroom','products.bathroom','products.city')
+         ->select('products.name','categories.category_name','products.id','products.price','products.total_area','products.created_at','products.areaunit','products.bedroom','products.bathroom','products.city','products.ads_type')
         ->orderBy('products.created_at','Desc')->take(20)->get();
        
        return $products;

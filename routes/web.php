@@ -69,6 +69,12 @@ Route::group(['prefix'=>'admin'],function()
     Route::post('authenticate',[AdminController::class,'adminLogin'])->name('admin.authenticate');
   });
 
+
+
+
+
+
+
   //loggedin route
   Route::group(['middleware'=>'admin.auth'],function()
   {
@@ -159,6 +165,33 @@ Route::group(['prefix'=>'admin'],function()
 
   });
 });
+
+
+
+Route::group(['prefix'=>'company'],function()
+{
+  Route::group(['middleware'=>'company.guest'],function()
+  {
+
+    Route::view('register','company.register')->name('comapny.register');
+   Route::post('register',[CompanyController::class,'create'])->name('company.register');
+
+    Route::view('login','company.company_login')->name('company.login');
+    Route::post('authenticate',[CompanyController::class,'adminLogin'])->name('company.authenticate');
+  });
+
+  Route::group(['middleware'=>'company.auth'],function()
+  {
+    Route::get('dashboard',[VendorContoller::class,'count'])->name('company.dashboard');
+
+  });
+
+
+});
+
+
+
+
 
 
 

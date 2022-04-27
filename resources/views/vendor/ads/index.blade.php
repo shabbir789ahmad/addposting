@@ -39,18 +39,18 @@
                @foreach($products as $product)
               <tr>
                 
-                <td class="text-dark col-1"><img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" width="100%" class="rounded"></td>
+                <td class="text-dark col-1 p-1"><img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" width="100%" class="rounded"></td>
                 <td class="text-dark">{{ ucfirst($product->category_name)}}</td>
                 <td class="text-dark">{{ucfirst($product['name'])}}</td>
                 <td class="text-dark">{{ucfirst($product['location'])}}</td>
                 <td class="text-dark ">${{$product['price']}}</td>
               
                
-                <td>
+                <td class="p-0">
                  <form action="{{route('ads.destroy',['id'=>$product['id']])}}" method="POST" class="text-center ">
         @csrf
         @method('DELETE')
-        <button class="btn btn-danger w-50 text-center btn-sm">Delete</button>
+        <button class="btn btn-danger text-center btn-xs mt-2">Delete</button>
       </form>
                 </td>
               </tr>

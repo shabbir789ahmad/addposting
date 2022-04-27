@@ -37,7 +37,7 @@
 							Select Add Type <span class="text-danger">*</span>
 						</label>
 						 <select class="form-control input_border" name="ads_type">
-						 	<option value>Free</option>
+						 	<option value="free">Free</option>
 						 </select>
 						<span class="text-danger">@error ('ads_type') {{$message}}@enderror</span>
 					 </div>

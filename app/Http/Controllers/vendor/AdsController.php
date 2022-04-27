@@ -102,6 +102,9 @@ class AdsController extends Controller
                'user_id'=>$request->user_id,
                'labour_id'=>null,
                'type'=>$request->type,
+               'ads_type'=>$request->ads_type,
+               'floor_level'=>$request->floor_level??null,
+               'rent_per'=>$request->rent_per??null,
 
                ]);
                if($request->feature)

@@ -11,8 +11,9 @@
         </div>
 
          <div class="varified mb-0">
-
-         <p>Premium</p>
+         @if($product['ads_type'])
+         <p>{{ucfirst($product['ads_type'])}}</p>
+         @endif
         </div>
 
         <div class="product_data mb-0 mt-0 d-flex">

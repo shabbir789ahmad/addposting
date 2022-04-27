@@ -26,7 +26,6 @@ class HomeController extends Controller
     {
         $categories=Category::latest()->select('category_name','category_image','id')->get();
         $sliders=Slider::latest()->take(1)->get();
-        $banners=Banner::latest()->take(1)->get();
         $cities=City::latest()->select('city','id')->get();
         $features=SubCategory::latest()->select('sub_category_name')->get();
         $areas=Area::all();
@@ -38,7 +37,7 @@ class HomeController extends Controller
           $product->img=Image::where('product_id',$product['id'])->first();
          }
 
-         return view('websites.landing',compact('categories','sliders','banners','products','cities','areas','prices','features'));
+         return view('websites.landing',compact('categories','sliders','products','cities','areas','prices','features'));
     }
 
     

@@ -10,7 +10,7 @@
        <div class="row data_row ">
         <div class="col-md-6 col-12 mr-5">
          <div class="card">
-          <div class="card-body " style="height:19rem">
+          <div class="card-body " style="height:19rem;background:#FF385B;color:#fff">
           	@foreach($products as $product)
           	@if($loop->first)
              <div class="row mt-5">
@@ -18,11 +18,11 @@
                <img src="{{asset('uploads/img/'.$product['user_image'])}}" width="100%" class="rounded shadow card_border" style="height:10rem">
            	  </div>
               <div class="col-md-8">
-               <div class="seller_name mt-2">
-                <h6 class="p-0">{{ucfirst($product['user_name'])}}</h6>
-                <p class="p-0 mb-0">Member since  {{date('Y',strtotime($product['created_at']))}}</p>
-                <p class="p-0">Phone Number : 	 {{$product['phone']}}</p>
-                <p class="p-0"> {{$product['about_me']}}</p>
+               <div class="seller_name  mt-2">
+                <h6 class="p-0 ">{{ucfirst($product['user_name'])}}</h6>
+                <p class="p-0 mb-0 text-light">Member since  {{date('Y',strtotime($product['created_at']))}}</p>
+                <p class="p-0 text-light">Phone Number : 	 {{$product['phone']}}</p>
+                <p class="p-0 text-light"> {{$product['about_me']}}</p>
                </div>
            	  </div>
              </div>
@@ -97,4 +97,5 @@
   <form id="category_form">
   	<input type="hidden" name="category_id" id="category_id">
   </form>
+  <!--code  in  filet .js file  -->
 @endsection

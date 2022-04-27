@@ -154,23 +154,7 @@
 </div>
 
 
-<!-- banner -->
 
-  <!-- <div class="container mt-5">
-   <div class="row">
-    @foreach($banners as $banner)
-    <div class="col-md-12 ">
-     
-      <div class="card shadow">
-        <div class="card-body">
-      <img src="{{asset('uploads/user/'.$banner['banner'])}}" width="100%" height="500rem" >
-  </div>
-    </div>
-  </div>
-  @endforeach
- </div>
-</div>
- -->
 <!-- prodduct with category -->
 <div class="populer_text text-center mt-5">
   <h3 class="browser ">Feature Ads</h3>

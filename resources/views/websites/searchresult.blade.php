@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container-fluid con mt-4" >
- <div class="card">
+ <div class="card card_back_color" >
   <div class="card-body">
   	<form action="{{route('searchresult')}}" method="GET">
    <div class="row">
@@ -37,7 +37,7 @@
       </select>
     </div>
     <div class="col-md-1 p-0 d-flex m-1">
-     <button class="btn border bg-light" ><i class="fas fa-search"></i> Search</button>
+     <button class="btn border search_btn " ><i class="fas fa-search"></i> Search</button>
     </div>
   </form>
    </div>
@@ -45,7 +45,7 @@
  </div>
 </div>
 <div class="container-fluid con mt-4">
-  <div class="card">
+  <div class="card card_back_color">
    <div class="card-body"> 
     <div class="row">
     <div class="col-md-4">
@@ -69,7 +69,7 @@
 </div>
 
 <div class="container-fluid mt-3">
- <div class="card">
+ <div class="card ">
   <div class="card-body">
     <div class="row">
      <div class="col-md-3 d-none d-sm-none d-md-block" >
