@@ -51,21 +51,21 @@ class VendorContoller extends Controller
 
     function count()
     {   
-        $total_ads=Product::where('user_id',Auth::user()->id)->count();
-        $total_package=Cart::where('user_id',Auth::user()->id)->count();
-        $left_ads=Ad::where('user_id',Auth::user()->id)->sum('total_ads');
-        $labour=Labour::where('user_id',Auth::user()->id)->count();
+        $total_ads=Product::where('agent_id',Auth::user()->id)->count();
+        $total_package=Cart::where('agent_id',Auth::user()->id)->count();
+        $left_ads=0; //Ad::where('agent_id',Auth::user()->id)->sum('total_ads');
+        // $labour=Labour::where('user_id',Auth::user()->id)->count();
        //dd($left_ads);
         $chart= DB::table('products')->select(DB::raw(' count(*) as total_product, reads_count'))
-                     ->where('user_id', Auth::id())
+                     ->where('agent_id', Auth::id())
                      ->groupBy('reads_count')
                      ->get();
-                     // dd($chart);
+                    
           $chartdata="";
           foreach($chart as $char){
             $chartdata.="['".$char->reads_count."',     ".$char->reads_count."],";
             }
             $arr['chartdata']=rtrim($chartdata,",");
-        return view('vendor.dashboard',$arr,compact('total_ads','total_package','left_ads','labour'));
+        return view('vendor.dashboard',$arr,compact('total_ads','total_package','left_ads'));
     }
 }

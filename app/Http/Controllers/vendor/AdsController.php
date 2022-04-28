@@ -4,7 +4,7 @@ namespace App\Http\Controllers\vendor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Ad;
+use App\Models\VendorAds;
 use App\Models\Property;
 use App\Models\Category;
 use App\Models\Area;
@@ -16,18 +16,32 @@ use App\Models\Type;
 use App\Models\City;
 use App\Models\Image;
 use App\Http\Traits\ImageTrait;
+use App\Http\Traits\UserTrait;
+use App\Solid\GetProduct;
 use DB;
 use Auth;
-use App\Http\Traits\UserTrait;
+
 class AdsController extends Controller
 {
      use ImageTrait;
-    use UserTrait;
+     use UserTrait;
+    
+     protected $product;
+     function __construct(GetProduct $product)
+     {
+       $this->product=$product;
+     }
+
     public function index()
     {
         $user_id=Auth::id();
-       $labour_id=null;
-        $products= $this->userData($labour_id,$user_id);
+       
+       if(Auth::user()->user_type=='vendor')
+       {
+         $agent_id=null;
+         $products= $this->product->get($agent_id,Auth::user()->company_id);
+       }
+        
         return view('vendor.ads.index',compact('products'));
     }
     public function index2()
@@ -41,6 +55,7 @@ class AdsController extends Controller
     $data=Category::where('property_id',$id)->get();
     return response()->json($data);
    }
+
    public function city($id)
    {
     $data=City::where('state_id',$id)->get();
@@ -49,10 +64,11 @@ class AdsController extends Controller
 
     public function create($id)
     {
+       
         $categorie=Category::where('categories.id',$id)->select('categories.id','category_type','categories.property_id')->first();
         $areas=Area::all();
         $states=State::all();
-        $ads=Ad::where('user_id',Auth::id())->sum('total_ads');
+        $ads=VendorAds::where('agent_id',Auth::id())->get();
         $types=Type::where('type_id',$id)->get();
         $subcategories=SubCategory::where('category_id',$id)->get();
     
@@ -81,10 +97,6 @@ class AdsController extends Controller
         DB::transaction(function() use($request)
         {
             
-            $ads=Ad::where('user_id',Auth::id())->where('total_ads','>',0)->first('total_ads');
-        // dd($ads);
-            if(!$ads==null)
-            {
                $product=Product::create([
                
                'name'=>$request->name,
@@ -99,8 +111,8 @@ class AdsController extends Controller
                'city'=>$request->city,
                'bathroom'=>$request->bathroom,
                'plot_type'=>$request->plot_type,
-               'user_id'=>$request->user_id,
-               'labour_id'=>null,
+               'agent_id'=>$request->user_id,
+               'company_id'=>Auth::user()->company_id,
                'type'=>$request->type,
                'ads_type'=>$request->ads_type,
                'floor_level'=>$request->floor_level??null,
@@ -132,17 +144,29 @@ class AdsController extends Controller
       
               }
               
-              Ad::where('user_id',Auth::id())->where('total_ads','>',0)->first()->decrement('total_ads');
-              Ad::where('user_id',Auth::id())->where('total_ads','>',0)->first()->increment('used_ads');
+              if($request->ads_type != 'free')
+              {
+                if(Auth::user()->user_type=='vendor')
+                {
+                  $ads=VendorAds::where('agent_id',Auth::id())->where('total_ads','>',0)->where('id',$request->ads_type)->first();
+                  $ads->decrement('total_ads');
+                  $ads->increment('used_ads');
 
-            }else{
-               
-               return redirect()->back()->with('success','Ads Quota is Empty');
-            } 
+                }else if(Auth::user()->user_type=='agent')
+                {
+                 $ads=AgentAds::where('agent_id',Auth::id())->where('total_ads','>',0)->first();
+                 $ads->decrement('total_ads');
+                  $ads->increment('used_ads');
+                }
+              
+              }
+
+          
+            
             
         });
         
-        return to_route('ads.index')->with('success','Ads Created');
+       return to_route('ads.index')->with('success','Ads Created');
     }
 
   

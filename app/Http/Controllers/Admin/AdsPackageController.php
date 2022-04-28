@@ -5,11 +5,18 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Package;
+use App\Solid\AllPackage;
 class AdsPackageController extends Controller
-{
-     public function index()
+{   
+    protected $package;
+    function __construct(AllPackage $package)
     {
-        $packages=Package::all();
+      $this->package=$package;
+    }
+
+     public function index()
+    {   
+        $packages=$this->package->get();
         return view('Dashboard.package.index',compact('packages'));
     }
 

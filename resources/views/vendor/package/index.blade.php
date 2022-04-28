@@ -154,12 +154,12 @@
    @foreach($packages as $package)
     <div class="plan plan1">
         <div class="header">{{ucfirst($package['package_name'])}}</div>
-        <div class="price">${{$package['package_price']}}</div>  
+        <div class="price">{{$package['package_price']-$package['package_discount']}} AED</div>  
         <div class="monthly">per Package</div>      
         <ul>
             <li><b>{{$package['package_ads']}}</b> Ads</li>
             <li><b>VAlid Till: </b>{{date('d-m-Y', strtotime($package['package_duration']))}} </li>
-            <li><b>${{$package['package_discount']}}</b> Discount</li>
+            <li><b>{{$package['package_discount']}} AED</b> Discount</li>
           
         </ul>
         <a  href="#" data-id="{{$package['id']}}" class="form-control  add_to_cart  signup">Add To Cart</a>         

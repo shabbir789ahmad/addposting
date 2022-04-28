@@ -188,7 +188,7 @@
    @endforeach
    @else
      <div class="col-12">
-	  	<x-resource-empty resource="package" new="package.create"></x-resource-empty>
+	  	<x-resource-empty resource="package" new="packages.create"></x-resource-empty>
 	  </div>
    @endif
    

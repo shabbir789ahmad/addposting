@@ -54,21 +54,19 @@ input[type=number] {
               @foreach($labours as $user)
               <tr>
                 
-                <td class="text-dark col-1 p-1"><img src="{{asset('uploads/user/'.$user->labour_image)}}" width="100%" class="rounded"></td>
-                <td class="text-dark">{{ ucfirst($user->labour_name) }}</td>
-                <td class="text-dark">{{ ucfirst($user->labour_email) }}</td>
-                <td class="text-dark">{{ ucfirst($user->labour_phone) }}</td>
-                <td class="text-dark">{{ \App\Models\AAd::where('labour_id',$user['id'])->sum('total_ads')}}</td>
-                <td class="text-dark">{{ \App\Models\AAd::where('labour_id',$user['id'])->sum('used_ads')}}</td>
+                <td class="text-dark col-1 p-1"><img src="{{asset('uploads/user/'.$user->user_image)}}" width="100%" height="80rem" class="rounded"></td>
+                <td class="text-dark">{{ ucfirst($user->user_name) }}</td>
+                <td class="text-dark">{{ ucfirst($user->email) }}</td>
+                <td class="text-dark">{{ ucfirst($user->phone) }}</td>
+                <td class="text-dark">{{ $user->total_ads }}</td>
+                <td class="text-dark">{{ $user->used_ads }}</td>
               
                  
                 <td>
                   <button type="button" data-id="{{$user->id}}" class="btn btn-xs btn-warning assing_ads">
                     Assign Ads
                   </button>
-                  <a href="{{ route('labour.edit', ['labour' => $user->id]) }}" type="submit" class="btn btn-xs btn-info">
-                    Edit
-                  </a>
+                  
                   <form action="{{ route('labour.destroy', ['labour' => $user->id]) }}" method="POST" class="d-inline" onsubmit="return confirmDelete()">
                     @method('DELETE')
                     @csrf
@@ -108,7 +106,7 @@ input[type=number] {
       <form method="POST" action="{{route('asign.ads')}}">
         @csrf
       <div class="modal-body">
-        <input type="hidden" name="labour_id" id="labour">
+        <input type="hidden" name="agent_id" id="labour">
         <label class="mt-4">Total Ads In Wallet</label>    
         <input type="number" name="all_ads" class="form-control" value="{{$ads}}" id="all_ads" readonly>
          

@@ -9,12 +9,12 @@ class CompanyAuthenticate extends Middleware
     protected function authenticate($request, array $guards)
     {
        
-            if ($this->auth->guard('company')->check()) {
-                return $this->auth->shouldUse('company');
+            if ($this->auth->guard('agent')->check()) {
+                return $this->auth->shouldUse('agent');
             }
       
 
-        $this->unauthenticated($request, ['company']);
+        $this->unauthenticated($request, ['agent']);
     }
     protected function redirectTo($request)
     {

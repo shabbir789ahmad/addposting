@@ -5,11 +5,12 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Agent;
 class UserController extends Controller
 {
      public function index()
     {
-        $users=User::where('approve',0)->where('type',1)->get();
+        $users=Agent::all();
         return view('Dashboard.vendor.index',compact('users'));
     }
 
@@ -28,9 +29,10 @@ class UserController extends Controller
         $users=User::destroy($id);
         return redirect()->back()->with('success','User Deleted Successfully');
     }
+    
      public function index2()
     {
-        $users=User::where('approve',0)->where('type',0)->get();
+        $users=User::all();
         return view('Dashboard.users.index',compact('users'));
     }
     

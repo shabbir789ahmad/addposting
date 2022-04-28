@@ -9,7 +9,7 @@
       <i class="fas fa-boxes fa-3x icn"></i>
       <h2 class="h2 mt-3">Post Your Ads</h2>
 		</div>
-		@if(!$ads==null)
+		
 		<div class="col-md-11">
 			<div class="card card_color shadow">
 				<div class="card-body ">
@@ -33,11 +33,15 @@
 					 </div>
 
 					 <div class="col-md-6 col-12">
-                        <label for="" class="font-weight-bold mt-2">
+               <label for="" class="font-weight-bold mt-2">
 							Select Add Type <span class="text-danger">*</span>
 						</label>
 						 <select class="form-control input_border" name="ads_type">
-						 	<option value="free">Free</option>
+						 		<option value="free">Free</option>
+						 	@foreach($ads as $ad)
+               	<option value="{{$ad['id']}}">{{$ad['package_name']}}</option>
+						 	@endforeach
+						 
 						 </select>
 						<span class="text-danger">@error ('ads_type') {{$message}}@enderror</span>
 					 </div>
@@ -249,15 +253,7 @@
 				</div>
 			</div>
 		</div>
-		@else
-		<div class="card">
-			<div class="card-body text-center">
-        <img src="{{asset('pic/icons8-male-user-24.png')}}" width="15%">
-        <h5 class="mt-2">Look like You Dont Have Ads Package </h5>
-        <a href="{{route('package.index')}}" class="btn btn-warning mt-2">Click To Buy More Ads</a>
-			</div>
-		</div>
-		@endif
+	
 	</div>
 </form>
 

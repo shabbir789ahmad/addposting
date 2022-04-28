@@ -45,9 +45,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone' => ['required', 'min:6', ],
+            'phone' => ['required'],
+            
             'image'=>'',
-            'type'=>'required',
+            
         ]);
     }
 
@@ -59,37 +60,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-           $request = app('request');
-      if($request->hasfile('image'))
+        $request = app('request');
 
-          {
-             $file=$request->file('image');
+        if($request->hasfile('image'))
+         {
+            $file=$request->file('image');
             $ext=$file->getClientOriginalExtension();
             $name= time(). '.' . $ext;
             $file->move('uploads/img/',$name);
           
           }
 
-          //DB::transaction(function() use($data,$name){
-        $user= User::create([
+          
+        $user= User::create
+        ([
             'user_name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'phone'=>$data['phone'],
             'user_image'=>$name,
-            'type'=>$data['type'],
-            'approve'=>0,
         ]);
 
-        if($data['type']==1)
-        {
-            Ad::create([
-             
-              'total_ads'=>5,
-              'user_id'=>$user['id'],
-            ]);
-        }
-     return $user;
-        //});
+        
+         return $user;
+       
     }
 }

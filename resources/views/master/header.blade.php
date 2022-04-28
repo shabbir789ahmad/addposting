@@ -16,19 +16,19 @@
       <!-- <button class="btn btn_upload_adds"><i class="fa-solid fa-plusd"></i>Post Adds</button> -->
              @guest
           @if (Route::has('login'))
-          <a class="btn_upload_login btn float-right" href="{{ route('login') }}">{{ __('Login') }}</a>
+          <a class="btn_upload_login btn float-right" href="{{ route('login.type') }}">{{ __('Login') }}</a>
           @endif
           @else
           
-          @if(Auth::user()->type==1)  
+           
           <div class="btn-group user_img">
             
 
-            <!-- Default dropstart button -->
+    <!-- Default dropstart button -->
 <div class="btn-group dropstart">
 <img src="{{asset('pic/iconProfilePicture.7975761176487dc62e25536d9a36a61d.png')}}" width="100%" class=" dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
   <ul class="dropdown-menu">
-     <li><a class="dropdown-item" href="{{route('vendor.dashboard')}}">Dashboard</a></li>
+     <li><a class="dropdown-item" href="#">Dashboard</a></li>
              <li><a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">Log out
@@ -42,21 +42,7 @@
 
 
           </div>
-          @elseif(Auth::user()->type==0)
-           <div class="btn-group user_img">
-            <img src="{{asset('pic/iconProfilePicture.7975761176487dc62e25536d9a36a61d.png')}}" width="100%" class=" dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-           <ul class="dropdown-menu ">
-             <li><a class="dropdown-item" href="#">Dashboard</a></li>
-             <li><a class="dropdown-item" href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">Log out
-              </a>
-             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-hidden">
-               @csrf
-             </form></li>
-            </ul>
-          </div>
-          @endif
+          
      @endguest
 
  

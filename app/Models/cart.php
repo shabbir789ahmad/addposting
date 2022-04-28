@@ -16,7 +16,7 @@ class Cart extends Model
        'item_quentity',
        'item_total',
        'item_ads',
-       'user_id',
+       'agent_id',
        'approved',
     ];
      public function getItemNameAttribute($value)

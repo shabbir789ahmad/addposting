@@ -44,14 +44,11 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        'vendor' => [
-            'driver' => 'session',
-            'provider' => 'vendors',
-        ],
+        
 
-        'company' => [
+        'agent' => [
             'driver' => 'session',
-            'provider' => 'companies',
+            'provider' => 'agents',
         ],
     ],
 
@@ -82,13 +79,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
-       'vendors' => [
+      
+        'agents' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Vendor::class,
-        ],
-        'companies' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Company::class,
+            'model' => App\Models\Agent::class,
         ],
     ],
 
@@ -120,14 +114,9 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-       'vendors' => [
-            'provider' => 'vendors',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
-        'companies' => [
-            'provider' => 'companies',
+       
+        'agents' => [
+            'provider' => 'agents',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

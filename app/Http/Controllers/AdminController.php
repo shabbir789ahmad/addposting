@@ -28,10 +28,13 @@ class AdminController extends Controller
 
     public function logout()
     {
-      if(Auth::guard('admin')->logout())
-      {
-        return redirect(route('admin.login'));
-      }
+       if(Auth::guard('admin')->check()) 
+       {
+          Auth::guard('admin')->logout();
+         return redirect()->route('admin.login');
+        }
+
+      
     }
     public function __construct()
     {

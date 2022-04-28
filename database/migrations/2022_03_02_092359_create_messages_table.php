@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->text('mesage');
+            $table->text('message');
             $table->string('email');
             $table->string('name');
             // $table->bigInteger('product_id')->unsigned();

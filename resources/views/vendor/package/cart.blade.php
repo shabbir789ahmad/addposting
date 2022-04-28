@@ -67,7 +67,7 @@
 <div class="container mt-3">
   <div class="row">
     <div class="col-md-4 col-12 col-sm-12">
-     <a href="{{ url('package') }} " class="btn mt-5 btn_color2 "><i class="fa fa-angle-left"></i> Continue Shopping</a>
+     <a href="{{ route('package.index') }} " class="btn mt-5 btn_color2 "><i class="fa fa-angle-left"></i> Continue Shopping</a>
     </div>
     <div class="col-md-4 col-0 col-sm-0">
     </div>

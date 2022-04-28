@@ -17,7 +17,7 @@ class BuyAdController extends Controller
         $package=$req->package;
        }
      
-        $cart=Cart::where('user_id',Auth::id())->withTrashed();
+        $cart=Cart::where('agent_id',Auth::id())->withTrashed();
         if($package==1)
         {
             $cart=$cart->where('approved','=',1);

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('zip_code');
             $table->string('licenece_image');
-            $table->longText('about_me')->nullable();
+          
              $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });

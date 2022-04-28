@@ -33,11 +33,16 @@ use App\Http\Controllers\AgentController;
 
 use App\Http\Controllers\LikeController;
 
+
+use App\Http\Controllers\company\CompanyController;
+
 Auth::routes();
 
  
 
  Route::get('/',[HomeController::class,'index']);
+ Route::view('select/login/type','auth.login_type')->name('login.type');
+
 Route::view('ads/detail','');
 Route::get('ads/{id}detail',[HomeController::class,'adsdetail'])->name('ads.detail');
 Route::get('all/{id}/ads',[HomeController::class,'allAds'])->name('all.ads');
@@ -170,50 +175,37 @@ Route::group(['prefix'=>'admin'],function()
 
 Route::group(['prefix'=>'company'],function()
 {
-  Route::group(['middleware'=>'company.guest'],function()
+  Route::group(['middleware'=>'agent.guest'],function()
   {
 
     Route::view('register','company.register')->name('comapny.register');
    Route::post('register',[CompanyController::class,'create'])->name('company.register');
 
     Route::view('login','company.company_login')->name('company.login');
-    Route::post('authenticate',[CompanyController::class,'adminLogin'])->name('company.authenticate');
-  });
-
-  Route::group(['middleware'=>'company.auth'],function()
-  {
-    Route::get('dashboard',[VendorContoller::class,'count'])->name('company.dashboard');
-
-  });
-
-
-});
-
-
-
-
-
-
-
-
-
-//route for vendor dashboard
-Route::group(['middleware'=>['auth','vendor']],function()
-{
+    Route::post('authenticate',[CompanyController::class,'Login'])->name('company.authenticate');
   
-   Route::get('dashboard',[VendorContoller::class,'count'])->name('vendor.dashboard');
 
-   Route::controller(PackageController::class)->group(function () {
-    Route::get('/package','index')->name('package.index');
-    Route::get('/package/create', 'create')->name('package.create');
-    Route::get('/package/{id}/edit', 'edit')->name('package.edit');
-    Route::put('/package/{id}/update', 'update')->name('package.update');
-    Route::post('/package/store', 'store')->name('package.store');
-    Route::delete('/package/{id}/destroy', 'destroy')->name('package.destroy');
-
-   
   });
-   Route::controller(AdsController::class)->group(function () {
+
+  Route::group(['middleware'=>'agent.auth'],function()
+  {
+  
+     Route::get('dashboard',[VendorContoller::class,'count'])->name('company.dashboard');
+     Route::post('logout',[CompanyController::class,'logout'])->name('company.logout');
+
+
+     Route::controller(PackageController::class)->group(function ()
+     {
+        Route::get('/package','index')->name('package.index');
+          // Route::get('/package/create', 'create')->name('package.create');
+          // Route::get('/package/{id}/edit', 'edit')->name('package.edit');
+          // Route::put('/package/{id}/update', 'update')->name('package.update');
+          // Route::post('/package/store', 'store')->name('package.store');
+          // Route::delete('/package/{id}/destroy', 'destroy')->name('package.destroy');
+      });
+
+
+     Route::controller(AdsController::class)->group(function () {
     Route::get('/ads', 'index')->name('ads.index');
     Route::get('/ads2', 'index2')->name('ads.index2');
     
@@ -222,16 +214,20 @@ Route::group(['middleware'=>['auth','vendor']],function()
     Route::get('/ads/{id}/edit', 'edit')->name('ads.edit');
     Route::put('/ads/{id}/update', 'update')->name('ads.update');
     Route::post('/ads/store', 'store')->name('ads.store');
-    Route::delete('/ads/{id}/destroy', 'destroy')->name('ads.destroy');
+    Route::delete('/ads/{id}/destroy', 'destroy')->name('ads.destroy'); 
    
   });
 
-   Route::controller(VendorContoller::class)->group(function () {
+    //vendor ad Buy data  route
+  Route::get('all/add/vendor', [BuyAdController::class,'index'])->name('vendor.all.add');
+  Route::put('cart/{id}/reorder', [BuyAdController::class,'reOrder'])->name('cart.reorder');
+
+     Route::controller(VendorContoller::class)->group(function () {
        Route::get('/profile', 'index')->name('profile.index');
       Route::put('/vendor/{id}/update', 'update')->name('profile.update');
    });
-
-   //add to cart route
+   
+     //add to cart route
    Route::controller(CartController::class)->group(function () {
    Route::get('add-to-cart/{id}','addToCart');
    Route::get('/remove-from-cart/{id}','remove');
@@ -245,10 +241,21 @@ Route::group(['middleware'=>['auth','vendor']],function()
    //vendor create user route
    Route::resource('labour', LabourContoller::class);
   Route::post('assign/ads',[LabourContoller::class,'assignAd'])->name('asign.ads');
-   //vendor ad Buy data  route
-  Route::get('all/add/vendor', [BuyAdController::class,'index'])->name('vendor.all.add');
-  Route::put('cart/{id}/reorder', [BuyAdController::class,'reOrder'])->name('cart.reorder');
+
+  });
+
+
 });
+
+
+
+
+
+
+
+
+
+
 
 
 

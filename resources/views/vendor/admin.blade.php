@@ -94,7 +94,7 @@
       <hr class="sidebar-divider">
      
        <li class="nav-item ">
-        <a class="nav-link " href="{{route('vendor.dashboard')}}">
+        <a class="nav-link " href="{{route('company.dashboard')}}">
           <i class="fas fa-window-maximize text-light"></i>
           <span>Dashboard</span>
         </a>
@@ -157,13 +157,13 @@
                                 </a>
 
   <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-  <a class="dropdown-item" href="{{ route('logout') }}"
+  <a class="dropdown-item" href="{{ route('company.logout') }}"
     onclick="event.preventDefault();
       document.getElementById('logout-form').submit();">
           {{ __('Logout') }}
           </a>
 
-  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-hidden">
+  <form id="logout-form" action="{{ route('company.logout') }}" method="POST" class="d-hidden">
                                         @csrf
                                     </form>
                                 </div>
@@ -225,13 +225,11 @@ function myFunction(id,res) {
 
  $(".add_to_cart").click(function (e) 
  { 
-   // $(this).is(':checked')
-   //  if($(this).is(':checked')==true)
-   //  {
+   
        e.preventDefault();
        var id=$(this).data('id');
       $.ajax({
-            url : '/add-to-cart/' +id,
+            url : '/company/add-to-cart/' +id,
             method: "GET",
             data: {
                 _token: '{{ csrf_token() }}', 
@@ -244,24 +242,7 @@ function myFunction(id,res) {
         console.log('erro')
       });
       
-    // }else if($(this).is(':checked')==false)
-    // {
-    //    e.preventDefault();
-    //    var id=$(this).data('id');
-    //   $.ajax({
-    //         url : '/remove-from-cart/' +id,
-    //         method: "GET",
-    //         data: {
-    //             _token: '{{ csrf_token() }}', 
-              
-    //         },
-    //   }).done(function(res){
-
-    //     myFunction(id=1,res)
-    //   }).fail(function(e){
-    //     console.log('erro')
-    //   });
-    // }
+    
        
 });
  //remove from cart

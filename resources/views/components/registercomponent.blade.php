@@ -42,17 +42,7 @@
         </div>
        </div>
          
-      <div class="col-md-6">
-          <div class="input-box">
-          <input id="password-confirm" type="password"  name="password_confirmation" required autocomplete="new-password" placeholder="Conform Password">
-          <div class="underline"></div>
-          @error('password_confirmation')
-            <span class="invalid-feedback" role="alert">
-                 <strong>{{ $message }}</strong>
-            </span>
-         @enderror
-        </div>
-       </div>
+     
 
        <div class="col-md-6">
         <div class="input-box">
@@ -78,6 +68,7 @@
          @enderror
         </div>
        </div>
+       <div class="col-md-6"></div>
        <div class="title">Comapny</div>
 
         
@@ -97,9 +88,9 @@
 
        <div class="col-md-6">
         <div class="input-box">
-           <input  type="text"  name="liecense_no" value="{{old('liecense_no')}}" required  placeholder="Liecense No ">
+           <input  type="text"  name="licenece_no" value="{{old('licenece_no')}}" required  placeholder="Liecense No ">
           <div class="underline"></div>
-          @error('liecense_no')
+          @error('licenece_no')
             <span class="invalid-feedback" role="alert">
                  <strong>{{ $message }}</strong>
             </span>

@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('user_image');
             $table->string('phone');
-            
+            $table->longText('about_me')->nullable();
+            $table->string('user_type');
             $table->bigInteger('company_id')->unsigned();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
             

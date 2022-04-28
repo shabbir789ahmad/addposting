@@ -5,12 +5,22 @@ namespace App\Http\Controllers\vendor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Package;
+use App\Solid\AllPackage;
 class PackageController extends Controller
 {
-     public function index()
+     protected $package;
+    function __construct(AllPackage $package)
     {
-        $packages=Package::all();
-      
+      $this->package=$package;
+    }
+
+
+    
+     public function index()
+   
+    {
+        $packages=$this->package->get();
+     
         return view('vendor.package.index',compact('packages'));
     }
 }

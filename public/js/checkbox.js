@@ -75,9 +75,9 @@ $('.property_for_sale').click(function() {
       {  let da;
          if(id==1)
          {
-           da= '/ads/create/';
+           da= '/company/ads/create/';
         }else{
-           da= '/ads/create/';
+           da= '/company/ads/create/';
         }
         $('.category_append').empty();
         $.each(res,function(index,val)
@@ -99,7 +99,7 @@ $('.property_for_sale').click(function() {
    
    let id=$(this).val();
   $.ajax({
-            url : '/get-city-id/' +id,
+            url : '/company/get-city-id/' +id,
             method: "GET",
             data: {
                 _token: '{{ csrf_token() }}', 

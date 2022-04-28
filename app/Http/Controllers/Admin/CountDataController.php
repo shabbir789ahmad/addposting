@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Agent;
 use App\Models\Cart;
 use App\Models\Package;
 use App\Models\Message;
@@ -13,8 +14,8 @@ class CountDataController extends Controller
 {
     function index()
     {
-        $user=User::where('type',0)->count();
-        $user1=User::where('type',1)->count();
+        $user=User::count();
+        $user1=Agent::count();
         $package=Package::count();
         $message=Message::count();
         $messages=Message::All();

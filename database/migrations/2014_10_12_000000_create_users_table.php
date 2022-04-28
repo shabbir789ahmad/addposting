@@ -21,10 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('user_image');
             $table->string('phone');
-            $table->bigInteger('type');
-            $table->bigInteger('approve');
-            $table->longText('about_me')->nullable();
             $table->rememberToken();
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

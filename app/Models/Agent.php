@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 //use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Agent extends Authenticatable
 {
     use HasApiTokens, HasFactory;
 
@@ -23,6 +23,8 @@ class User extends Authenticatable
         'password',
         'phone',
         'user_image',
+        'user_type',
+        'about_me',
         'company_id',
        
         
@@ -46,4 +48,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    function ads()
+    {
+        return $this->hasMany(AgentAds::class);
+    }
 }

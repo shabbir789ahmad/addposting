@@ -19,12 +19,12 @@ class CartController extends Controller
         $cart = session()->get('cart', []);
        
           if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
+            $cart[$id]['package_quentity']++;
         } else {
             $cart[$id] = [
                 'id' => $package['id'],
                 "package_name" => $package['package_name'],
-                "package_price" => $package['package_price'],
+                "package_price" => $package['package_price']-$package['package_discount'],
                 "package_ads" => $package['package_ads'],
                 "package_discount" => $package['package_discount'],
                 "package_quentity" => 1,
@@ -73,7 +73,7 @@ class CartController extends Controller
               'item_quentity'=>$cart['package_quentity'],
               'item_ads'=>$cart['package_ads'],
               'item_total'=>$cart['package_price']*$cart['package_quentity'],
-              'user_id'=>Auth::user()->id,
+              'agent_id'=>Auth::user()->id,
               'approved'=>0,
           ];
          }

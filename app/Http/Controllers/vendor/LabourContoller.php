@@ -4,18 +4,24 @@ namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Labour;
+use App\Models\Agent;
 use App\Models\Cart;
-use App\Models\AAd;
-use App\Models\Ad;
+use App\Models\AgentAds;
+use App\Models\VendorAds;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Traits\ImageTrait;
 use App\Http\Traits\UserTrait;
+use App\Solid\CreateUser;
 class LabourContoller extends Controller
 {
     use ImageTrait;
     use UserTrait;
+    protected $user;
+    function __construct(CreateUser $user)
+    {
+        $this->user=$user;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,10 +29,13 @@ class LabourContoller extends Controller
      */
     public function index()
     {
-        $ads=Ad::where('user_id',Auth::id())->where('total_ads','>',0)->sum('total_ads');
-        $labours=$this->allAgent(Auth::id());//user trait
-        $aads=AAd::get();
-        return view('vendor.user.index',compact('labours','ads','aads'));
+       
+        $ads=VendorAds::where('agent_id',Auth::id())->where('total_ads','>',0)->sum('total_ads');
+
+        $labours=$this->user->get(Auth::id());
+     
+ 
+       return view('vendor.user.index',compact('labours','ads'));
     }
 
     /**
@@ -47,26 +56,30 @@ class LabourContoller extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
           
-             'employee_name'=>'required',
-             'email'=>['required', 'string', 'email', 'max:255', 'unique:labours'],
-             'employee_password'=>['required', 'string', 'min:8'],
+             'user_name'=>'required',
+             'email'=>['required', 'string', 'email', 'max:255', 'unique:agents'],
+             'password'=>['required', 'string', 'min:8'],
              'image'=>'required',
-             'employee_phone'=>['required', 'min:6', ],
+             'user_phone'=>['required', 'min:6', ],
         ]);
-       
+     
         $data=[
           
-             'labour_name'=>$request->employee_name,
+             'user_name'=>$request->user_name,
              'email'=>$request->email,
-             'password'=>Hash::make($request->employee_password),
-             'labour_image'=>$this->image(),
-             'labour_phone'=>$request->employee_phone,
-             'user_id'=>Auth::id(),
+             'password'=>Hash::make($request->password),
+             'user_image'=>$this->image(),
+             'phone'=>$request->user_phone,
+             'about_me'=>$request->about_me,
+             'company_id'=>Auth::user()->company_id,
+             'user_type'=>'agent',
         ];
-        //dd($data);
-         return \App\Helpers\Form::CreateEloquent(new Labour, $data);
+        
+         $this->user->create($data);
+         return to_route('labour.index')->with('success','Agent Created');
     }
 
     /**
@@ -88,7 +101,7 @@ class LabourContoller extends Controller
      */
     public function edit($id)
     {
-        $labour=Labour::findOrFail($id);
+        $labour=Agent::findOrFail($id);
         return view('vendor.user.edit',compact('labour'));
     }
 
@@ -129,20 +142,22 @@ class LabourContoller extends Controller
      */
     public function destroy($id)
     {
-        $labour_ads=Labour::join('a_ads','labours.id','=','a_ads.labour_id')->select('a_ads.total_ads','labours.user_id')->where('labour_id',$id)->first();
-         
-          $ads=Ad::where('user_id',$labour_ads['user_id'])->first();
+        $query=AgentAds::where('agent_id',$id);;
+          $agent_ads=$query->first();
+          
+          $ads=VendorAds::where('agent_id',Auth::id())->first();
            
-           $ads->total_ads=$ads->total_ads + $labour_ads->total_ads;
+           $ads->total_ads=$ads->total_ads + $agent_ads->total_ads;
            $ads->save();
            
- 
-        return \App\Helpers\Form::DeleteEloquent(new Labour,$id);
+          $agent_ads=$query->delete();
+        return \App\Helpers\Form::DeleteEloquent(new Agent,$id);
     }
+
 
     function assignAd(Request $req)
     {
-        $adds=AAd::where('labour_id',$req->labour_id)->first();
+       $adds=AgentAds::where('agent_id',$req->agent_id)->first();
       
         if(!$adds==null)
         {
@@ -152,14 +167,14 @@ class LabourContoller extends Controller
 
         }else
         {
-          $ads=new AAd;
+          $ads=new AgentAds;
           $ads->total_ads=$req->total_ads;
-          $ads->labour_id=$req->labour_id;
+          $ads->agent_id=$req->agent_id;
            $ads->save();
 
         }
         
-         $ad=Ad::where('user_id',Auth::id())->where('total_ads','>',0)->first();
+         $ad=VendorAds::where('agent_id',Auth::id())->where('total_ads','>',0)->first();
          $ad->total_ads=$ad->total_ads-$req->total_ads;
          $ad->save();
 
