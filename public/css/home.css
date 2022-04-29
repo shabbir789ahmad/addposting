@@ -75,13 +75,7 @@ transform: translateY(-10px);
 transition: .5s ease;
 }
 
-.product_image{
-	width: 100%;
-	height: 16rem;
 
-	border-top-left-radius: 1%;
-	border-top-right-radius: 1%;
-}
 
 .link{
     text-decoration: none;
@@ -144,19 +138,7 @@ transition: .5s ease;
 
 }
 
- .category_data2 p{
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  font-size: 11px;
-    display: inline-block;
-    padding: 4px 20px;
-    background: #DC3545;
-    border-radius: 5%;
-    margin-bottom: 5px;
-    color: #fff;
-    font-weight: bold;
-}
+
 .checked{
 	color: orange;
 }
@@ -171,12 +153,7 @@ transition: .5s ease;
 
 
 
-.heart_search{
-  color: red;
-  margin-top: 4%;
-  font-size: 2vw;
-  cursor: pointer;
-}
+
 
 .haart_style{
   position: absolute;
@@ -315,23 +292,15 @@ color: #666666;
   display: flex;
   justify-content: space-between;
 }
-.add_comany_img{
-  width: 20%;
-  padding-right: 1%;
-}
+
 .detail_add{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.contact_buttom{
-  position: absolute;
-  bottom: 0;
-  left: 32%;
-  width: 50%;
-  z-index: 999;
-}
+
+
 
 
 

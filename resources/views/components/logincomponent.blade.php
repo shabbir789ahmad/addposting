@@ -16,7 +16,7 @@
   background: #ff80bf;
 
 }
-.container{
+.container1{
   background: #fff;
   max-width: 400px;
   width: 100%;
@@ -24,13 +24,13 @@
   border-radius: 5px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
 }
-.container form .title{
+.container1 form .title{
   font-size: 30px;
   font-weight: 600;
   margin: 20px 0 10px 0;
   position: relative;
 }
-.container form .title:before{
+.container1 form .title:before{
   content: '';
   position: absolute;
   height: 4px;
@@ -40,20 +40,20 @@
   border-radius: 5px;
   background: linear-gradient(to right, #99004d 0%, #ff0080 100%);
 }
-.container form .input-box{
+.container1 form .input-box{
   width: 100%;
   height: 45px;
   margin-top: 25px;
   position: relative;
 }
-.container form .input-box input{
+.container1 form .input-box input{
   width: 100%;
   height: 100%;
   outline: none;
   font-size: 16px;
   border: none;
 }
-.container form .underline::before{
+.container1 form .underline::before{
   content: '';
   position: absolute;
   height: 2px;
@@ -62,7 +62,7 @@
   left: 0;
   bottom: 0;
 }
-.container form .underline::after{
+.container1 form .underline::after{
   content: '';
   position: absolute;
   height: 2px;
@@ -74,15 +74,15 @@
   transform-origin: left;
   transition: all 0.3s ease;
 }
-.container form .input-box input:focus ~ .underline::after,
-.container form .input-box input:valid ~ .underline::after{
+.container1 form .input-box input:focus ~ .underline::after,
+.contai1ner form .input-box input:valid ~ .underline::after{
   transform: scaleX(1);
   transform-origin: left;
 }
-.container form .button{
+.container1 form .button{
   margin: 40px 0 20px 0;
 }
-.container .input-box input[type="submit"]{
+.container1 .input-box input[type="submit"]{
     background: linear-gradient(to right, #1e548f 0%, #154578 100%);
   font-size: 17px;
   color: #fff;
@@ -90,7 +90,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.container .input-box input[type="submit"]:hover{
+.container1 .input-box input[type="submit"]:hover{
   letter-spacing: 1px;
     background: linear-gradient(to left, #1e548f 0%, #154578 100%);
 }

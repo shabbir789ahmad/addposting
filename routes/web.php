@@ -46,7 +46,7 @@ Auth::routes();
 Route::view('ads/detail','');
 Route::get('ads/{id}detail',[HomeController::class,'adsdetail'])->name('ads.detail');
 Route::get('all/{id}/ads',[HomeController::class,'allAds'])->name('all.ads');
-Route::get('sort/ads',[HomeController::class,'sortAds'])->name('sort.ads');
+// Route::get('sort/ads',[HomeController::class,'sortAds'])->name('sort.ads');
 Route::get('vendor/{id}/product',[HomeController::class,'vendorProduct'])->name('vendor.product');
 Route::get('agent/{id}/product',[HomeController::class,'agentProduct'])->name('agent.product');
 Route::get('searchresult',[SearchResultController::class,'searchResut'])->name('searchresult');
@@ -189,20 +189,40 @@ Route::group(['prefix'=>'company'],function()
 
   Route::group(['middleware'=>'agent.auth'],function()
   {
-  
+     Route::view('no-permission','permission')->name('no-permission');
+
+
      Route::get('dashboard',[VendorContoller::class,'count'])->name('company.dashboard');
      Route::post('logout',[CompanyController::class,'logout'])->name('company.logout');
 
+   //only vendor can access these route
+   Route::middleware('vendoronly')->group(function()
+   {
+    
+    Route::get('/package',[PackageController::class,'index'])->name('package.index');
+    
+    //vendor ad Buy data  route      
+    Route::get('all/add/vendor', [BuyAdController::class,'index'])->name('vendor.all.add');
+    Route::put('cart/{id}/reorder', [BuyAdController::class,'reOrder'])->name('cart.reorder');
 
-     Route::controller(PackageController::class)->group(function ()
-     {
-        Route::get('/package','index')->name('package.index');
-          // Route::get('/package/create', 'create')->name('package.create');
-          // Route::get('/package/{id}/edit', 'edit')->name('package.edit');
-          // Route::put('/package/{id}/update', 'update')->name('package.update');
-          // Route::post('/package/store', 'store')->name('package.store');
-          // Route::delete('/package/{id}/destroy', 'destroy')->name('package.destroy');
-      });
+     //add to cart route
+   Route::controller(CartController::class)->group(function () {
+   Route::get('add-to-cart/{id}','addToCart');
+   Route::get('/remove-from-cart/{id}','remove');
+   Route::patch('/update-from-cart/{id}','update');
+   Route::post('/buy/package','order')->name('buy.package');
+  
+   
+   });
+   Route::view('/cart','vendor.package.cart')->name('cart');
+
+   //vendor create user route
+   Route::resource('labour', LabourContoller::class);
+  Route::post('assign/ads',[LabourContoller::class,'assignAd'])->name('asign.ads');
+
+
+   });
+     
 
 
      Route::controller(AdsController::class)->group(function () {
@@ -218,29 +238,15 @@ Route::group(['prefix'=>'company'],function()
    
   });
 
-    //vendor ad Buy data  route
-  Route::get('all/add/vendor', [BuyAdController::class,'index'])->name('vendor.all.add');
-  Route::put('cart/{id}/reorder', [BuyAdController::class,'reOrder'])->name('cart.reorder');
-
-     Route::controller(VendorContoller::class)->group(function () {
+    Route::controller(VendorContoller::class)->group(function () {
        Route::get('/profile', 'index')->name('profile.index');
       Route::put('/vendor/{id}/update', 'update')->name('profile.update');
    });
    
-     //add to cart route
-   Route::controller(CartController::class)->group(function () {
-   Route::get('add-to-cart/{id}','addToCart');
-   Route::get('/remove-from-cart/{id}','remove');
-   Route::patch('/update-from-cart/{id}','update');
-   Route::post('/buy/package','order')->name('buy.package');
-  
+    
    
-   });
-   Route::view('/cart','vendor.package.cart')->name('cart');
   
-   //vendor create user route
-   Route::resource('labour', LabourContoller::class);
-  Route::post('assign/ads',[LabourContoller::class,'assignAd'])->name('asign.ads');
+  
 
   });
 

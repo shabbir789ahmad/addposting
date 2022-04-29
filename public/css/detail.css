@@ -20,7 +20,7 @@
 	color: #002f34;
 	font-family:font-family: Helvetica,Lato, sans-serif;
 }
-.item_pri,.icon2,.item_imges
+.item_pri,.icon2
 {
 display: flex;
 
@@ -29,10 +29,9 @@ display: flex;
 {
 display: flex;
 overflow-x: auto;
+height: 7rem;
 }
-.item_imges img{
-	margin-left: 2%;
-}
+
 .selller_description,.phone{
 	display: flex;
 	flex-direction: row;

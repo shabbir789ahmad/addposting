@@ -9,7 +9,7 @@
           <a href="#"><i class="fab fa-google"></i>Sign in With Google</a>
         </div>
 
-    <div class="container">
+    <div class="container1">
       <form method="POST" action="{{ route('login') }}">
       @csrf
 

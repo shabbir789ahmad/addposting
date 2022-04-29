@@ -8,18 +8,13 @@ trait UserTrait
  {
 
   
-   function user($id)
-   {
-      $user= User::where('id',$id)->select('user_name','user_image','created_at','id','phone','about_me')->first();
-      return $user;
-   }
-
    function agent($id)
    {
-      $user= User::join('labours','users.id','=','labours.user_id')->where('labours.id',$id)->select('users.user_image','labours.labour_name','labours.labour_image','labours.created_at','labours.id','labours.labour_phone','labours.user_id')->first();
+      $user= Agent::where('company_id',$id)->select('user_name','user_image','created_at','id','phone','about_me')->get();
       return $user;
    }
 
+   
 
 
 

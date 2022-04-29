@@ -64,10 +64,10 @@
                 
                
                  <label for="" class="font-weight-bold mt-3">
-                 Select  Images <span class="text-danger">*</span>
+                 About Agent <span class="text-danger">*</span>
                </label>
               <textarea class="form-control border-secondary" name="about_me" rows="5" required placeholder="About Agent"></textarea>
-               <span class="text-danger ">@error ('image') {{$message}}@enderror</span><br>
+               <span class="text-danger ">@error ('about_me') {{$message}}@enderror</span><br>
                
                   
                </div>

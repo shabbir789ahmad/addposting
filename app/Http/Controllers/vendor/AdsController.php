@@ -5,6 +5,7 @@ namespace App\Http\Controllers\vendor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\VendorAds;
+use App\Models\AgentAds;
 use App\Models\Property;
 use App\Models\Category;
 use App\Models\Area;
@@ -40,6 +41,13 @@ class AdsController extends Controller
        {
          $agent_id=null;
          $products= $this->product->get($agent_id,Auth::user()->company_id);
+        
+       }
+
+       if(Auth::user()->user_type=='agent')
+       {
+         $company_id=null;
+         $products= $this->product->get(Auth::user()->id,$company_id);
        }
         
         return view('vendor.ads.index',compact('products'));
@@ -68,7 +76,16 @@ class AdsController extends Controller
         $categorie=Category::where('categories.id',$id)->select('categories.id','category_type','categories.property_id')->first();
         $areas=Area::all();
         $states=State::all();
-        $ads=VendorAds::where('agent_id',Auth::id())->get();
+
+        if(Auth::user()->user_type=='vendor')
+        {
+          $ads=VendorAds::all();
+
+        }else if(Auth::user()->user_type=='agent')
+        {
+            $ads=AgentAds::all();
+        }
+        
         $types=Type::where('type_id',$id)->get();
         $subcategories=SubCategory::where('category_id',$id)->get();
     
@@ -96,7 +113,20 @@ class AdsController extends Controller
       
         DB::transaction(function() use($request)
         {
-            
+          if($request->ads_type != 'free')
+           {
+            if(Auth::user()->user_type=='vendor')
+            {
+               $ads=VendorAds::findOrFail($request->ads_type);
+               $ads=$ads->package_name;
+             }else if(Auth::user()->user_type=='agent')
+             {
+              $ads=AgentAds::findOrFail($request->ads_type);
+              $ads=$ads->package_name;
+             }
+            }else{
+                $ads='';
+            } 
                $product=Product::create([
                
                'name'=>$request->name,
@@ -114,12 +144,13 @@ class AdsController extends Controller
                'agent_id'=>$request->user_id,
                'company_id'=>Auth::user()->company_id,
                'type'=>$request->type,
-               'ads_type'=>$request->ads_type,
+               'ads_type'=>$ads,
                'floor_level'=>$request->floor_level??null,
                'rent_per'=>$request->rent_per??null,
 
                ]);
-               if($request->feature)
+
+            if($request->feature)
               {
                 for($i=0; $i<count($request->feature);$i++)
                  {

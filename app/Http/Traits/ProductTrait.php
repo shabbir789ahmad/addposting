@@ -45,7 +45,12 @@ trait ProductTrait
        $query=Product::
          join('categories','categories.id','products.category_id')
          ->select('products.name','categories.category_name','products.id','products.price','products.created_at','products.areaunit','products.city','products.bathroom','products.bedroom')
-        ->orderBy('products.created_at','Desc')->take(40)->where('products.category_id',$id);
+        ->orderBy('products.created_at','Desc')->take(40);
+        if($id)
+        {
+          $query=$query->where('products.category_id',$id);
+        }
+        
         if($small)
         {
           $query=$query->where('products.bedroom','<=',2);
@@ -74,6 +79,8 @@ trait ProductTrait
         $products=$query->get();
        return $products;
    }
+
+   
 
  
 

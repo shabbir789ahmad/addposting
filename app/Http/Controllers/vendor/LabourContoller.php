@@ -32,7 +32,7 @@ class LabourContoller extends Controller
        
         $ads=VendorAds::where('agent_id',Auth::id())->where('total_ads','>',0)->sum('total_ads');
 
-        $labours=$this->user->get(Auth::id());
+        $labours=$this->user->get(Auth::user()->company_id);
      
  
        return view('vendor.user.index',compact('labours','ads'));

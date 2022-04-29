@@ -7,9 +7,11 @@ class GetProduct implements ProductInterface{
    
      function get($agent_id,$company_id)
      {
+
         $query=Product::
          join('categories','categories.id','products.category_id')
-         ->select('products.name','products.location','categories.category_name','products.id','products.price','products.total_area','products.created_at');
+         ->join('agents','agents.id','products.agent_id')
+         ->select('products.*','categories.category_name','user_name','user_image','phone','about_me','user_type','email');
 
          if($agent_id)
          {
@@ -20,9 +22,13 @@ class GetProduct implements ProductInterface{
            $query=$query->where('products.company_id',$company_id);
          }
          
-         $products=$query->get();
-         return $products;
+        return  $products=$query->get();
+
+          
      }
+
+
+
 
 }
 

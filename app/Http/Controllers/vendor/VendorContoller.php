@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Agent;
 use App\Models\Product;
 use App\Models\Labour;
 use App\Models\Cart;
-use App\Models\Ad;
+use App\Models\VendorAds;
+use App\Models\AgentAds;
 use Auth;
 use DB;
 class VendorContoller extends Controller
@@ -25,37 +26,54 @@ class VendorContoller extends Controller
                  'email'=>'required',
                  'phone'=>'required',
                  'about_me'=>'required',
-                 'user_image'=>'required',
+                 
           ]);
-        if($request->hasfile('user_image'))
-
+       
+          if($request->file('image'))
           {
-             $file=$request->file('user_image');
-            $ext=$file->getClientOriginalExtension();
-            $name= time(). '.' . $ext;
-            $file->move('uploads/img/',$name);
-          
-          }
-      
-     $data=[
+            $data=[
     
               'user_name'=>$request->user_name,
               'email'=>$request->email,
               'phone'=>$request->phone,
               'about_me'=>$request->about_me,
-              'user_image'=>$name,
-           ]; 
-      return \App\Helpers\Form::UpdateEloquent(new User,$id, $data);
+              'user_image'=>$this->image(),
+           ];
+          }else
+          {
+            $data=[
+    
+              'user_name'=>$request->user_name,
+              'email'=>$request->email,
+              'phone'=>$request->phone,
+              'about_me'=>$request->about_me,
+          
+           ];
+          }
+      
+      
+      return \App\Helpers\Form::UpdateEloquent(new Agent,$id, $data);
     }
 
 
     function count()
     {   
-        $total_ads=Product::where('agent_id',Auth::user()->id)->count();
-        $total_package=Cart::where('agent_id',Auth::user()->id)->count();
-        $left_ads=0; //Ad::where('agent_id',Auth::user()->id)->sum('total_ads');
-        // $labour=Labour::where('user_id',Auth::user()->id)->count();
-       //dd($left_ads);
+        $total_ads=Product::count();
+        
+        if(Auth::user()->user_type=='vendor')
+        {
+          $total_package=Cart::count();
+          $left_ads= VendorAds::sum('total_ads');
+
+        }else if(Auth::user()->user_type=='agent')
+        {
+          
+          $total_package= AgentAds::sum('used_ads');
+          $left_ads= AgentAds::sum('total_ads');
+        }
+        
+        $user=Agent::where('company_id',Auth::user()->company_id)->where('user_type','!=','vendor')->count();
+      
         $chart= DB::table('products')->select(DB::raw(' count(*) as total_product, reads_count'))
                      ->where('agent_id', Auth::id())
                      ->groupBy('reads_count')
@@ -66,6 +84,6 @@ class VendorContoller extends Controller
             $chartdata.="['".$char->reads_count."',     ".$char->reads_count."],";
             }
             $arr['chartdata']=rtrim($chartdata,",");
-        return view('vendor.dashboard',$arr,compact('total_ads','total_package','left_ads'));
+        return view('vendor.dashboard',$arr,compact('total_ads','total_package','left_ads','user'));
     }
 }

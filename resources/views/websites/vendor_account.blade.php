@@ -15,7 +15,7 @@
           	@if($loop->first)
              <div class="row mt-5">
            	  <div class="col-md-4">
-               <img src="{{asset('uploads/img/'.$product['user_image'])}}" width="100%" class="rounded shadow card_border" style="height:10rem">
+               <img src="{{asset('uploads/user/'.$product['user_image'])}}" width="100%" class="rounded shadow card_border" style="height:10rem">
            	  </div>
               <div class="col-md-8">
                <div class="seller_name  mt-2">
@@ -59,27 +59,28 @@
 
 <!-- //dfdsf -->
 <div class="container-fluid  mt-5 mb-5">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center ">
 
-    <div class="col-md-2 " >
-      <h3 class=" mt-3">Sort By Agent:</h3>
-       @foreach($labours as $labour)
-      
-       <a href="{{route('vendor.product',['id'=>$labour['user_id']])}}">
+    
+      <h3 class=" mt-3 text-center">Sort By Agent:</h3>
+       @foreach($agents as $agent)
+       <div class="col-md-2 " >
+       <a href="{{route('vendor.product',['id'=>$agent['id']])}}">
        <div class="card border-secondary" style="width:100%" >
           <div class="card-body p-0">
-           <img src="{{asset('uploads/user/'.$labour['labour_image'])}}" width="100%" class="" style="height:4rem">
-           <h6 class="text-center mt-2">{{$labour['labour_name']}}</h6>
+           <img src="{{asset('uploads/user/'.$agent['user_image'])}}" width="100%" class="" style="height:4rem">
+           <h6 class="text-center mt-2">{{ucfirst($agent['user_name'])}}</h6>
           </div>
         </div></a>
-   
+   </div>
        @endforeach
-    </div>
+    
   </div>
     <p class="browser ">Properties You Like</p>
   <div class="container-fluid mt-4 p-5" style="background-color:#B0D1FF;">
     <div class="row">
       @if(count($products)>0)
+
       @foreach($products as $product)
       <div class="col-md-3">
        <x-card.card2 :product="$product" />

@@ -1,19 +1,19 @@
 @extends('master.master')
 @section('content')
-<div class="container con mt-4">
-  <div class="row" >
+<div class="container con mt-4" >
+  <div class="row " >
    <div class="col-md-8 col-12 ">
     <div class="imgs">
       @foreach($images as $image)
       @if($loop->first)
-    	 <img src="{{asset('uploads/product/'.$image['product_images'])}}" width="100%" height="500rem" id="imgs">
+    	 <img src="{{asset('uploads/product/'.$image['product_images'])}}" width="100%" height="500rem" id="imgs" class="rounded">
        @endif
        @endforeach
     	</div>
      <div class="item_imges mt-1">
      	    @foreach($images as $image)
-          <div onclick="changepic(this)" class="p-1 w-25">
-          <img src="{{asset('uploads/product/'.$image['product_images'])}}" width="90%" height="90%" >
+          <div onclick="changepic(this)" class="p-0 w-25">
+          <img src="{{asset('uploads/product/'.$image['product_images'])}}" width="90%" height="100%"  class="rounded">
         </div>
           @endforeach
      	
@@ -49,27 +49,31 @@
       </div>
      </div>
      <!-- //seller description -->
-     @if($users && !$labours)
+     
      <div class="card card_border mt-4 p-0">
       <div class="card-body p-0 pt-4">
        <p class="description">Company Detail</p>
-       <a href="{{route('vendor.product',['id'=>$users['id']])}}" class="mt-3  text-dark link">
+       @if($products['user_type']=='vendor')
+       <a href="{{route('vendor.product',['id'=>$products['company_id']])}}" class="mt-3  text-dark link">
+        @elseif($products['user_type']=='agent')
+         <a href="{{route('agent.product',['id'=>$products['agent_id']])}}" class="mt-3  text-dark link">
+        @endif
        <div class="selller_description">
-        <img src="{{asset('uploads/img/'.$users->user_image)}}" width="100%">
+        <img src="{{asset('uploads/user/'.$products->user_image)}}" width="100%">
         <div class="seller_name mt-2">
-         <h6 class="p-0 text-primary">{{ucfirst($users['user_name'])}}</h6>
-         <p class="p-0">{{ucfirst($users['about_me'])}}<br> (<span class="text-primary">12 Properties</span>)</p>
+         <h6 class="p-0 text-primary">{{ucfirst($products['user_name'])}}</h6>
+         <p class="p-0">{{ucfirst($products['about_me'])}}<br> (<span class="text-primary">12 Properties</span>)</p>
          
         </div>
 
-        <!-- <i class="fa-solid fa-arrow-right-long fa-lg "></i> -->
+       
         
        </div></a>
        <p><span class="fw-bold language">Language</span>   <span>English</span>, <span>Urdu</span>, <span>Arabic</span></p>
        <div class="d-flex mb-4">
          <button  class="btn btn_chat pl-0 call"><i class="fa-solid fa-phone"></i> Call</button>
 
-         <button  class="btn btn_chat pl-0 email bg-danger" data-id="{{$users['id']}}" data-name="{{$products['name']}}" data-agent="{{ucfirst($users['user_name'])}}"><i class="fa-solid fa-envelope"></i> Email</button>
+         <button  class="btn btn_chat pl-0 email bg-danger" data-id="{{$products['agent_id']}}" data-name="{{$products['name']}}" data-agent="{{ucfirst($products['user_name'])}}"><i class="fa-solid fa-envelope"></i> Email</button>
          
       
            <button class="btn btn_chat show_number bg-success"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
@@ -78,38 +82,8 @@
         
       </div>
      </div>
-      @endif
-      @if($labours)
-     <div class="card card_border mt-4 p-0">
-      <div class="card-body p-0 pt-3">
-       <div class="d-flex ">
-       <p class="description">Agent </p>
-       <a href="{{route('vendor.product',['id'=>$labours['user_id']])}}" class="link ms-auto" style="width: 15%;">
-         <img src="{{asset('uploads/img/'.$labours->user_image)}}" width="90%" class=" border border-dark " style="border-radius: 50%; object-fit: cover;"></a>
-       </div>
-       <a href="{{route('agent.product',['id'=>$labours['id']])}}" class="mt-3  text-dark link">
-       <div class="selller_description">
-        <img src="{{asset('uploads/user/'.$labours->labour_image)}}" >
-        <div class="seller_name mt-2">
-         <h6 class="p-0">{{ucfirst($labours['labour_name'])}}</h6>
-         <p class="p-0">Member since  {{date('Y',strtotime($labours['created_at']))}}</p>
-         
-        </div>
-        <i class="fa-solid fa-arrow-right-long fa-lg "></i>
-        
-       </div></a>
-       <div class="d-flex mb-4">
-         <button  class="btn btn_chat pl-0 email" data-id="{{$labours['id']}}" data-name="{{$products['name']}}" data-agent="{{ucfirst($labours['labour_name'])}}">Email</button>
-         @if(Auth::user())
-         <button class="btn btn_chat">Call {{$labours['labour_phone']}}</button>
-         @else
-           <button class="btn btn_chat show_number">Show Number</button>
-         @endif
-       </div>
-        
-      </div>
-     </div>
-      @endif
+   
+     
    </div>
   </div>
 </div>

@@ -10,7 +10,10 @@ class State extends Model
     protected $fillable=['states'];
  
 
-   
+   function cities()
+   {
+    return $this->hasMany(City::class);
+   }
 
    
 }

@@ -20,10 +20,11 @@ class OrderController extends Controller
    
     public function approve(Request $req)
     {
-
+        
         DB::transaction(function() use($req ){
 
           $cart=Cart::findorfail($req->id);
+
        $cart->approved=1;
        $cart->save();
         

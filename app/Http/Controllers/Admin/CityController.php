@@ -102,10 +102,10 @@ class CityController extends Controller
     {
         return \App\Helpers\Form::DeleteEloquent(new City,$id);;
     }
-    public function allCity()
-    {   
-        $city=City::latest()->take(12)->get();
+    // public function allCity()
+    // {   
+    //     $city=City::latest()->take(12)->get();
   
-        return response()->json($city);
-    }
+    //     return response()->json($city);
+    // }
 }

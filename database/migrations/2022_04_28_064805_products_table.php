@@ -36,9 +36,9 @@ return new class extends Migration
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('company_id')->nullable()->unsigned();
-            $table->foreign('company_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('agent_id')->nullable()->unsigned();
-            $table->foreign('agent_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('agent_id')->references('id')->on('agents')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

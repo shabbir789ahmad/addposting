@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 use App\Http\Traits\ImageTrait;
 use App\Models\Category;
 use App\Models\Property;
+
+use App\Http\Traits\CategoryTrait;
+use App\Http\Traits\PropertyTrait;
 class CategoryController extends Controller
 {
     use ImageTrait;
+    use CategoryTrait;
+    use PropertyTrait;
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +22,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category=Category::all();
-        $properties=Property::all();
+        $category=$this->categoryIndex();
+        $properties=$this->propertyIndex();
         return view('Dashboard.category.index',compact('category','properties'));
     }
 
@@ -29,7 +34,7 @@ class CategoryController extends Controller
      */
     public function create()
     {   
-        $properties=Property::all();
+        $properties=$this->propertyIndex();
 
         return view('Dashboard.category.create',compact('properties'));
     }
@@ -79,7 +84,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   $properties=Property::all();
+    {   $properties=$this->propertyIndex();
 
         $categ=Category::where('id',$id)->first();
 
@@ -137,9 +142,9 @@ class CategoryController extends Controller
         return \App\Helpers\Form::deleteEloquent(new Category,$id);
     }
 
-    function allCategory()
-    {
-        $categories=Category::latest()->take(12)->get();
-        return response()->json($categories);
-    }
+    // function allCategory()
+    // {
+    //     $categories=Category::latest()->take(12)->get();
+    //     return response()->json($categories);
+    // }
 }

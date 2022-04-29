@@ -50,9 +50,9 @@
                <label for="" class="font-weight-bold mt-3">
                  Select  Images <span class="text-danger">*</span>
                </label>
-               <input type="file" class="form-control input_border" name="user_image"  >
-               <span class="text-danger ">@error ('user_image') {{$message}}@enderror</span><br>
-                <img src="{{asset('uploads/img/'.Auth::user()->user_image)}}" width="10%">
+               <input type="file" class="form-control input_border" name="image"  >
+               <span class="text-danger ">@error ('image') {{$message}}@enderror</span><br>
+                <img src="{{asset('uploads/user/'.Auth::user()->user_image)}}" width="10%">
                </div>
                <hr class="card_color2">
                <div class="">

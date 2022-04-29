@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
 use App\Models\Image;
+
 class Product extends Model
 {
     use HasFactory;
@@ -31,16 +32,18 @@ class Product extends Model
     ];
 
 
-  public static function products()
-    {
-        $products=Product::
-         join('categories','categories.id','products.category_id')
-         ->select('products.name','categories.category_name','products.id','products.price','products.total_area','products.created_at','products.areaunit','products.bedroom','products.bathroom','products.city','products.ads_type')
-        ->orderBy('products.created_at','Desc')->take(20)->get();
+  // public static function products()
+  //   {
+  //       $products=Product::
+  //        join('categories','categories.id','products.category_id')
+  //        ->select('products.name','categories.category_name','products.id','products.price','products.total_area','products.created_at','products.areaunit','products.bedroom','products.bathroom','products.city','products.ads_type')
+  //       ->orderBy('products.created_at','Desc')->take(20)->get();
        
-       return $products;
-    }
+  //      return $products;
+  //   }
 
+
+    
 
     public function incrementReadCount($id) {
 
