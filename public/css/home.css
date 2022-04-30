@@ -114,14 +114,14 @@ transition: .5s ease;
 	justify-content: space-between;
   text-decoration: none;
  position: absolute;
- top: 62%;
+
  left: 0;
 }
 .category_data p , .varified p{
 	font-size: 11px;
     display: inline-block;
     padding: 4px 20px;
-    background: #DC3545;
+    background: red;
     border-radius: 5%;
     margin-bottom: 5px;
     color: #fff;
@@ -130,13 +130,9 @@ transition: .5s ease;
 
 .varified 
 {
-  top: 2% !important;
+  top: 0 !important;
 }
-.varified p
-{
-  background-color: #0E2E50;
 
-}
 
 
 .checked{
@@ -301,10 +297,12 @@ color: #666666;
 
 
 
+@media  (max-width: 480px) {
+.category_data{
+  top: 53%;
+}
 
-
-
-
+}
 @media (min-width: 481px) and (max-width: 768px) {
   .area, .product_data2{
   display: flex;
@@ -324,15 +322,7 @@ color: #666666;
   color: red;
 }
 
-/* .container_background3
-{
-  position: absolute;
-  height: 37.8rem;
-  top:3.8rem;
-  width: 100%;
-  background-color: #8D9194;
-  opacity: 80%;
-}*/
+
 .container_background2
 {
  position: absolute;
@@ -377,6 +367,9 @@ color: #666666;
   margin-top: 0;
 }
 
+.category_data{
+  top: 60%;
+}
 }
 
 
@@ -444,7 +437,9 @@ color: #666666;
 .category_data p{
   margin-top: 0;
 }
-
+.category_data{
+  top: 63%;
+}
 }
 
 
@@ -529,8 +524,9 @@ font-family: Roboto;
 #seeMore{
   width: 30%;
 }
-.category_data p{
-  margin-top: 7%;
+
+.category_data{
+  top: 62%;
 }
 
 }
@@ -599,4 +595,10 @@ font-size: 1.1vw;
 font-family: Roboto;
 }
 
+.category_data{
+  top: 68%;
+}
+.haart_style{
+  bottom: 18%;
+}
 }

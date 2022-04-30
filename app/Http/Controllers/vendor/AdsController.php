@@ -125,7 +125,7 @@ class AdsController extends Controller
               $ads=$ads->package_name;
              }
             }else{
-                $ads='';
+                $ads='free';
             } 
                $product=Product::create([
                

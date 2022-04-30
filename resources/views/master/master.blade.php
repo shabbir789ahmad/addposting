@@ -24,7 +24,7 @@
  <style type="text/css">
    .owl-prev,.owl-next{
     position: absolute;
-    top: 35%;
+    top: 20%;
     border: 2px solid black;
    padding: 1rem 1.2rem !important;
    color: #000 !important;

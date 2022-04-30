@@ -112,7 +112,7 @@
            
           <div class="row">
             <div class="col-md-4 col-12">
-              <img src="{{asset('uploads/product/'.$product->img['product_images'])}}" class="product_image">
+              <img src="{{asset('uploads/product/'.$product->img['product_images'])}}" class="product_image" width="100%">
                
             </div>
             <div class="col-md-8 col-12">

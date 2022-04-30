@@ -11,24 +11,45 @@
 
  <div class="agent mb-5">
   <div class="row">
-   <div class="col-md-3 ">
-     <div class="card card_hover_agent">
-     	<div class="card-header p-0">
-     		<img src="{{asset('pic/ximg_4.jpg.pagespeed.ic.BUEZMeneMq.webp')}} " width="100%">
-     	</div>
-     	<div class="card-body">
-     	<div class="text-center">
-          <h5 class="mb-0">Shabbir Ahmad</h5>
-          <p class="mb-2">Property Consultant</p>
-     	 </div>
-     	 <div class="nationality text-center">
+   <div class="col-md-3">
+
+    <div class="card shadow " >
+    
+
+      <a href="" class="link">
+     
+       <img src="{{asset('pic/ximg_4.jpg.pagespeed.ic.BUEZMeneMq.webp')}}" class="product_image" width="100%">
+      
+       <div class="card-body pt-1">
+        <div class="product_data mb-0 mt-0 d-flex">
+          <h5>Shabbir Ahmad</h5>
           
-          <p class=" mb-0">NATIONALITY:  <span class="  fw-bold">Pakistan</span></p>
-          <p>LANGUAGES:  <span class=" fw-bold">Urdu, Punjabi</span></p>
-     	 </div>
-     	</div>
+         
+        </div>
+        <div class="product_data mb-0 mt-0">
+          <p class="m-0 area2">  Property Consultant 
+           </p>
+         </div>
+         <div class="product_data mb-0 mt-0">
+          <p class="m-0 area2">  NATIONALITY:  Pakistan
+           </p>
+         </div>
+         <div class="product_data mb-0 mt-0">
+          <p class="m-0 area2">  LANGUAGES:  Urdu, Punjabi
+           </p>
+         </div>
+
+      </div>
+   
+      
+
+ 
+      
+     </a>
      </div>
+
    </div>
+
   </div>
 </div>
 </div>

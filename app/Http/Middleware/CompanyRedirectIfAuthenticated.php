@@ -22,6 +22,7 @@ class CompanyRedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
        if (Auth::guard('agent')->check()) {
+
            return redirect()->route('company.dashboard');
        }
 

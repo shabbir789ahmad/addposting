@@ -44,7 +44,7 @@ trait ProductTrait
     
        $query=Product::
          join('categories','categories.id','products.category_id')
-         ->select('products.name','categories.category_name','products.id','products.price','products.created_at','products.areaunit','products.city','products.bathroom','products.bedroom')
+         ->select('products.name','categories.category_name','products.id','products.price','products.created_at','products.areaunit','products.city','products.bathroom','products.bedroom','products.ads_type')
         ->orderBy('products.created_at','Desc')->take(40);
         if($id)
         {
@@ -72,6 +72,7 @@ trait ProductTrait
         {
           $query=$query->where('products.city',$city);
         }
+        
         if($price1 && $price2)
         {
           $query=$query->wherebetween('products.price',[$price1,$price2]);

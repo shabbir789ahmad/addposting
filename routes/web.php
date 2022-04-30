@@ -43,7 +43,8 @@ Auth::routes();
  Route::get('/',[HomeController::class,'index']);
  Route::view('select/login/type','auth.login_type')->name('login.type');
 
-Route::view('ads/detail','');
+Route::view('non/apprive','approve')->name('approve');
+
 Route::get('ads/{id}detail',[HomeController::class,'adsdetail'])->name('ads.detail');
 Route::get('all/{id}/ads',[HomeController::class,'allAds'])->name('all.ads');
 // Route::get('sort/ads',[HomeController::class,'sortAds'])->name('sort.ads');
@@ -162,6 +163,9 @@ Route::group(['prefix'=>'admin'],function()
   Route::delete('/message/{id}/destroy', [MessageController::class,'destroy'])->name('message.destroy');
   //type route
    Route::resource('type', TypeController::class);
+
+   //area unit route 
+   Route::resource('area', AreaController::class);
   //ads order route
   
    Route::get('order',[OrderController::class,'index'])->name('order.index');
@@ -188,6 +192,8 @@ Route::group(['prefix'=>'company'],function()
   });
 
   Route::group(['middleware'=>'agent.auth'],function()
+  {
+    Route::group(['middleware'=>'check'],function()
   {
      Route::view('no-permission','permission')->name('no-permission');
 
@@ -248,6 +254,7 @@ Route::group(['prefix'=>'company'],function()
   
   
 
+  });
   });
 
 

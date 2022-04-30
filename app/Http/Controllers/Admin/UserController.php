@@ -20,8 +20,11 @@ class UserController extends Controller
         
      
         $data=[ 'approve'=>  $request->approve,];
+       
         $id=$request->id;
-       return \App\Helpers\Form::UpdateEloquent(new User,$id, $data);
+
+        Agent::where('id',$id)->update($data);
+      
     }
 
     public function destroy($id)

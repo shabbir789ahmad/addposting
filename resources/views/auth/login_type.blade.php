@@ -62,12 +62,28 @@
   border-radius: 5px;
   background: linear-gradient(to right, #99004d 0%, #ff0080 100%);
 }
+@media (max-width:500px)
+{
+  .grid  .title{
+  font-size: 12vw;
+  
+}
+.grid  .title:before{
+  content: '';
+  position: absolute;
+  height: 4px;
+  width: 60px;
+  left: 0px;
+  bottom: 7px;
+ 
+}
+}
 </style>
 
 <div class="grid">
     
        
-    <div class="title">Login</div>
+    <div class="title">Real Estate</div>
      
       <div class="row ">
          <div class="col-md-6 a text-center">

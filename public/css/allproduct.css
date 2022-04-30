@@ -14,6 +14,81 @@
   flex-direction: row;
   width: 95%;
 }
+.data_row{
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 0;
+}
+@media (min-width: 1500px) and (max-width: 2000px)
+{
+ .seller_name2
+ {
+  color: #fff;
+ }
+ .seller_name2 h6{
+  font-size: 3vw;
+ }
+ .seller_name2 p{
+  font-size: 1.1vw;
+  color: #FF385C;
+ }
+
+
+.width_card3{
+  width: 80%;
+ }
+ .card_height{
+  height: 15rem;
+ }
+
+ .product_image{
+  
+  height: 20rem;
+
+}
+
+ .category_data2 p{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: 11px;
+    display: inline-block;
+    padding: 4px 20px;
+    background: #DC3545;
+    border-radius: 5%;
+    margin-bottom: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+.product_data h5
+{
+  
+  font-size: 1vw;
+  
+}
+
+.add_comany_img{
+  width: 20%;
+ margin-right: 4%;
+}
+.contact_buttom{
+  position: absolute;
+  bottom: 0;
+  left: 33%;
+  width: 60%;
+  z-index: 999;
+}
+.heart_search{
+  color: red;
+  margin-top: 3%;
+  font-size: 2vw;
+  cursor: pointer;
+}
+.product_data,.detail_add{
+  margin-left: 2%;
+}
+}
 @media (min-width: 1025px) and (max-width: 1500px)
 {
  .seller_name2
@@ -65,7 +140,7 @@
 .contact_buttom{
   position: absolute;
   bottom: 0;
-  left: 25%;
+  left: 33%;
   width: 60%;
   z-index: 999;
 }
@@ -138,14 +213,14 @@
 .contact_buttom{
   position: absolute;
   bottom: 0;
-  left: 33%;
-  width: 60%;
+  left: 30%;
+  width: 70%;
   z-index: 999;
 }
 .heart_search{
   color: red;
   margin-top: 4%;
-  font-size: 4vw;
+  font-size: 3vw;
   cursor: pointer;
 }
 }
@@ -175,7 +250,7 @@
   width: 100%;
  }
  .card_height{
-  height: 15rem;
+  height: 50rem;
  }
  .product_image{
   
@@ -188,7 +263,7 @@
  .category_data2 p{
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 42%;
   font-size: 11px;
     display: inline-block;
     padding: 4px 20px;
@@ -206,8 +281,8 @@
 .contact_buttom{
   position: absolute;
   bottom: 0;
-  left: 33%;
-  width: 60%;
+  left: 1%;
+  width: 70%;
   z-index: 999;
 }
 .heart_search{
@@ -254,7 +329,7 @@
  .category_data2 p{
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 57%;
   font-size: 11px;
     display: inline-block;
     padding: 4px 20px;
@@ -267,9 +342,11 @@
 
 .add_comany_img{
   width: 20%;
- margin-right: 10%;
+ margin-right: 5%;
 }
-
+.heart_search{
+  display: none;
+}
 
 }
 

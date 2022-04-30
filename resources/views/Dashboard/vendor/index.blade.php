@@ -15,7 +15,7 @@
   $('.user').change(function () {
 
         let status = $(this).prop('checked') === true ? 1 : 0;
-        
+        alert('sed')
         let id = $(this).data('id');
       
         $.ajax({

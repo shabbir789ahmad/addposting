@@ -31,9 +31,9 @@
     </div>
     <div class="col-md-2 col-6 col-sm-12 p-0 mt-2 p-1">
       <select class="form-control border border-secondary" name="category">
-   	   <option selected disabled hidden>Property Type</option>
+       <option selected disabled hidden>Property Type</option>
        @foreach($categories as $category)
-   	   <option value="{{$category['id']}}">{{ucfirst($category['category_name'])}}</option>
+       <option value="{{$category['id']}}">{{ucfirst($category['category_name'])}}</option>
        @endforeach
       </select>
     </div>
@@ -46,9 +46,9 @@
       </select>
     </div>
     <div class="col-md-2 col-6 col-sm-12 mt-2 p-1">
-      <select class="form-control border border-secondary" name="city">
+      <select class="form-control border border-secondary" name="bedroom">
        <option selected disabled hidden>Bed Rooms</option>
-       @foreach($cities as $city)
+       
        <option value="1">1</option>
        <option value="2">2</option>
        <option value="3">3</option>
@@ -56,7 +56,7 @@
        <option value="5">5</option>
        <option value="6">6</option>
        <option value="7">7</option>
-       @endforeach
+     
       </select>
     </div>
     <div class="col-md-2 col-12 col-sm-12 mt-1 p-2">
@@ -81,7 +81,7 @@
       <select class="form-control border border-secondary" name="min_price">
        <option selected disabled hidden>Minimum Price</option>
        @foreach($prices as $price)
-       <option value="{{$price['price1']}}">${{ucfirst($price['price1'])}}</option>
+       <option value="{{$price['price1']}}">{{ucfirst($price['price1'])}}AED</option>
        @endforeach
       </select>
     </div>
@@ -89,7 +89,7 @@
       <select class="form-control border border-secondary" name="max_price">
        <option selected disabled hidden>Maximum Price</option>
        @foreach($prices as $price)
-       <option value="{{$price['price1']}}">${{ucfirst($price['price1'])}}</option>
+       <option value="{{$price['price1']}}">{{ucfirst($price['price1'])}}AED</option>
        @endforeach
       </select>
     </div>
@@ -120,12 +120,12 @@
    <div class="col-md-3 col-lg-2 col-6 col-sm-6  text-center" >
      <a href="{{route('all.ads',['id'=>$category['id']])}}" class="link text-dark">
     <div class="card card_hover mt-2  shadow" style="height: 10rem;">
-	  <div class="card-body p-0 card_items">
+    <div class="card-body p-0 card_items">
        <img src="{{asset('/uploads/user/'.$category['category_image'])}}"  class="mt-1 img_size">
        <p class="p-2 mb-0">{{ucfirst($category['category_name'])}}</p>
        <button class="btn btn-lg ">{{\App\Models\Product::where(['category_id' => $category->id])->count()}}</button>
-	  </div>
-	 </div>
+    </div>
+   </div>
    </a>
   </div>
 
@@ -147,7 +147,9 @@
  
  <div class="owl-carousel owl-theme ml-2"  >
      @foreach($products as $product)
+     @if($product['ads_type']=='premium')
     <x-card.card   :product="$product" />  
+    @endif
     @endforeach
   
  </div>
@@ -165,7 +167,9 @@
    
   <div class="owl-carousel owl-theme "  >
     @foreach($products as $product)
+     @if($product['ads_type']=='feature')
     <x-card.card   :product="$product" />  
+    @endif
     @endforeach
  
   </div>
@@ -182,7 +186,9 @@
    
    <div class="owl-carousel owl-theme "  >
     @foreach($products as $product)
+     @if($product['ads_type']=='tranding')
     <x-card.card   :product="$product" />  
+    @endif
     @endforeach
   </div>
 </div>
@@ -202,7 +208,9 @@
    
    <div class="owl-carousel owl-theme "  >
     @foreach($products as $product)
+     @if($product['ads_type']=='free')
     <x-card.card   :product="$product" />  
+    @endif
     @endforeach
   </div>
 </div>

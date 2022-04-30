@@ -38,7 +38,7 @@ class Form {
 			return redirect()->route($route . ".index")->with('success', $route.' Data Updated');
 			
 		} catch (\Exception $e) {
-         App\Helpers\Logger::logActivity(\Route::currentRouteName(),$e);
+         \App\Helpers\Logger::logActivity(\Route::currentRouteName(),$e);
 			return redirect()->back()->withInput()->with('success', ' Failed to Update '.$route);
 			
 		}

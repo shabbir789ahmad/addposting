@@ -58,17 +58,26 @@
         @elseif($products['user_type']=='agent')
          <a href="{{route('agent.product',['id'=>$products['agent_id']])}}" class="mt-3  text-dark link">
         @endif
-       <div class="selller_description">
-        <img src="{{asset('uploads/user/'.$products->user_image)}}" width="100%">
-        <div class="seller_name mt-2">
-         <h6 class="p-0 text-primary">{{ucfirst($products['user_name'])}}</h6>
-         <p class="p-0">{{ucfirst($products['about_me'])}}<br> (<span class="text-primary">12 Properties</span>)</p>
-         
-        </div>
-
-       
+        <div class="row">
+          <div class="col-md-4 ">
+            <div class="selller_description">
+               <img src="{{asset('uploads/user/'.$products->user_image)}}" >
+             </div>
+          </div>
+          <div class="col-md-8">
+           
+            <div class="selller_description">
         
-       </div></a>
+            <div class="seller_name mt-2">
+              <h6 class="p-0 text-primary">{{ucfirst($products['user_name'])}}</h6>
+              <p class="p-0">{{ucfirst($products['about_me'])}}<br> (<span class="text-primary">12 Properties</span>)</p>
+         
+             </div>
+          </div>
+          </div>
+        </div>
+       
+       </a>
        <p><span class="fw-bold language">Language</span>   <span>English</span>, <span>Urdu</span>, <span>Arabic</span></p>
        <div class="d-flex mb-4">
          <button  class="btn btn_chat pl-0 call"><i class="fa-solid fa-phone"></i> Call</button>

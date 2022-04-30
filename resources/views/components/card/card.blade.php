@@ -11,7 +11,8 @@
         </div>
 
          <div class="varified mb-0">
-         @if($product['ads_type'])
+         @if($product['ads_type'] == 'free')
+         @else
          <p>{{ucfirst($product['ads_type'])}}</p>
          @endif
         </div>

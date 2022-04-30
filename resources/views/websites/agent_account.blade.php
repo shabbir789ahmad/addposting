@@ -49,9 +49,29 @@
     
   </div>
 
+<div class="container-fluid  mt-5 mb-5">
+
+    <p class="browser ">Properties You Like</p>
+  <div class="container-fluid mt-4 p-5" style="background-color:#B0D1FF;">
+    <div class="row">
+      @if(count($products)>0)
+
+      @foreach($products as $product)
+      <div class="col-md-3">
+       <x-card.card2 :product="$product" />
+     </div>
+      @endforeach
+   @else
+   <x-404not-found />
+  @endif
+</div>
+
+<h6 id="h1" class="text-center mt-5 text-danger " style="display:none">No More Product In This Category</h6>
+  </div>
+  </div>
 
 <!-- //dfdsf -->
-<div class="container-fluid mt-5 mb-5 width_card3" >
+<!-- <div class="container-fluid mt-5 mb-5 width_card3" >
  
    @foreach($products as $product)
       
@@ -133,7 +153,7 @@
          <div class="mt-5"> 
          
          </div>
-  </div>
+  </div> -->
 
   <form id="category_form">
   	<input type="hidden" name="category_id" id="category_id">

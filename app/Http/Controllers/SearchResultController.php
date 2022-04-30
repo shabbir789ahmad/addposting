@@ -29,10 +29,10 @@ class SearchResultController extends Controller
         {
            $products->where('plot_type','=',$request->buy_rent);
         }
-
-         if($request->bed)
+      
+         if($request->bedroom)
         {
-           $products->where('bedroom','=',$request->bed);
+          $products=$products->where('products.bedroom',$request->bedroom);
         }
       
         if($request->category)

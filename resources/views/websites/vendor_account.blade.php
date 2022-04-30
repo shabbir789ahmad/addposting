@@ -40,7 +40,7 @@
               <div class="col-md-3 col-lg-4 col-6 col-sm-6  text-center text-dark">
                <div class="card card_hover mt-2  shadow">
 	            <div class="card-body p-0 card_items category" data-id="{{$category['id']}}">
-                <img src="{{asset('/uploads/user/'.$category['category_image'])}}" width="40%" class="mt-1" style="height:4rem">
+                <img src="{{asset('/uploads/user/'.$category['category_image'])}}" width="100%"  style="height:7rem">
                <p class="p-2 mb-0">{{ucfirst($category['category_name'])}}</p>
                </div>
 	          </div>
@@ -64,14 +64,14 @@
     
       <h3 class=" mt-3 text-center">Sort By Agent:</h3>
        @foreach($agents as $agent)
-       <div class="col-md-2 " >
-       <a href="{{route('vendor.product',['id'=>$agent['id']])}}">
+       <div class="col-md-2 sort_by_agent" data-id="{{$agent['id']}}">
+       
        <div class="card border-secondary" style="width:100%" >
           <div class="card-body p-0">
-           <img src="{{asset('uploads/user/'.$agent['user_image'])}}" width="100%" class="" style="height:4rem">
+           <img src="{{asset('uploads/user/'.$agent['user_image'])}}" width="100%" class="" style="height:7rem">
            <h6 class="text-center mt-2">{{ucfirst($agent['user_name'])}}</h6>
           </div>
-        </div></a>
+        </div>
    </div>
        @endforeach
     
@@ -98,5 +98,19 @@
   <form id="category_form">
   	<input type="hidden" name="category_id" id="category_id">
   </form>
+  <form id="agent_sort_form">
+    <input type="hidden" name="agent_id" id="agent_id">
+  </form>
   <!--code  in  filet .js file  -->
+@endsection
+@section('script')
+<script type="text/javascript">
+  $('.sort_by_agent').click(function(){
+
+   let id=$(this).data('id');
+   $('#agent_id').val(id)
+    $('#agent_sort_form').submit();
+
+  });
+</script>
 @endsection

@@ -79,6 +79,12 @@
           <span>Property Types </span>
         </a>
        </li>
+       <li class="nav-item ">
+        <a class="nav-link " href="{{route('area.index')}}">
+          <i class="fas fa-window-maximize text-light"></i>
+          <span>Area Unit  </span>
+        </a>
+       </li>
       
        <!-- <li class="nav-item ">
         <a class="nav-link " href="{{route('banner.index')}}">

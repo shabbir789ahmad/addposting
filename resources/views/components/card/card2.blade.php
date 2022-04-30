@@ -1,17 +1,22 @@
-
-
-
-
-     <div class="card shadow " >
+<div class="card shadow " >
     <i class="fa-regular fa-heart  haart_style like_by_customer2" data-id="{{$product['id']}}"></i>
+
       <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
      
-       <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image">
+       <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image" width="100%">
       
        <div class="card-body pt-1">
         <div class="category_data mb-0">
          <p>{{$product['category_name']}}</p>
         </div>
+
+         <div class="varified mb-0">
+         @if($product['ads_type'] == 'free')
+         @else
+         <p>{{ucfirst($product['ads_type'])}}</p>
+         @endif
+        </div>
+
         <div class="product_data mb-0 mt-0 d-flex">
           <h5>{{ucfirst($product['name'])}}</h5>
           
@@ -58,5 +63,3 @@
       
      </a>
      </div>
-   
- 

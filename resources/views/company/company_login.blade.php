@@ -8,7 +8,7 @@
     
         
 
-    <div class="container">@if(session()->has('agenterror'))
+    <div class="container1">@if(session()->has('agenterror'))
           
             <span class="invalid-feedback" role="alert">
                  <strong>{{ session()->get('agenterror') }}</strong>

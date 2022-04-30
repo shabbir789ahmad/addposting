@@ -7,7 +7,7 @@ class GetProduct implements ProductInterface{
    
      function get($agent_id,$company_id)
      {
-
+             $request = app('request');
         $query=Product::
          join('categories','categories.id','products.category_id')
          ->join('agents','agents.id','products.agent_id')
@@ -20,6 +20,15 @@ class GetProduct implements ProductInterface{
          if($company_id)
          {
            $query=$query->where('products.company_id',$company_id);
+         }
+
+         if($request->agent_id)
+         {
+           $query=$query->where('products.agent_id',$request->agent_id);
+         }
+         if($request->category_id)
+         {
+           $query=$query->where('products.category_id',$request->category_id);
          }
          
         return  $products=$query->get();
