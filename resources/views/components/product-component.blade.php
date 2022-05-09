@@ -1,7 +1,14 @@
 <div class="row mt-5">
 	<div class="col-12">
 		<div class="card">
-			<h3 class="card-header header text-light">{{$data}}</h3>
+			<div class="card-header header d-flex">
+			<h3 class=" text-light">{{$data}}</h3>
+			<select class="form-control w-25 ml-auto"  id="Approved">
+			    <option selected disabled hidden>Sort By</option>
+                <option value="1">Approved</option>
+                <option value="0">Non Approved</option>
+            </select>
+          </div>
 			<div class="card-body pb-0">
                
 				@if(count($users) > 0)
@@ -14,6 +21,7 @@
 								<th scope="col">Name</th>
 								<th scope="col">Email</th>
 								<th scope="col">Phone</th>
+								<th scope="col">Type</th>
 								<th scope="col">Approve</th>
 								<th scope="col"></th>
 							</tr>
@@ -21,10 +29,11 @@
 						<tbody>
 							@foreach($users as $user)
 							<tr>
-								<td class="col-2"><img src="{{asset('uploads/img/'.$user->user_image)}}" width="50%"></td>
+								<td class="col-2"><img src="{{asset('uploads/user/'.$user->user_image)}}" width="100%" height="70rem"></td>
 								<td class="text-dark">{{ ucfirst($user->user_name )}}</td>
 								<td class="text-dark">{{ $user->email }}</td>
 								<td class="text-dark">{{ $user->phone }}</td>
+								<td class="text-dark">{{ $user->user_type }}</td>
 								 <td scope="col" >
 								 	<input type="checkbox" data-id="{{$user['id']}}" name="vendor_status" class="js-switchu user" {{ $user->approve == 1 ? 'checked' : '' }} ></td>
 								<td>

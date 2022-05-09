@@ -10,10 +10,10 @@ class AgentAds extends Model
     use HasFactory;
 
 
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
   
-        return static::addGlobalScope(new VendorScope);
-    }
+    //     return static::addGlobalScope(new VendorScope);
+    // }
 }

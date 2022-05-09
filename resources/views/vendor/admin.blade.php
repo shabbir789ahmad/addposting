@@ -226,28 +226,7 @@ function myFunction(id,res) {
 }
 
 
- $(".add_to_cart").click(function (e) 
- { 
-   
-       e.preventDefault();
-       var id=$(this).data('id');
-      $.ajax({
-            url : '/company/add-to-cart/' +id,
-            method: "GET",
-            data: {
-                _token: '{{ csrf_token() }}', 
-              
-            },
-      }).done(function(res){
-
-        myFunction(id=1,res)
-      }).fail(function(e){
-        console.log('erro')
-      });
-      
-    
-       
-});
+ 
  //remove from cart
  $('.remove_from_cart').click(function(){
    

@@ -15,19 +15,19 @@ class CartController extends Controller
     {
       
         $package = Package::findorfail($id);
-          
+         
         $cart = session()->get('cart', []);
        
           if(isset($cart[$id])) {
-            $cart[$id]['package_quentity']++;
+            $cart[$id]['package_ads'] += $req->ads;
+            $cart[$id]['package_price'] += $req->price;
         } else {
             $cart[$id] = [
                 'id' => $package['id'],
                 "package_name" => $package['package_name'],
-                "package_price" => $package['package_price']-$package['package_discount'],
-                "package_ads" => $package['package_ads'],
-                "package_discount" => $package['package_discount'],
-                "package_quentity" => 1,
+                "price" => $package['package_price']-$package['package_discount'],
+                "package_price" => $req->price,
+                "package_ads" => $req->ads,
                 
 
             ];
@@ -43,7 +43,8 @@ class CartController extends Controller
 
         if($request->id && $request->quentity){
             $cart = session()->get('cart');
-            $cart[$request->id]["package_quentity"] = $request->quentity;
+            $cart[$request->id]["package_ads"] = $request->quentity;
+            $cart[$request->id]["package_price"] =$cart[$request->id]["price"] * $request->quentity;
             session()->put('cart', $cart);
             return response()->json(['success', 'Cart updated successfully']);
         }
@@ -70,9 +71,8 @@ class CartController extends Controller
           $data=[
              
               'item_name'=>$cart['package_name'],
-              'item_quentity'=>$cart['package_quentity'],
               'item_ads'=>$cart['package_ads'],
-              'item_total'=>$cart['package_price']*$cart['package_quentity'],
+              'item_total'=>$cart['package_price'],
               'agent_id'=>Auth::user()->id,
               'approved'=>0,
           ];

@@ -37,7 +37,7 @@
             <h6 class="p-0">Top Categories</h6>
             <div class="row">
              @foreach($categories as $category)
-              <div class="col-md-3 col-lg-4 col-6 col-sm-6  text-center text-dark">
+              <div class="col-md-3 col-lg-4 col-6 col-sm-6  text-center text-dark ">
                <div class="card card_hover mt-2  shadow">
 	            <div class="card-body p-0 card_items category" data-id="{{$category['id']}}">
                 <img src="{{asset('/uploads/user/'.$category['category_image'])}}" width="100%"  style="height:7rem">
@@ -82,7 +82,7 @@
       @if(count($products)>0)
 
       @foreach($products as $product)
-      <div class="col-md-3">
+      <div class="col-md-3 mt-3">
        <x-card.card2 :product="$product" />
      </div>
       @endforeach

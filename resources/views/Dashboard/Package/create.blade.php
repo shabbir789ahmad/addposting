@@ -21,16 +21,12 @@
 						<span class="text-danger">@error ('package_name') {{$message}}@enderror</span>
 
 						<label for="" class="font-weight-bold mt-2">
-							Package Price <span class="text-danger">*</span>
+							 Price per Ads <span class="text-danger">*</span>
 						</label>
 						<input type="number" class="form-control" name="package_price" placeholder="Package Price" value="{{old('package_price')}}">
 						<span class="text-danger">@error ('package_price') {{$message}}@enderror</span>
 
-						<label for="" class="font-weight-bold mt-2">
-							Total Ads in Package <span class="text-danger">*</span>
-						</label>
-						<input type="number" class="form-control" name="package_ads">
-						<span class="text-danger">@error ('package_ads') {{$message}}@enderror</span>
+						
 
 						<label for="" class="font-weight-bold mt-2">
 							 Package Duration <span class="text-danger">*</span>

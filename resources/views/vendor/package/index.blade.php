@@ -155,14 +155,14 @@
     <div class="plan plan1">
         <div class="header">{{ucfirst($package['package_name'])}}</div>
         <div class="price">{{$package['package_price']-$package['package_discount']}} AED</div>  
-        <div class="monthly">per Package</div>      
+        <div class="monthly">per Ads</div>      
         <ul>
             <li><b>{{$package['package_ads']}}</b> Ads</li>
             <li><b>VAlid Till: </b>{{date('d-m-Y', strtotime($package['package_duration']))}} </li>
-            <li><b>{{$package['package_discount']}} AED</b> Discount</li>
+            <li><b>@if($package['package_discount']) {{$package['package_discount']}} @else 0 @endif AED</b> Discount</li>
           
         </ul>
-        <a  href="#" data-id="{{$package['id']}}" class="form-control  add_to_cart  signup">Add To Cart</a>         
+        <a  href="#" data-id="{{$package['id']}}" data-price="{{$package['package_price']-$package['package_discount']}}" class="form-control buy_add_now   signup">Buy  {{ucfirst($package['package_name'])}} Ads </a>         
     </div >
    
    @endforeach
@@ -176,6 +176,119 @@
 
 
 
+<!-- Modal -->
+<div class="modal fade" id="buy_ads_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Buy Ads</h5>
 
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"> <i class="fa-solid fa-xmark "></i></button>
+      </div>
+      <div class="modal-body">
+      
+        <input type="hidden"  id="package_id">
+        <input type="hidden"  id="price">
+        <label for="" class="font-weight-bold mt-2">
+          Total Number Of Ads <span class="text-danger">*</span>
+        </label>
+      <input type="number" class="form-control" id="total_ads" placeholder="Total Number Of Ads" >
+      <span class="text-danger">@error ('total_ads') {{$message}}@enderror</span>
+
+      <label for="" class="font-weight-bold mt-2">
+          Total Price <span class="text-danger">*</span>
+        </label>
+      <input type="number" class="form-control" id="total_price" placeholder="0"  readonly>
+      <span class="text-danger">@error ('total_ads') {{$message}}@enderror</span>
+     
+      </div>
+      <div class="modal-footer">
+      
+        <button type="submit" class="btn btn-primary add_to_cart" disabled>Add To Cart</button>
+      </div>
+       
+    </div>
+  </div>
+</div>
+
+
+
+@endsection
+
+@section('script')
+<script type="text/javascript">
+  $(document).ready(function(){
+    
+    $('.buy_add_now').click(function(){
+
+      $('#buy_ads_Modal').modal('show');
+      
+      $('#package_id').val($(this).data('id'))
+      let price=$(this).data('price')
+      $('#price').val(price)
+      $('#total_price').val(price)
+
+      let ads =$('#total_ads').val();
+      if(ads.length==0)
+      {
+        $('.add_to_cart').prop('disabled',true)
+      }else
+      {
+        $('.add_to_cart').prop('disabled',false)
+      }
+ 
+    });
+
+
+   
+    $('#total_ads').change(function(){
+        let ads =$(this).val;
+      if(ads.length==0)
+      {
+        $('.add_to_cart').prop('disabled',true)
+      }else
+      {
+        $('.add_to_cart').prop('disabled',false)
+      }
+     let new_price=$(this).val() * $('#price').val();
+     $('#total_price').val(new_price);
+
+    });
+    
+
+    //add to cart
+
+    $(".add_to_cart").click(function (e) 
+ { 
+   
+       e.preventDefault();
+       var id=$('#package_id').val();
+      $.ajax({
+            url : '/company/add-to-cart/' +id,
+            method: "GET",
+            data: {
+                _token: '{{ csrf_token() }}', 
+                ads:$('#total_ads').val(),
+                price:$('#total_price').val(),
+              
+            },
+      }).done(function(res){
+        
+        $('#buy_ads_Modal').modal('hide');
+        $('#total_price').val('')
+        $('#total_ads').val('')
+        myFunction(i=1,res)
+
+      }).fail(function(e){
+        console.log('erro')
+      });
+      
+    
+       
+});
+
+
+  });
+</script>
 
 @endsection

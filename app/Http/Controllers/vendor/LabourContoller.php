@@ -30,7 +30,7 @@ class LabourContoller extends Controller
     public function index()
     {
        
-        $ads=VendorAds::where('agent_id',Auth::id())->where('total_ads','>',0)->sum('total_ads');
+        $ads=VendorAds::where('agent_id',Auth::id())->where('total_ads','>',0)->get();
 
         $labours=$this->user->get(Auth::user()->company_id);
      
@@ -126,8 +126,8 @@ class LabourContoller extends Controller
         $data=[
           
              'labour_name'=>$request->labour_name,
-            'email'=>$request->email,
-            ' password'=>$request->password,
+             'email'=>$request->email,
+             ' password'=>$request->password,
              'labour_image'=>$this->image(),
              'labour_phone'=>$request->labour_phone,
         ];
@@ -142,13 +142,16 @@ class LabourContoller extends Controller
      */
     public function destroy($id)
     {
-        $query=AgentAds::where('agent_id',$id);;
+        $query=AgentAds::where('agent_id',$id);
           $agent_ads=$query->first();
           
           $ads=VendorAds::where('agent_id',Auth::id())->first();
-           
-           $ads->total_ads=$ads->total_ads + $agent_ads->total_ads;
-           $ads->save();
+           if($agent_ads)
+           {
+             $ads->total_ads=$ads->total_ads + $agent_ads->total_ads;
+             $ads->save();
+           }
+          
            
           $agent_ads=$query->delete();
         return \App\Helpers\Form::DeleteEloquent(new Agent,$id);
@@ -157,9 +160,10 @@ class LabourContoller extends Controller
 
     function assignAd(Request $req)
     {
+      $ad=VendorAds::where('agent_id',Auth::id())->where('total_ads','>',0)->first();
        $adds=AgentAds::where('agent_id',$req->agent_id)->first();
       
-        if(!$adds==null)
+        if($adds != null)
         {
            
           $adds->total_ads=$req->total_ads+$adds->total_ads;
@@ -170,11 +174,12 @@ class LabourContoller extends Controller
           $ads=new AgentAds;
           $ads->total_ads=$req->total_ads;
           $ads->agent_id=$req->agent_id;
+          $ads->package_name=$ad->package_name;
            $ads->save();
 
         }
         
-         $ad=VendorAds::where('agent_id',Auth::id())->where('total_ads','>',0)->first();
+         
          $ad->total_ads=$ad->total_ads-$req->total_ads;
          $ad->save();
 

@@ -147,7 +147,7 @@
  
  <div class="owl-carousel owl-theme ml-2"  >
      @foreach($products as $product)
-     @if($product['ads_type']=='premium')
+     @if($product['ads_type']=='Premium')
     <x-card.card   :product="$product" />  
     @endif
     @endforeach
@@ -167,7 +167,7 @@
    
   <div class="owl-carousel owl-theme "  >
     @foreach($products as $product)
-     @if($product['ads_type']=='feature')
+     @if($product['ads_type']=='Feature')
     <x-card.card   :product="$product" />  
     @endif
     @endforeach
@@ -186,7 +186,7 @@
    
    <div class="owl-carousel owl-theme "  >
     @foreach($products as $product)
-     @if($product['ads_type']=='tranding')
+     @if($product['ads_type']=='Tranding')
     <x-card.card   :product="$product" />  
     @endif
     @endforeach

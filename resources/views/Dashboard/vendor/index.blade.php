@@ -1,38 +1,27 @@
 @extends('Dashboard.admin')
 @section('content')
+ 
+ 
+ <?php 
+    $data="All None Approve Vendor";
+    $type='vendor'; 
+    
+  ?>
+<x-product-component :users=$users :data=$data :type=$type  />
 
- <?php $data="All None Approve Vendor"; $type='vendor' ?>
-<x-product-component :users=$users :data=$data :type=$type/>
-
+<form id="approve_form">
+    <input type="hidden" name="approved" id="app">
+</form>
 @endsection
 
 @section('script')
-@parent
 <script type="text/javascript">
-	
- $(document).ready(function()
- {   
-  $('.user').change(function () {
+    $('#Approved').change(function(){
 
-        let status = $(this).prop('checked') === true ? 1 : 0;
-        alert('sed')
-        let id = $(this).data('id');
-      
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url :'approve/this/user',
-            
-           data: {'approve': status, 'id': id},
-            success: function (data) {
-               console.log('ddf');
-           }
-       });
-       
-  
-        
-    });
-  
- });
+    $('#app').val($(this).val())
+    $('#approve_form').submit();
+    })
 </script>
 @endsection
+
+<!-- js code is in admin.blade -->

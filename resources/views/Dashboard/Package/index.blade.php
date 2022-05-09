@@ -159,12 +159,12 @@
    @foreach($packages as $package)
     <div class="plan plan1">
         <div class="header">{{ucfirst($package['package_name'])}}</div>
-        <div class="price">${{$package['package_price']-$package['package_discount']}}</div>  
-        <div class="monthly">per Package</div>      
+        <div class="price">{{$package['package_price']-$package['package_discount']}} AED</div>  
+        <div class="monthly">per Ads</div>      
         <ul>
-            <li><b>{{$package['package_ads']}}</b> Ads</li>
+          
             <li><b>Valid Till: </b>{{date('d-m-Y', strtotime($package['package_duration']))}} </li>
-            <li><b>${{$package['package_discount']}}</b> Discount</li>
+            <li><b>@if($package['package_discount']) {{$package['package_discount']}} @else 0 @endif AED</b> Discount</li>
           
         </ul>
         <hr class="m-2">

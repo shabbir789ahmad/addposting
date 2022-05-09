@@ -25,8 +25,7 @@
 								<th scope="col">User Name</th>
 								<th scope="col">User email</th>
 								<th scope="col">Package Name</th>
-								<th scope="col"> Quentity</th>
-								<th scope="col"> Ads</th>
+								<th scope="col">Ads Quentity</th>
 								<th scope="col">Total Price</th>
 								<th scope="col">Approve Package</th>
 							</tr>
@@ -38,7 +37,6 @@
 								<td class="text-dark">{{ ucfirst($car->user_name) }}</td>
 								<td class="text-dark">{{ ucfirst($car->email) }}</td>
 								<td class="text-dark">{{ ucfirst($car->item_name) }}</td>
-								<td class="text-dark">{{$car->item_quentity}}</td>
 								<td class="text-dark">{{$car->item_ads }}</td>
 								<td class="text-dark">{{$car->item_total}}</td>
 							

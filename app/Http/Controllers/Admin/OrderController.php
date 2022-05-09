@@ -13,7 +13,13 @@ class OrderController extends Controller
    
     public function index()
     {
-        $cart=Agent::join('carts','agents.id','=','carts.agent_id')->select('carts.item_name','carts.item_ads','carts.item_quentity','carts.item_total','carts.approved','agents.user_name','agents.email','carts.id',)->where('carts.deleted_at',null)->where('approved','=',0)->orderBy('carts.created_at','Desc')->paginate(50);
+        $cart=Agent::join('carts','agents.id','=','carts.agent_id')
+        ->select('carts.item_name','carts.item_ads','carts.item_total','carts.approved','agents.user_name','agents.email','carts.id',)
+        ->where('carts.deleted_at',null)
+        ->where('approved','=',0)
+        ->orderBy('carts.created_at','Desc')
+        ->paginate(50);
+
         return view('Dashboard.adorder.index',compact('cart'));
     }
 

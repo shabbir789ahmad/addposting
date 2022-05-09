@@ -8,9 +8,15 @@ use App\Models\User;
 use App\Models\Agent;
 class UserController extends Controller
 {
-     public function index()
+     public function index(Request $request)
     {
-        $users=Agent::all();
+        $query=Agent::where('user_type','vendor')->latest();
+        
+        if($request->approved)
+        {
+            $query=$query->where('approve','=',$request->approved);
+        }
+        $users=$query->get();
         return view('Dashboard.vendor.index',compact('users'));
     }
 
@@ -33,9 +39,16 @@ class UserController extends Controller
         return redirect()->back()->with('success','User Deleted Successfully');
     }
     
-     public function index2()
+     public function index2(Request $request)
     {
-        $users=User::all();
+        $query=Agent::where('user_type','agent')->latest();
+        
+        if($request->approved2)
+        {
+            
+            $query=$query->where('approve','=',$request->approved2);
+        }
+        $users=$query->get();
         return view('Dashboard.users.index',compact('users'));
     }
     

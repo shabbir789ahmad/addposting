@@ -49,9 +49,10 @@ class AdsController extends Controller
          $company_id=null;
          $products= $this->product->get(Auth::user()->id,$company_id);
        }
-        
+       
         return view('vendor.ads.index',compact('products'));
     }
+
     public function index2()
     {
         $properties=Property::all();
@@ -60,14 +61,14 @@ class AdsController extends Controller
 
    public function category($id)
    {
-    $data=Category::where('property_id',$id)->get();
-    return response()->json($data);
+      $data=Category::where('property_id',$id)->get();
+      return response()->json($data);
    }
 
    public function city($id)
    {
-    $data=City::where('state_id',$id)->get();
-    return response()->json($data);
+      $data=City::where('state_id',$id)->get();
+      return response()->json($data);
    }
 
     public function create($id)
@@ -79,16 +80,16 @@ class AdsController extends Controller
 
         if(Auth::user()->user_type=='vendor')
         {
-          $ads=VendorAds::all();
+          $ads=VendorAds::where('total_ads','>',0)->get();
 
         }else if(Auth::user()->user_type=='agent')
         {
-            $ads=AgentAds::all();
+            $ads=AgentAds::where('total_ads','>',0)->get();
         }
         
         $types=Type::where('type_id',$id)->get();
         $subcategories=SubCategory::where('category_id',$id)->get();
-    
+     
         return view('vendor.ads.create',compact('categorie','subcategories','areas','states','types','ads'));
     }
 

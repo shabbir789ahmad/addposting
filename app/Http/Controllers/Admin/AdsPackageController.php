@@ -41,7 +41,6 @@ class AdsPackageController extends Controller
         $request->validate([
           
           'package_name'=>'required',
-          'package_ads'=>'required',
           'package_price'=>'required',
           'package_duration'=>'required',
          
@@ -50,7 +49,6 @@ class AdsPackageController extends Controller
         $data=[
 
           'package_name'=>$request->package_name,
-          'package_ads'=>$request->package_ads,
           'package_price'=>$request->package_price,
           'package_duration'=>$request->package_duration,
          
@@ -93,7 +91,6 @@ class AdsPackageController extends Controller
         $request->validate([
           
           'package_name'=>'required',
-          'package_ads'=>'required',
           'package_price'=>'required',
           'package_duration'=>'required',
          
@@ -101,7 +98,6 @@ class AdsPackageController extends Controller
         $data=[
 
           'package_name'=>$request->package_name,
-          'package_ads'=>$request->package_ads,
           'package_price'=>$request->package_price,
           'package_duration'=>$request->package_duration,
          
@@ -117,11 +113,9 @@ class AdsPackageController extends Controller
           'package_discount'=>'required',
          
         ]);
-        $data=[
 
-          'package_discount'=>$request->package_discount,
-        ];
-        return \App\Helpers\Form::updateEloquent(new Package,$id, $data);
+        
+        return \App\Helpers\Form::updateEloquent(new Package,$id, $request->only('package_discount'));
     }
 
     /**

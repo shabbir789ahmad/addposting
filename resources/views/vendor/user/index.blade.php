@@ -107,11 +107,16 @@ input[type=number] {
         @csrf
       <div class="modal-body">
         <input type="hidden" name="agent_id" id="labour">
-        <label class="mt-4">Total Ads In Wallet</label>    
-        <input type="number" name="all_ads" class="form-control" value="{{$ads}}" id="all_ads" readonly>
+        <label class="mt-4 font-weight-bold" >Select Ads Package </label> 
+        <select class="form-control" name="all_ads" id="all_ads">
+          @foreach($ads as $ad)
+          <option value="{{$ad['total_ads']}}"> {{$ad['package_name']}} {{$ad['total_ads']}}</option>
+          @endforeach
+        </select>   
+      
          
         <span id="message" class="text-danger"></span><br>
-         <label class="">Number Of Ads To This User</label>
+         <label class="font-weight-bold">Number Of Ads To This User</label>
          <input type="number" name="total_ads" class="form-control" id="new_ads" step="0.01">
          
       </div>
@@ -133,8 +138,9 @@ input[type=number] {
 
     $('#ads_modal').modal('show')
     let id=$(this).data('id');
+
     $('#labour').val(id)
-   })
+   });
 
   $('#new_ads').keyup(function(){
    

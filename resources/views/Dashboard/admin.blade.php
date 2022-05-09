@@ -348,6 +348,34 @@ $('.discount').click(function(){
     
 </script>
 
+
+<!-- approve non approve vendor and agent -->
+<script type="text/javascript">
+  $('.user').change(function () {
+
+        let status = $(this).prop('checked') === true ? 1 : 0;
+        
+        let id = $(this).data('id');
+      
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url :'approve/this/user',
+            
+           data: {'approve': status, 'id': id},
+            success: function (data) {
+               console.log('ddf');
+           }
+       });
+       
+  
+        
+    });
+
+
+ 
+</script>
+
 @section('script')
 @show
     

@@ -57,7 +57,7 @@
       @if(count($products)>0)
 
       @foreach($products as $product)
-      <div class="col-md-3">
+      <div class="col-md-3 mt-3">
        <x-card.card2 :product="$product" />
      </div>
       @endforeach
