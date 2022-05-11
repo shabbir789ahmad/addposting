@@ -8,17 +8,22 @@ use App\Models\Image;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Area;
+use App\Models\Agent;
 use App\Models\SubCategory;
+use App\Http\Traits\CategoryTrait;
+use App\Http\Traits\CityTrait;
 class SearchResultController extends Controller
 {
+    use CategoryTrait;
+    use CityTrait;
     function searchResut(Request $request)
     {
-         $categories=Category::latest()->select('category_name','category_image','id')->get();
-         $cities=City::latest()->select('city','id')->get();
+         $categories=$this->categoryIndex();
+         $cities=$this->cityindex();
          $areas=Area::latest()->select('areaunit','id')->get();
          $features=SubCategory::latest()->select('sub_category_name')->get();
 
-        $products=Product::join('categories','categories.id','products.category_id')->select('products.name','products.id','products.price','products.category_id','products.location','categories.category_name','products.bedroom','products.bathroom','products.total_area','products.areaunit','products.city');
+        $products=Product::with('images')->select('name','id','price','created_at','areaunit','city','bathroom','bedroom','ads_type','category_id','company_id');
        
         if($request->search)
         {
@@ -68,10 +73,11 @@ class SearchResultController extends Controller
       // }
 
         
-        $products=$products->paginate(4);
-         foreach($products as $product) {
-       
-          $product->img= Image::where('product_id',$product['id'])->first();
+        $products=$products->paginate(20);
+         
+         foreach($products as $product)
+         {
+            $product->agent=Agent::where('company_id',$product['company_id'])->where('user_type','vendor')->select('user_image')->first();
          }
 
         return view('websites.searchresult',compact('products','categories','features','cities','areas'));

@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\AreaController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\EnvController;
 
 use App\Http\Controllers\vendor\PackageController;
 use App\Http\Controllers\vendor\AdsController;
@@ -29,21 +30,25 @@ use App\Http\Controllers\PriceController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SearchResultController;
 use App\Http\Controllers\AgentController;
-
-
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\EmailToVendorController;
 
 
 use App\Http\Controllers\company\CompanyController;
 
+// login user
 Auth::routes();
-
- 
-
- Route::get('/',[HomeController::class,'index']);
- Route::view('select/login/type','auth.login_type')->name('login.type');
-
+Route::view('select/login/type','auth.login_type')->name('login.type');
 Route::view('non/apprive','approve')->name('approve');
+
+Route::view('mail','user_email');
+
+
+
+Route::get('/',[HomeController::class,'index']);
+
+//user send email to vendor or agent to inqure about property
+Route::post('send/email/to/vendor',[EmailToVendorController::class,'email'])->name('email.to.vendor');
 
 Route::get('ads/{id}detail',[HomeController::class,'adsdetail'])->name('ads.detail');
 Route::get('all/{id}/ads',[HomeController::class,'allAds'])->name('all.ads');
@@ -155,6 +160,7 @@ Route::group(['prefix'=>'admin'],function()
     Route::get('/vendor', 'index')->name('vendor.index');
     Route::get('approve/this/user','update');
 
+    Route::get('/vendor/{id}/detail', 'detail')->name('vendor.detail');
     Route::delete('/vendor/{id}/destroy', 'destroy')->name('vendor.destroy');
     Route::get('/user', 'index2')->name('user.index');
   });
@@ -166,6 +172,11 @@ Route::group(['prefix'=>'admin'],function()
 
    //area unit route 
    Route::resource('area', AreaController::class);
+
+   //aenv crediential  route 
+  Route::resource('env', EnvController::class);
+ 
+
   //ads order route
   
    Route::get('order',[OrderController::class,'index'])->name('order.index');

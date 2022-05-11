@@ -20,7 +20,7 @@ class PackageController extends Controller
    
     {
         $packages=$this->package->get();
-     
+    
         return view('vendor.package.index',compact('packages'));
     }
 }

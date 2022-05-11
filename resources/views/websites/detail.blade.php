@@ -80,15 +80,17 @@
        </a>
        <p><span class="fw-bold language">Language</span>   <span>English</span>, <span>Urdu</span>, <span>Arabic</span></p>
        <div class="d-flex mb-4">
-         <button  class="btn btn_chat pl-0 call"><i class="fa-solid fa-phone"></i> Call</button>
+         <button  class="btn btn_chat pl-0 call" id="display_number_button"><i class="fa-solid fa-phone"></i> Call</button>
 
-         <button  class="btn btn_chat pl-0 email bg-danger" data-id="{{$products['agent_id']}}" data-name="{{$products['name']}}" data-agent="{{ucfirst($products['user_name'])}}"><i class="fa-solid fa-envelope"></i> Email</button>
+         <button  class="btn btn_chat pl-0 email bg-danger" data-id="{{$products['agent_id']}}" data-name="{{$products['name']}}" data-agent="{{ucfirst($products['user_name'])}}" data-email="{{ucfirst($products['email'])}}"><i class="fa-solid fa-envelope"></i> Email</button>
          
-      
-           <button class="btn btn_chat show_number bg-success"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+         <a href="https://wa.me/{{$products['phone']}}" class="btn btn_chat  bg-success">
+           <i class="fa-brands fa-whatsapp"></i>Whatsapp
+         </a>
+        
       
        </div>
-        
+        <h5 class="text-center fw-bold" id="display_number" style="display:none"><i class="fa-solid fa-phone"></i>  {{$products['phone']}}</h5>
       </div>
      </div>
    
@@ -195,7 +197,7 @@
    
   <div class="owl-carousel owl-theme "  >
     @foreach($products2 as $product)
-    <x-card.card2   :product="$product" />  
+    <x-card.card   :product="$product" />  
     @endforeach
  
   </div>
@@ -203,9 +205,9 @@
 
  
 
- <x-email--component />
+ <x-email--component  />
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -218,7 +220,7 @@
      
     </div>
   </div>
-</div>
+</div> -->
 <script type="text/javascript">
     
     function changepic(a)
@@ -233,17 +235,36 @@
 
 @section('script')
 <script type="text/javascript">
-  $('.email').click(function(){
-    $('#emailmodal').modal('show');
-    let name=$(this).data('name');
-    $('#name').text(name)
-    let agent=$(this).data('agent');
-    $('#agent').text(agent)
-    
-    document.getElementById("product_image").src=document.getElementById("imgs").src
-  })
-  $('.show_number').click(function(){
-    $('#exampleModal').modal('show')
-  })
+  $('.email').click(function()
+  {
+     $('#emailmodal').modal('show');
+      let name=$(this).data('name');
+     $('#name').text(name);
+     $('.name').val(name);
+ 
+     let agent=$(this).data('agent');
+     $('#agent').text(agent);
+     $('.agent').val(agent);
+     
+     $('#email').val($(this).data('email'));
+     $('#image').val($('#imgs').attr('src'));
+
+     document.getElementById("product_image").src=document.getElementById("imgs").src
+  });
+
+  $('.show_number').click(function()
+    {
+
+       $('#exampleModal').modal('show');
+
+   });
+</script>
+
+<script type="text/javascript">
+  
+  $('#display_number_button').on('click',function()
+  {
+     $('#display_number').css('display','block')
+  });
 </script>
 @endsection

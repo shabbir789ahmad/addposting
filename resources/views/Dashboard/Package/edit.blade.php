@@ -18,7 +18,12 @@
 						<label for="" class="font-weight-bold mt-2">
 							Package Name <span class="text-danger">*</span>
 						</label>
-						<input type="text" class="form-control" name="package_name" placeholder="Package Name" value="{{$packages['package_name']}}">
+						<select class="form-control" name="package_name">
+							
+							<option value="premium" @if($packages['package_name']=='premium') selected @endif>Premium</option>
+							<option value="featured" @if($packages['package_name']=='featured') selected @endif>Featured</option>
+							<option value="hot" @if($packages['package_name']=='hot') selected @endif>Hot</option>
+						</select>
 						<span class="text-danger">@error ('package_name') {{$message}}@enderror</span>
 
 						<label for="" class="font-weight-bold mt-2">
@@ -29,10 +34,10 @@
 
 
 						<label for="" class="font-weight-bold mt-2">
-							 Package Duration <span class="text-danger">*</span>
+							 Package Discount (if any) <span class="text-danger">*</span>
 						</label>
-						<input type="datetime-local" class="form-control" name="package_duration" value="{{$packages['package_duration']}}">
-						<span class="text-danger">@error ('package_duration') {{$message}}@enderror</span>
+						<input type="number" class="form-control" name="package_discount" value="{{$packages['package_discount']}}">
+						<span class="text-danger">@error ('package_discount') {{$message}}@enderror</span>
 					</div>
 					<div class="text-center">
 						<button class="btn btn_color mt-3">Save</button>

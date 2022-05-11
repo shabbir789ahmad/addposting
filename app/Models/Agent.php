@@ -26,9 +26,18 @@ class Agent extends Authenticatable
         'user_type',
         'about_me',
         'company_id',
+        'approve',
        
         
     ];
+
+
+    protected function userName(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => ucfirst($value),
+        );
+    }
 
     /**
      * The attributes that should be hidden for serialization.

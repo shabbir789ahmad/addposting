@@ -42,10 +42,7 @@ trait ProductTrait
       $price2=$req->price2;
      }
     
-       $query=Product::
-         join('categories','categories.id','products.category_id')
-         ->select('products.name','categories.category_name','products.id','products.price','products.created_at','products.areaunit','products.city','products.bathroom','products.bedroom','products.ads_type')
-        ->orderBy('products.created_at','Desc')->take(40);
+       $query=Product::with('images')->take(100)->select('name','id','price','created_at','areaunit','city','bathroom','bedroom','ads_type');
         if($id)
         {
           $query=$query->where('products.category_id',$id);
@@ -82,6 +79,7 @@ trait ProductTrait
    }
 
    
+
 
  
 

@@ -20,6 +20,21 @@
   left: 0;
   right: 0;
 }
+
+.category_data5 p{
+  position: absolute;
+  right: 0;
+  top: 1%;
+  font-size: 11px;
+    display: inline-block;
+    padding: 4px 20px;
+    background: #198754;
+    border-radius: 5%;
+    margin-bottom: 5px;
+    color: #fff;
+
+    font-weight: bold;
+}
 @media (min-width: 1500px) and (max-width: 2000px)
 {
  .seller_name2
@@ -61,6 +76,7 @@
     color: #fff;
     font-weight: bold;
 }
+
 .product_data h5
 {
   
@@ -132,6 +148,7 @@
     color: #fff;
     font-weight: bold;
 }
+
 
 .add_comany_img{
   width: 20%;

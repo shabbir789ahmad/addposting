@@ -20,4 +20,9 @@ class Category extends Model
     {
         return ucfirst($value);
     }
+
+    public static function categories()
+    {
+        return Category::latest()->take(4)->get();
+    }
 }

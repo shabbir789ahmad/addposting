@@ -112,17 +112,26 @@
            
           <div class="row">
             <div class="col-md-4 col-12">
-              <img src="{{asset('uploads/product/'.$product->img['product_images'])}}" class="product_image" width="100%">
+              <img src="{{asset('uploads/product/'.$product->images['product_images'])}}" class="product_image" width="100%">
                
             </div>
             <div class="col-md-8 col-12">
               <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
-              <div class="category_data2 mb-0">
-                <p>{{$product['category_name']}}</p>
+                @if($product['ads_type']=='Premium' || $product['ads_type']=='Featured' || $product['ads_type']=='Hot' )
+              <div class="category_data5 mb-0">
+                <p>{{$product['ads_type']}}</p>
               </div>
+              @endif
+              @foreach($categories as $category)
+              @if($category['id']==$product['category_id'])
+              <div class="category_data2 mb-0">
+                <p>{{$category['category_name']}}</p>
+              </div>
+              @endif
+              @endforeach
               <div class="product_data mb-0 mt-2 d-flex ">
                 <h5>{{$product['price']}} AED</h5> 
-                <p class=" text-dark">Premium</p>
+               <!--  <p class=" text-dark">Premium</p> -->
               </div>
               <div class="product_data mb-0 text-danger d-flex">
                 <h5>{{ucfirst($product['name'])}}</h5>
@@ -151,8 +160,9 @@
                  @endif
                  
                </div>
+
                <div class="add_comany_img" >
-               <img src="{{asset('pic/2416-logo.webp')}}" width="100%" class="mr-2">
+               <img src="{{asset('uploads/user/'.$product->agent->user_image)}}" width="100%" class="mr-2">
                </div>
               </div>
               <div class="product_data mb-0 mt-0">

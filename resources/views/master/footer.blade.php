@@ -1,3 +1,11 @@
+<?php 
+use App\Models\City;
+use App\Models\Category;
+$cities=City::cities();
+$categories=Category::categories();
+
+?>
+
 <div class="cof" >
  <div class="card" style="background-color: #0E2E50;">
   <div class="card-body">

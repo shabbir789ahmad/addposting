@@ -3,12 +3,12 @@
 
       <a href="{{route('ads.detail',['id'=>$product['id']])}}" class="link">
      
-       <img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" class="product_image" width="100%">
+       <img src="{{asset('uploads/product/'.$product->images['product_images'])}}" class="product_image" width="100%">
       
        <div class="card-body pt-1">
-        <div class="category_data mb-0">
+        <!-- <div class="category_data mb-0">
          <p>{{$product['category_name']}}</p>
-        </div>
+        </div> -->
 
          <div class="varified mb-0">
          @if($product['ads_type'] == 'free')
@@ -26,6 +26,9 @@
           <p class="m-0 area2"><i class="fa-solid fa-location-dot text-dark"></i>  {{ucfirst($product['city'])}} 
            
           </p>
+          <div class="ms-auto price">
+            <span class="ml-auto text-danger">  {{$product['price']}}  AED</span>
+            </div>
          </div>
 
         <div class="product_data2 mb-0 mt-0">
@@ -45,9 +48,7 @@
               </div>
              @endif
             </div>
-             <div class="ms-auto price">
-            <span class="text-center text-danger">  {{$product['price']}}  AED</span>
-            </div>
+           
           
         </div>
         

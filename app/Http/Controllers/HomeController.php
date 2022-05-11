@@ -16,6 +16,7 @@ use App\Models\Feature;
 use App\Http\Traits\ProductTrait;
 use Illuminate\Http\Request;
 use Cookie;
+use Cache;
 use App\Http\Traits\UserTrait;
 use App\Http\Traits\CategoryTrait;
 use App\Http\Traits\CityTrait;
@@ -43,17 +44,16 @@ class HomeController extends Controller
         $features=SubCategory::latest()->select('sub_category_name')->get();
         $areas=Area::all();
         $prices=Price::latest()->select('price1','id')->get();
-        $products=$this->products($id='');;
-         foreach($products as $product)
-         {
-       
-          $product->img=Image::where('product_id',$product['id'])->first();
-         }
+
+
+      
+        $products=$this->products($id='');
+
 
          return view('websites.landing',compact('categories','sliders','products','cities','areas','prices','features'));
     }
 
-    
+     
     function allAds($id)
     { 
         $categories=$this->categoryIndex();
@@ -71,16 +71,18 @@ class HomeController extends Controller
     $products=Product::
       join('categories','categories.id','products.category_id')
       ->join('agents','agents.id','products.agent_id')
-      ->select('products.*','user_name','user_image','phone','about_me','user_type')
+      ->select('products.*','user_name','user_image','phone','about_me','user_type','email')
       ->where('products.id',$id)
       ->first();
          
-         $features=Feature::where('product_id',$products->id)->get();
+    $features=Feature::where('product_id',$products->id)->get();
         
-        $images=Image::where('product_id',$id)->get();
-        $products2=$this->products($products->category_id);
+    $images=Image::where('product_id',$id)->get();
+        
+    $products2=$this->products($products->category_id);
        
-        return view('websites.detail',compact('products','images','products2','features'));
+    return view('websites.detail',compact('products','images','products2','features'));
+    
     }
 
     // function sortAds()

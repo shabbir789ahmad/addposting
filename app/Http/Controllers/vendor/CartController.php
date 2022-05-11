@@ -9,6 +9,7 @@ use App\Models\Cart;
 use Auth;
 use Notification;
 use App\Notifications\NewOrderNotification;
+use App\Jobs\SendOrderEmailJob;
 class CartController extends Controller
 {
    public function addToCart($id,Request $req)
@@ -80,13 +81,28 @@ class CartController extends Controller
          try{
 
              $order =Cart::create($data);
-             session()->forget('cart');
-             Notification::send($order, new NewOrderNotification($order));
+             
+              // Notification::send($order, new NewOrderNotification($order));
+             
+             //send email
+             $details=[
+              'email'=>Auth::user()->email,
+              'name'=>Auth::user()->user_name,
+              'order'=>'Recieved',
+              'package'=>'we ve received order For '.$cart['package_name'].' Ads Package and are working on it now.We will email you an update when we ve Approved it.',
+             ];
+
+            dispatch(new SendOrderEmailJob($details));
+
+            //forget session
+            session()->forget('cart');
+
             return to_route('vendor.all.add')->with('success','Your Order Has Been Placed');
+
          }catch(\Exception $e)
-        {
+         {
             return redirect()->back()->with('success','Could Not Place Order');
-        }
+         }
            
         
     }

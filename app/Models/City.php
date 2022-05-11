@@ -10,4 +10,9 @@ class City extends Model
     use HasFactory;
 
     protected $fillable=['state_id','city'];
+
+    static function cities()
+    {
+        return City::latest()->take(4)->get();
+    }
 }

@@ -4,8 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
-use App\Models\City;
-use App\Models\Category;
+
 use View;
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,9 +29,9 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function($view)
         {
           
-              $cities=City::latest()->take(4)->get();
-              $categories=Category::latest()->take(4)->get();
-            $view->with('cities', $cities)->with('categories',$categories);
+              ///$cities=City::latest()->get();
+            //   $categories=Category::latest()->get();
+            // $view->with('categories',$categories);
         });
         
     }

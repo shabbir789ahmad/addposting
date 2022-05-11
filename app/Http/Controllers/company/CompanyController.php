@@ -10,6 +10,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Traits\ImageTrait;
 use Auth;
+use Mail;
+use app\Jobs\SendWelcomeEmailJob;
 class CompanyController extends Controller
 {
     use ImageTrait;
@@ -53,6 +55,17 @@ class CompanyController extends Controller
              'image'=>'required',
              'phone'=>['required', 'min:9', ],
         ]);
+
+        $request = app('request');
+
+        if($request->hasfile('licenece_image'))
+         {
+            $file=$request->file('licenece_image');
+            $ext=$file->getClientOriginalExtension();
+            $name= time(). '.' . $ext;
+            $file->move('uploads/user/',$name);
+          
+          }
     
         $comany=[
           
@@ -62,13 +75,13 @@ class CompanyController extends Controller
              'zip_code'=>$request->zip_code,
             
              'company_address'=>$request->company_address,
-             'licenece_image'=>$request->licenece_image,
+             'licenece_image'=>$name,
             
         ];
 
          
         
-         try {
+        // try {
        \DB::beginTransaction();
          
           $company=Company::create($comany);
@@ -86,7 +99,23 @@ class CompanyController extends Controller
              'company_id'=>$company->id,
 
           ]);
+          
+          $email_data=[
+           'name'=>$request->name,
+             'email'=>$request->email,
+          ];
 
+          $details=[
+            
+            'email'=>$request->email,
+            'name'=> 'Hi '.$request->name,
+            'approve'=>"Thank you for signup. Your account is in Pending. it will take 24-48 Hours to approve",
+            'contnue'=>'We are sorry for wait',
+            'about'=>'Integer eget nibh vel massa gravida ullamcorper. Sed a viverra ante. Nullam posuere pellentesque lectus, nec vehicula felis rutrum ac. Maecenas porta facilisis turpis, eget imperdiet purus.'
+       ];
+
+          //send welcome email
+          dispatch(new SendWelcomeEmailJob($email_data));
          \DB::commit();
 
       
@@ -95,11 +124,11 @@ class CompanyController extends Controller
         
             
            
-       } catch (\Exception $e)
-        {
+       //} catch (\Exception $e)
+      //  {
            
-         return redirect()->back()->with('flash','fail');          
-        }
+       //  return redirect()->back()->with('flash','fail');          
+       // }
          
     }
 

@@ -42,7 +42,7 @@
 							
 									
 								<td>
-								<button class="btn btn-warning cart" data-id="{{$car['id']}}">Approve</button>
+								<button class="btn btn-warning cart" data-id="{{$car['id']}}" data-name="{{$car['item_name']}}">Approve</button>
 								<form action="{{ route('order.destroy', ['id' => $car->id]) }}" method="POST" class="d-inline" onsubmit="return confirmDelete()">
 				@method('DELETE')
 				@csrf
@@ -89,7 +89,12 @@ $(document).ready(function()
             dataType: "json",
             url :'orders/destroy',
             
-           data: { 'id': id},
+           data: { 
+
+           	'id': id,
+           	'name':$(this).data('name'),
+
+           },
             success: function (data) {
                console.log('ddf');
            }

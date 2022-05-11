@@ -17,7 +17,13 @@
 						<label for="" class="font-weight-bold mt-2">
 							Package Name <span class="text-danger">*</span>
 						</label>
-						<input type="text" class="form-control" name="package_name" placeholder="Package Name" value="{{old('package_name')}}">
+						<select class="form-control" name="package_name">
+							<option selected disabled hidden>Select Package Type</option>
+							<option value="premium">Premium</option>
+							<option value="featured">Featured</option>
+							<option value="hot">Hot</option>
+						</select>
+						
 						<span class="text-danger">@error ('package_name') {{$message}}@enderror</span>
 
 						<label for="" class="font-weight-bold mt-2">
@@ -29,10 +35,10 @@
 						
 
 						<label for="" class="font-weight-bold mt-2">
-							 Package Duration <span class="text-danger">*</span>
+							 Package Discount (if any) <span class="text-danger">*</span>
 						</label>
-						<input type="datetime-local" class="form-control" name="package_duration">
-						<span class="text-danger">@error ('package_duration') {{$message}}@enderror</span>
+						<input type="number" class="form-control" name="package_discount" placeholder="Package Discount If Any">
+						<span class="text-danger">@error ('package_discount') {{$message}}@enderror</span>
 					</div>
 					<div class="text-center">
 						<button class="btn btn_color mt-3">Save</button>

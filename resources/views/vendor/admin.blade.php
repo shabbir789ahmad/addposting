@@ -10,7 +10,7 @@
   <title>Dashboard</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
- <!--  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> -->
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
   <script src="https://kit.fontawesome.com/53bfee5bd7.js" crossorigin="anonymous"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -84,7 +84,7 @@
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-          <img src="{{asset('uploads/user/'.Auth::user()->user_image)}}">
+          <img src="{{asset('uploads/user/'.Auth::user()->user_image)}}" class="rounded border">
         </div>
       </a>
       <hr class="sidebar-divider my-0">
@@ -93,40 +93,47 @@
       </div>
       <hr class="sidebar-divider">
      
-       <li class="nav-item ">
+       <li class="nav-item @if(request()->is('company/dashboard')) active3 @endif">
         <a class="nav-link " href="{{route('company.dashboard')}}">
           <i class="fas fa-window-maximize text-light"></i>
           <span>Dashboard</span>
         </a>
        </li>
        @if(Auth::user()->user_type=='vendor')
-       <li class="nav-item ">
+       <li class="nav-item @if(request()->is('company/package')) active3 @endif">
         <a class="nav-link " href="{{route('package.index')}}">
          <i class="fas fa-ad text-light"></i>
           <span>Buy Ads</span>
         </a>
        </li>
-       <li class="nav-item ">
+       <li class="nav-item @if(request()->is('company/all/add/vendor')) active3 @endif">
         <a class="nav-link " href="{{route('vendor.all.add')}}">
           <i class="fas fa-address-card text-light"></i>
           <span>Your Wallet</span>
         </a>
        </li>
        @endif
-       <li class="nav-item ">
+       <li class="nav-item @if(request()->is('company/ads')) active3 @endif">
         <a class="nav-link " href="{{route('ads.index')}}">
           <i class="fas fa-ad text-light"></i>
           <span>All Ads</span>
         </a>
        </li>
-       <li class="nav-item ">
+       <li class="nav-item @if(request()->is('company/ads2')) active3 @endif">
+        <a class="nav-link " href="{{route('ads.index2')}}">
+          <i class="fas fa-ad text-light"></i>
+          <span>Create Ads</span>
+        </a>
+       </li>
+       
+       <li class="nav-item @if(request()->is('company/profile')) active3 @endif">
         <a class="nav-link " href="{{route('profile.index')}}">
           <i class="fas fa-address-card text-light"></i>
           <span>Your Profile</span>
         </a>
        </li>
        @if(Auth::user()->user_type=='vendor')
-       <li class="nav-item ">
+       <li class="nav-item @if(request()->is('company/labour')) active3 @endif">
         <a class="nav-link " href="{{route('labour.index')}}">
           <i class="fas fa-address-card text-light"></i>
           <span>Your User</span>

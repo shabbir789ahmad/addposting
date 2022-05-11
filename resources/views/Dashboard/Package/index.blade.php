@@ -163,7 +163,7 @@
         <div class="monthly">per Ads</div>      
         <ul>
           
-            <li><b>Valid Till: </b>{{date('d-m-Y', strtotime($package['package_duration']))}} </li>
+           <!-- <li><b>Valid Till: </b>{{date('d-m-Y', strtotime($package['package_duration']))}} </li>  --> 
             <li><b>@if($package['package_discount']) {{$package['package_discount']}} @else 0 @endif AED</b> Discount</li>
           
         </ul>

@@ -110,30 +110,6 @@
 </form>
 @endforeach
 
-<!--  <div class="container-fluid mt-5">
-  <p class="browser ">Browser By Category</p>
-  
-  <div class="row">
-   
-   @foreach($categories->slice(0,12) as $category)
-  
-   <div class="col-md-3 col-lg-2 col-6 col-sm-6  text-center" >
-     <a href="{{route('all.ads',['id'=>$category['id']])}}" class="link text-dark">
-    <div class="card card_hover mt-2  shadow" style="height: 10rem;">
-    <div class="card-body p-0 card_items">
-       <img src="{{asset('/uploads/user/'.$category['category_image'])}}"  class="mt-1 img_size">
-       <p class="p-2 mb-0">{{ucfirst($category['category_name'])}}</p>
-       <button class="btn btn-lg ">{{\App\Models\Product::where(['category_id' => $category->id])->count()}}</button>
-    </div>
-   </div>
-   </a>
-  </div>
-
-  @endforeach
- 
-
- </div>
-</div> -->
 
 
 <!-- products -->
@@ -167,7 +143,7 @@
    
   <div class="owl-carousel owl-theme "  >
     @foreach($products as $product)
-     @if($product['ads_type']=='Feature')
+     @if($product['ads_type']=='Featured')
     <x-card.card   :product="$product" />  
     @endif
     @endforeach
@@ -186,7 +162,7 @@
    
    <div class="owl-carousel owl-theme "  >
     @foreach($products as $product)
-     @if($product['ads_type']=='Tranding')
+     @if($product['ads_type']=='free')
     <x-card.card   :product="$product" />  
     @endif
     @endforeach
@@ -208,7 +184,7 @@
    
    <div class="owl-carousel owl-theme "  >
     @foreach($products as $product)
-     @if($product['ads_type']=='free')
+     @if($product['ads_type']=='Hot')
     <x-card.card   :product="$product" />  
     @endif
     @endforeach

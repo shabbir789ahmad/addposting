@@ -42,7 +42,7 @@ class AdsPackageController extends Controller
           
           'package_name'=>'required',
           'package_price'=>'required',
-          'package_duration'=>'required',
+         
          
         ]);
 
@@ -50,7 +50,7 @@ class AdsPackageController extends Controller
 
           'package_name'=>$request->package_name,
           'package_price'=>$request->package_price,
-          'package_duration'=>$request->package_duration,
+          'package_discount'=>$request->package_discount??null,
          
         ];
            return \App\Helpers\Form::createEloquent(new Package, $data);
@@ -92,14 +92,13 @@ class AdsPackageController extends Controller
           
           'package_name'=>'required',
           'package_price'=>'required',
-          'package_duration'=>'required',
          
         ]);
         $data=[
 
           'package_name'=>$request->package_name,
           'package_price'=>$request->package_price,
-          'package_duration'=>$request->package_duration,
+          'package_discount'=>$request->package_discount??null,
          
         ];
         return \App\Helpers\Form::updateEloquent(new Package,$id, $data);

@@ -36,9 +36,10 @@
 								<td class="text-dark">{{ $user->user_type }}</td>
 								 <td scope="col" >
 								 	<input type="checkbox" data-id="{{$user['id']}}" name="vendor_status" class="js-switchu user" {{ $user->approve == 1 ? 'checked' : '' }} ></td>
-								<td>
-									
-									<form action="{{ route('vendor.destroy', ['id' => $user->id]) }}" method="POST" class="d-inline" onsubmit="return confirmDelete()">
+
+								<td class="d-flex">
+									<a href="{{route('vendor.detail',['id'=>$user['id']])}} " class="btn btn-xs btn-info mr-2">Detail</a>
+									<form action="{{ route('vendor.destroy', ['id' => $user->company_id]) }}" method="POST" class="d-inline" onsubmit="return confirmDelete()">
 										@method('DELETE')
 										@csrf
 										<button type="submit" class="btn btn-xs btn-danger">

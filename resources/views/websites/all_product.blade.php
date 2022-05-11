@@ -39,87 +39,6 @@
         </form>
         </div>
         </div>
-        <!-- <div class="col-md-8 mt-2 mt-md-0 mt-sm-2 col-12">
-         <div class="card">
-          <div class="card-body">
-            <h6>Browes By Choice </h6>
-           <div class="category_sort">
-            <div class="category_data mb-0 active">
-            <p>Populer</p>
-           </div>
-           <div class="category_data mb-0">
-            <p>Category</p>
-           </div>
-           <div class="category_data mb-0">
-            <p>By Cities</p>
-           </div>
-           <div class="category_data mb-0">
-            <p>Area Unit</p>
-           </div>
-           <div class="category_data mb-0">
-            <p>Price Ranges</p>
-           </div>
-            </div>
-            <div class="row">
-             <div class="col-md-3 col-4 mt-3">
-              <div class="card">
-               <div class="card-body small_card text-center">
-                <h6>Small </h6>
-                <p>Houses</p>
-               </div>
-              </div>
-             </div>
-             <div class="col-md-3 col-4 mt-3">
-              <div class="card">
-               <div class="card-body small_card text-center">
-                <h6>Small </h6>
-                <p>Houses</p>
-               </div>
-              </div>
-             </div>
-
-             <div class="col-md-3 col-4 mt-3">
-              <div class="card">
-               <div class="card-body small_card text-center">
-                <h6>Small </h6>
-                <p>Houses</p>
-               </div>
-              </div>
-             </div>
-
-             <div class="col-md-3 col-4 mt-3">
-              <div class="card">
-               <div class="card-body small_card text-center">
-                <h6>Small </h6>
-                <p>Houses</p>
-               </div>
-              </div>
-             </div>
-
-             <div class="col-md-3 col-4 mt-3">
-              <div class="card">
-               <div class="card-body small_card text-center">
-                <h6>Small </h6>
-                <p>Houses</p>
-               </div>
-              </div>
-             </div>
-
-             <div class="col-md-3 col-4 mt-3">
-              <div class="card">
-               <div class="card-body small_card text-center">
-                <h6>Small </h6>
-                <p>Houses</p>
-               </div>
-              </div>
-             </div>
-
-
-            </div>
-
-           </div>
-          </div>
-        </div> -->
         </div>
       </div>
       </div>
@@ -127,78 +46,7 @@
   </div>
 
 
-<!-- <div class="container mt-5 "> -->
- <!-- <div class="pill-nav">
-  <a  href="#" class="click active" data-id='1'>Populer</a>
 
-  <a href="#" class="click" data-id='3'>Area Unit</a>
-  <a href="#" class="click" data-id='4'>Cities</a>
-  <a href="#" class="click" data-id='5'>Price Ranges</a>
-</div> -->
-<!-- <div class="container mt-5">
- 
- <div class="populer ">
-  <div class="row">
-    <div class="col-md-2">
-      <div class="card card_hover shadow " id="small" data-id='2'>
-       <div class="card-body small_card text-center">
-        <h6>Small </h6>
-        <p>Houses</p>
-       </div>
-      </div>
-   </div>
-   <div class="col-md-2">
-     <div class="card card_hover shadow" id="new" data-id='new'>
-      <div class="card-body small_card text-center">
-       <h6>New </h6>
-       <p>Houses</p>
-     </div>
-   </div>
-  </div>
-  <div class="col-md-2">
-   <div class="card card_hover shadow" id="furnish" data-id='furnish'>
-     <div class="card-body small_card text-center">
-      <h6>Furnished </h6>
-      <p>Houses</p>
-    </div>
-   </div>
- </div>
- <div class="col-md-2">
-  <div class="card card_hover shadow">
-    <div class="card-body small_card text-center">
-     <h6>Corner </h6>
-     <p>Houses</p>
-    </div>
-   </div>
- </div>
- <div class="col-md-2 ">
-  <div class="card card_hover shadow">
-    <div class="card-body small_card text-center">
-     <h6>Corner </h6>
-     <p>Plot</p>
-   </div>
-  </div>
- </div>
-</div>
-</div>
- <div class="area display_item">
- <div class="row areas">
- 
- </div>
- </div>
- <div class="citis display_item">
-  <div class="row citiss">
- 
- </div>
- </div>
- <div class="price2 display_item">
-  <div class="row price_range">
-
- </div>
-</div>
-</div> -->
-<!-- //dfdsf -->
- <!-- //dfdsf -->
 
  <div class="populer_text text-center mt-5">
    @foreach($categories as $category)
@@ -215,7 +63,7 @@
  
  <div class="row"  >
      @foreach($products as $product)
-     <div class="col-md-3">
+     <div class="col-md-3 mt-3">
     <x-card.card2   :product="$product" />
     </div>  
     @endforeach

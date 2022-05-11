@@ -192,8 +192,8 @@
         <label for="" class="font-weight-bold mt-2">
           Total Number Of Ads <span class="text-danger">*</span>
         </label>
-      <input type="number" class="form-control" id="total_ads" placeholder="Total Number Of Ads" >
-      <span class="text-danger">@error ('total_ads') {{$message}}@enderror</span>
+      <input type="number" class="form-control" id="total_ads" value="10" >
+      <span class="text-danger" id="message"></span><br>
 
       <label for="" class="font-weight-bold mt-2">
           Total Price <span class="text-danger">*</span>
@@ -226,7 +226,7 @@
       $('#package_id').val($(this).data('id'))
       let price=$(this).data('price')
       $('#price').val(price)
-      $('#total_price').val(price)
+      $('#total_price').val(price * $('#total_ads').val())
 
       let ads =$('#total_ads').val();
       if(ads.length==0)
@@ -241,7 +241,7 @@
 
 
    
-    $('#total_ads').change(function(){
+    $('#total_ads').keyup(function(){
         let ads =$(this).val;
       if(ads.length==0)
       {
@@ -250,6 +250,16 @@
       {
         $('.add_to_cart').prop('disabled',false)
       }
+
+      if($(this).val()<10)
+      {
+        $('.add_to_cart').prop('disabled',true)
+        $('#message').text('Maximum ads Quentity is 10')
+      }else
+      {
+        $('#message').text('');
+      }
+
      let new_price=$(this).val() * $('#price').val();
      $('#total_price').val(new_price);
 

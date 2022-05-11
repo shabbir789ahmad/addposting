@@ -32,21 +32,25 @@
                 <th scope="col">Name</th>
                 <th scope="col">Location</th>
                 <th scope="col">Price</th>
+                <th scope="col">Ads Type</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
                @foreach($products as $product)
-              <tr>
+              <tr >
                 
-                <td class="text-dark col-1 p-1"><img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" width="100%" class="rounded"></td>
-                <td class="text-dark">{{ ucfirst($product->category_name)}}</td>
-                <td class="text-dark">{{ucfirst($product['name'])}}</td>
-                <td class="text-dark">{{ucfirst($product['location'])}}</td>
-                <td class="text-dark ">${{$product['price']}}</td>
+                <td class="text-dark col-1 p-1" ><img src="{{asset('uploads/product/'.\App\Models\Image::where(['product_id' => $product->id])->pluck('product_images')->first())}}" width="100%" class="rounded"></td>
+                <td class="text-dark align-middle">{{ ucfirst($product->category_name)}}</td>
+                <td class="text-dark align-middle" >{{ucfirst($product['name'])}}</td>
+                <td class="text-dark align-middle">{{ucfirst($product['location'])}}</td>
+                <td class="text-dark align-middle ">{{$product['price']}} AED</td>
+                <td class="text-dark align-middle text-center">
+                  
+                  <span @if($product['ads_type']=='free') class="badge badge-success p-2" @elseif($product['ads_type']=='Premium') class="badge badge-primary p-2" @elseif($product['ads_type']=='Featured') class="badge badge-info p-2" @elseif($product['ads_type']=='Hot') class="badge badge-danger p-2"  @endif>{{$product['ads_type']}}</span></td>
               
                
-                <td class="p-0">
+                <td class="p-0 align-middle">
                  <form action="{{route('ads.destroy',['id'=>$product['id']])}}" method="POST" class="text-center ">
         @csrf
         @method('DELETE')

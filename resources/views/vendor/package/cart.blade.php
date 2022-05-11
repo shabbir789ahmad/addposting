@@ -31,16 +31,16 @@
               @php $total +=$details['package_price']
               @endphp
               <tr style="align-items: center;">
-                <td class="id d-none"><input type="text"  value="{{$details['id']}}"></td>
-                <td class="text-dark">{{ucwords($details['package_name'] )}}</td>
+                <td class="id d-none align-middle"><input type="text"  value="{{$details['id']}}"></td>
+                <td class="text-dark align-middle">{{ucwords($details['package_name'] )}}</td>
 
-                <td class="text-dark price_c">{{$details['price']}}</td>
+                <td class="text-dark align-middle price_c">{{$details['price']}}</td>
 
-                <td class="text-dark col-2"><input type="number" value="{{ $details['package_ads'] }}" class="form-control  update_cart " /></td>
+                <td class="text-dark align-middle col-2"><input type="number" value="{{ $details['package_ads'] }}" class="form-control  update_cart " /></td>
 
-                <td class="text-dark "><span class="sub_total"> {{ (int)$details['package_price'] }}</span>  AED</td>
+                <td class="text-dark align-middle"><span class="sub_total"> {{ (int)$details['package_price'] }}</span>  AED</td>
 
-                <td class="text-dark"><button class="btn btn-danger btn-md  remove_from_cart"><i class="fas fa-trash-alt"></i></button></td>
+                <td class="text-dark align-middle"><button class="btn btn-danger btn-md  remove_from_cart"><i class="fas fa-trash-alt"></i></button></td>
               </tr>
               @endforeach
               @else

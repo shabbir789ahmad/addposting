@@ -76,6 +76,7 @@ class LabourContoller extends Controller
              'about_me'=>$request->about_me,
              'company_id'=>Auth::user()->company_id,
              'user_type'=>'agent',
+             'approve'=>1,
         ];
         
          $this->user->create($data);

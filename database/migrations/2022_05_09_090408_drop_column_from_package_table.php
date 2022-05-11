@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::table('packages', function (Blueprint $table) {
          
              $table->dropColumn('package_ads');
+             $table->dropColumn('package_duration');
         });
     }
 
@@ -28,6 +29,7 @@ return new class extends Migration
     {
         Schema::table('packages', function (Blueprint $table) {
             $table->string('package_ads');
+            $table->string('package_duration');
         });
     }
 };

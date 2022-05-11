@@ -134,6 +134,12 @@
           <span>User Messages</span>
         </a>
        </li>
+       <li class="nav-item ">
+        <a class="nav-link " href="{{route('env.index')}}">
+          <i class="fas fa-window-maximize text-light"></i>
+          <span>Email Credientials</span>
+        </a>
+       </li>
     
       
       
@@ -372,6 +378,22 @@ $('.discount').click(function(){
         
     });
 
+
+function confirmDelete() {
+
+            var cf = confirm('Are You Sure?');
+
+            if (cf) {
+
+                return true;
+
+            } else {
+
+                return false;
+                
+            }
+            
+        }
 
  
 </script>
