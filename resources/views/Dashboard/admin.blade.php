@@ -200,60 +200,7 @@
                 </form>
               </div>
             </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                @php 
-                $notify=0;
-             
-                 $cart=\App\Models\Cart::get();
-
-                 if($cart)
-                 {
-                 foreach($cart as $car)
-                   {
-                      $notify=count($car->unreadNotifications);
-                     $cart=$car->unreadNotifications; 
-                   
-                  }
-              
-                }else{
-                  $notify=0;
-                }
-                  
-                 @endphp
-                
-                <span class="badge badge-danger badge-counter">{{$notify}}</span>
-               
-              </a>
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Alerts Center
-                </h6>
-               @foreach($cart as $notification)
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <!-- <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div> -->
-                 
-                  <div class="d-flex">
-                    @foreach($notification['data'] as $d)
-                
-                      {{$d}}
-                    @endforeach
-                  
-                    <a href="{{route('order.index')}}" class=" border badge-warning rounded px-2 py-1 ml-auto mr-3">{{$notification['notifiable_id']}}</a>
-                    
-                  </div>
-                </a>
-               @endforeach
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-              </div>
-            </li>
+            
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -265,18 +212,19 @@
                 <h6 class="dropdown-header">
                   Message Center
                 </h6>
+               
                 <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="{{asset('pic/10_archived_orders._CB654640573_.png')}}" style="max-width: 60px" alt="">
+                  <!-- <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="{{asset('uploads/')}}" style="max-width: 60px" alt="">
                     <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
+                  </div> -->
+                 <!--  <div class="font-weight-bold">
                     <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been
                       having.</div>
                     <div class="small text-gray-500">Udin Cilok · 58m</div>
-                  </div>
+                  </div> -->
                 </a>
-              
+             
                  
              
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>

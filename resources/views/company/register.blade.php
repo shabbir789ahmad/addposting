@@ -136,7 +136,173 @@
        
 
     <div class="container">
-     <x-registercomponent />
+     
+
+<form method="POST" action="{{ route('company.register') }}" enctype="multipart/form-data">
+      @csrf
+        <div class="title">Register</div>
+        
+        <div class="row">
+       
+
+       <div class="col-md-6">
+        <div class="input-box underline">
+          <input   type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocu placeholder="Enter Your Name" required>
+          <div class="underline"></div>
+          @error('name')
+            <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+             </span>
+         @enderror
+        </div>
+   
+   </div>
+
+       <div class="col-md-6">
+        <div class="input-box underline">
+          <input  id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email" autofocu placeholder="Enter Your Email" required>
+          <div class="underline"></div>
+          @error('email')
+            <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+             </span>
+         @enderror
+        </div>
+   
+   </div>
+ 
+         
+       <div class="col-md-6">
+        <div class="input-box">
+          <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password"  autocomplete="current-password" placeholder="Password" required>
+          <div class="underline"></div>
+          @error('password')
+            <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+            </span>
+         @enderror
+        </div>
+       </div>
+         
+     
+      <div class="col-md-6">
+        <div class="input-box">
+          <input  type="number" class="@error('phone') is-invalid @enderror" name="phone" value="{{old('phone')}}"  autocomplete="phone" placeholder="Enter Phone Number" required>
+          <div class="underline"></div>
+          @error('phone')
+            <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+            </span>
+         @enderror
+        </div>
+       </div>
+
+       <div class="col-md-6">
+        <div class="input-box">
+          <input  type="file" class="@error('image') is-invalid @enderror"  name="image"  autocomplete="image" required>
+          <small class="text-danger">Profile Image</small>
+          <div class="underline"></div>
+          @error('image')
+            <span class="invalid-feedback mb-5" role="alert">
+                 <strong>{{ $message }}</strong>
+            </span>
+         @enderror
+        </div>
+       </div>
+
+      
+       <div class="col-md-6"></div>
+       <div class="title">Comapny</div>
+
+        
+       </div>
+       <div class="row">
+        <div class="col-md-6">
+        <div class="input-box">
+          <input  type="text" class="@error('company_name') is-invalid @enderror" name="company_name"  autocomplete="company_name"
+           value="{{old('company_name')}}" placeholder="Enter Company Name" required>
+          <div class="underline"></div>
+          @error('company_name')
+            <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+            </span>
+         @enderror
+        </div>
+       </div>
+
+       <div class="col-md-6">
+        <div class="input-box">
+          <input  type="text" class="@error('licenece_no') is-invalid @enderror" name="licenece_no"  autocomplete="licenece_no" value="{{old('licenece_no')}}" placeholder="Enter Company Liecense No" required>
+          <div class="underline"></div>
+          @error('licenece_no')
+            <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+            </span>
+         @enderror
+        </div>
+       </div>
+
+        <div class="col-md-6">
+        <div class="input-box">
+          <input  type="text" class="@error('company_address') is-invalid @enderror" name="company_address" value="{{old('company_address')}}"  autocomplete="company_address" placeholder="Enter Company Address" required>
+          <div class="underline"></div>
+          @error('company_address')
+            <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+            </span>
+         @enderror
+        </div>
+       </div>
+
+       <div class="col-md-6">
+        <div class="input-box">
+          <input  type="text" class="@error('city') is-invalid @enderror" name="city" value="{{old('city')}}" autocomplete="city" placeholder="Enter Company City" required>
+          <div class="underline"></div>
+          @error('city')
+            <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+            </span>
+         @enderror
+        </div>
+       </div>
+
+      <div class="col-md-6">
+        <div class="input-box">
+          <input  type="text" class="@error('zip_code') is-invalid @enderror" name="zip_code"  autocomplete="zip_code" value="{{old('zip_code')}}" placeholder="Enter Postal/zip code" required>
+          <div class="underline"></div>
+          @error('zip_code')
+            <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+            </span>
+         @enderror
+        </div>
+       </div>
+
+       <div class="col-md-6">
+        <div class="input-box">
+          <input  type="file" class="@error('licenece_image') is-invalid @enderror" name="licenece_image"  autocomplete="licenece_image" placeholder="Enter Postal/zip code" required>
+          <small class="text-danger">Company Licence Image</small>
+          <div class="underline"></div>
+          @error('licenece_image')
+            <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+            </span>
+         @enderror
+        </div>
+       </div>
+
+     </div>
+         
+
+    
+
+        <div class="input-box button">
+          <input type="submit" name="" value="Continue">
+        </div>
+      </form>
+
+
+
     
         
      

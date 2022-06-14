@@ -74,6 +74,9 @@ class LabourContoller extends Controller
              'user_image'=>$this->image(),
              'phone'=>$request->user_phone,
              'about_me'=>$request->about_me,
+             'city'=>$request->national,
+             'designation'=>$request->designation,
+             'language'=>$request->language,
              'company_id'=>Auth::user()->company_id,
              'user_type'=>'agent',
              'approve'=>1,
@@ -115,24 +118,9 @@ class LabourContoller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-          
-             'labour_name'=>'required',
-             'email'=>['required'],
-             'password'=>['required', 'string', 'min:8'],
-             'image'=>'required',
-             'labour_phone'=>['required', 'min:6', ],
-        ]);
+        
        
-        $data=[
-          
-             'labour_name'=>$request->labour_name,
-             'email'=>$request->email,
-             ' password'=>$request->password,
-             'labour_image'=>$this->image(),
-             'labour_phone'=>$request->labour_phone,
-        ];
-         return \App\Helpers\Form::UpdateEloquent(new Labour,$id, $data);
+        
     }
 
     /**

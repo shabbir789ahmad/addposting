@@ -1,6 +1,6 @@
 @extends('master.master')
 @section('content')
-<div class="container con mt-4" >
+<div class="container-fluid con mt-4" style="overflow: hidden;">
   <div class="row " >
    <div class="col-md-8 col-12 ">
     <div class="imgs">
@@ -60,7 +60,7 @@
         @endif
         <div class="row">
           <div class="col-md-4 ">
-            <div class="selller_description">
+            <div class="selller_imge">
                <img src="{{asset('uploads/user/'.$products->user_image)}}" >
              </div>
           </div>
@@ -85,7 +85,7 @@
          <button  class="btn btn_chat pl-0 email bg-danger" data-id="{{$products['agent_id']}}" data-name="{{$products['name']}}" data-agent="{{ucfirst($products['user_name'])}}" data-email="{{ucfirst($products['email'])}}"><i class="fa-solid fa-envelope"></i> Email</button>
          
          <a href="https://wa.me/{{$products['phone']}}" class="btn btn_chat  bg-success">
-           <i class="fa-brands fa-whatsapp"></i>Whatsapp
+           <i class="fa-brands fa-whatsapp"></i> Whatsapp
          </a>
         
       
@@ -99,7 +99,7 @@
   </div>
 </div>
 
-<div class="container con mt-4">
+<div class="container-fluid con mt-4" style="overflow: hidden;">
  <div class="row" >
    <div class="col-md-8 col-12 ">
    <!-- //seller description -->
@@ -108,9 +108,21 @@
        <p class="descriptio mb-0"> Description</p>
        
          <p class="p-0 ">{{ucfirst($products['detail'])}}</p>
+         <ul class="ul_two_column ">
+  
+           @foreach($features2 as $feature)
+           
+            
+         <li class="">
+        
+           {{ucfirst($feature['detail_feature'])}}
+         </li>
+          
+          @endforeach
+         </ul>
+
          
-       
-       
+        
       </div>
      </div>
 

@@ -1,3 +1,16 @@
+.ul_two_column {
+    -moz-column-count: 4;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 4;
+    -webkit-column-gap: 20px;
+    column-count: 3;
+    column-gap: 20px;
+    list-style-type: circle !important;
+}
+.ul_two_column li{
+   list-style-type: circle !important;
+
+}
 .background-image{
 	position: relative;
 	top: 0;
@@ -21,6 +34,17 @@
   right: 0;
 }
 
+.national{
+  color: #000;
+}
+.agent_name h5{
+  color: red;
+
+}
+.agent_name p{
+  color: #000;
+  
+}
 .category_data5 p{
   position: absolute;
   right: 0;
@@ -35,8 +59,14 @@
 
     font-weight: bold;
 }
-@media (min-width: 1500px) and (max-width: 2000px)
+@media (min-width: 1500px) and (max-width: 2200px)
 {
+  .background-image{
+    height: 20rem;
+  }
+  .populer_text{
+    margin-top: 15%;
+  }
  .seller_name2
  {
   color: #fff;
@@ -107,6 +137,12 @@
 }
 @media (min-width: 1025px) and (max-width: 1500px)
 {
+  .background-image img{
+    height: 30rem;
+  }
+  .populer_text{
+    margin-top: 15%;
+  }
  .seller_name2
  {
   color: #fff;
@@ -174,6 +210,12 @@
 
 @media (min-width: 769px) and (max-width: 1024px)
 {
+  .background-image img{
+    height: 30rem;
+  }
+  .populer_text{
+    margin-top: 15%;
+  }
   .agent_image{
     height: 10rem;
    
@@ -245,6 +287,12 @@
 
 @media (min-width: 501px) and (max-width: 769px)
 {
+  .background-image img{
+    height: 30rem;
+  }
+  .populer_text{
+    margin-top: 15%;
+  }
   .agent_image{
     height: 20rem;
     overflow: hidden;
@@ -316,7 +364,12 @@
 
 @media (max-width: 500px)
 {
- 
+ .background-image img{
+    height: 30rem;
+  }
+  .populer_text{
+    margin-top: 15%;
+  }
 .seller_name2
  {
   color: #fff;

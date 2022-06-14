@@ -45,7 +45,32 @@
                    <input type="text" class="form-control input_border" name="email"  value="{{Auth::user()->email}}">
                    <span class="text-danger">@error ('email') {{$message}}@enderror</span>     
                  </div>
+
+                 <div class="col-md-6">
+                   <label for="" class="font-weight-bold mt-3">
+                     Your  City
+                     </label>
+                    <input type="text" class="form-control input_border" name="city" placeholder="Agent City" value="{{Auth::user()->city}}">
+                     <span class="text-danger ">@error ('national') {{$message}}@enderror</span>
+                     <br>
+                 </div>
+                 <div class="col-md-6">
+                   <label for="" class="font-weight-bold mt-3">
+                    Agent Language
+                  </label>
+                  <input type="text" class="form-control input_border" name="language"  placeholder="type with comma seprated like english,arabic" value="{{Auth::user()->language}}">
+                  <span class="text-danger ">@error ('language') {{$message}}@enderror</span><br>
+                 </div>
+                  <div class="col-md-6">
+                   <label for="" class="font-weight-bold mt-3">
+                    Agent Designation
+                  </label>
+                  <input type="text" class="form-control input_border" name="designation"  placeholder="Designation Like Property Consultant" value="{{Auth::user()->designation}}">
+                  <span class="text-danger ">@error ('designation') {{$message}}@enderror</span><br>
+                 </div>
                </div>
+
+
                 
                <label for="" class="font-weight-bold mt-3">
                  Select  Images <span class="text-danger">*</span>

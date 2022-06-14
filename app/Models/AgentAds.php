@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\scope\VendorScope;
+use Auth;
 class AgentAds extends Model
 {
     use HasFactory;
@@ -16,4 +17,10 @@ class AgentAds extends Model
   
     //     return static::addGlobalScope(new VendorScope);
     // }
+
+     public function scopeVendor( $query) {
+
+       return $query->where('agent_id',Auth::id());
+        
+    }
 }

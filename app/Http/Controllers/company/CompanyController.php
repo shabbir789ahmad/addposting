@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Traits\ImageTrait;
 use Auth;
 use Mail;
-use app\Jobs\SendWelcomeEmailJob;
+use App\Jobs\SendWelcomeEmailJob;
 class CompanyController extends Controller
 {
     use ImageTrait;
@@ -35,7 +35,7 @@ class CompanyController extends Controller
     }
 
 
-
+       
 
     function create(Request $request)
     {
@@ -56,7 +56,7 @@ class CompanyController extends Controller
              'phone'=>['required', 'min:9', ],
         ]);
 
-        $request = app('request');
+
 
         if($request->hasfile('licenece_image'))
          {
@@ -71,9 +71,7 @@ class CompanyController extends Controller
           
              'company_name'=>$request->company_name,
              'licenece_no'=>$request->licenece_no,
-             'city'=>$request->city,
              'zip_code'=>$request->zip_code,
-            
              'company_address'=>$request->company_address,
              'licenece_image'=>$name,
             
@@ -81,7 +79,7 @@ class CompanyController extends Controller
 
          
         
-        // try {
+         try {
        \DB::beginTransaction();
          
           $company=Company::create($comany);
@@ -95,16 +93,17 @@ class CompanyController extends Controller
              'user_image'=>$this->image(),
              'phone'=>$request->phone,
              'user_type'=>'vendor',
+             'city'=>$request->city,
              'about_me'=>$request->about_me??null,
              'company_id'=>$company->id,
 
           ]);
           
-          $email_data=[
-           'name'=>$request->name,
-             'email'=>$request->email,
-          ];
+          
 
+         \DB::commit();
+
+      
           $details=[
             
             'email'=>$request->email,
@@ -115,20 +114,13 @@ class CompanyController extends Controller
        ];
 
           //send welcome email
-          dispatch(new SendWelcomeEmailJob($email_data));
-         \DB::commit();
-
-      
-            return to_route('company.dashboard')->with('flash','success');
-       
-        
-            
+          dispatch(new SendWelcomeEmailJob($details));
+           return to_route('approve')->with('flash','success');
+       } catch (\Exception $e)
+       {
            
-       //} catch (\Exception $e)
-      //  {
-           
-       //  return redirect()->back()->with('flash','fail');          
-       // }
+       return redirect()->back()->with('flash','fail');          
+        }
          
     }
 

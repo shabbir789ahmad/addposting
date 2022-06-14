@@ -228,7 +228,7 @@ color: #666666;
   }
   .haart_style{
   position: absolute;
-  bottom: 20%;
+  bottom: 30%;
   right: 2%;
   font-size: 6vw;
   color: red;
@@ -303,9 +303,37 @@ color: #666666;
 .category_data{
   top: 53%;
 }
-
+.selller_imge{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+.selller_imge img
+  {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid red;
+}
+.p-name{
+  font-size: 6vw;
+}
+.item_price p{
+ font-size: 6vw;
+}
 }
 @media (min-width: 481px) and (max-width: 768px) {
+  .selller_imge img
+  {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  border: 2px solid red;
+}
   .area, .product_data2{
   display: flex;
   flex-direction: row;
@@ -380,6 +408,14 @@ color: #666666;
   }
 
 @media (min-width: 769px) and (max-width: 1024px) {
+  .selller_imge img
+  {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid red;
+}
 .area, .product_data2{
   display: flex;
   flex-direction: row;
@@ -448,6 +484,15 @@ color: #666666;
 
 
 @media (min-width: 1025px) and (max-width: 1500px) {
+
+.selller_imge img
+  {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid red;
+}
 
 .area, .product_data2{
   display: flex;
@@ -537,6 +582,15 @@ font-family: Roboto;
 
 
 @media (min-width: 1501px) and (max-width: 2100px) {
+
+  .selller_imge img
+  {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid red;
+}
 .area , .product_data2{
   display: flex;
   flex-direction: row;
@@ -603,4 +657,8 @@ font-family: Roboto;
 .haart_style{
   bottom: 18%;
 }
-}
+
+
+
+
+

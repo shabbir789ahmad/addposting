@@ -14,7 +14,6 @@ class Company extends Model
       'company_name',
      'licenece_no',
      'company_address',
-     'city',
      'zip_code',
      'licenece_image',
      'about_me',

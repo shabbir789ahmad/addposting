@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\EnvController;
+use App\Http\Controllers\Admin\AdminForgotPasswordController;
 
 use App\Http\Controllers\vendor\PackageController;
 use App\Http\Controllers\vendor\AdsController;
@@ -41,7 +42,10 @@ Auth::routes();
 Route::view('select/login/type','auth.login_type')->name('login.type');
 Route::view('non/apprive','approve')->name('approve');
 
-Route::view('mail','user_email');
+Route::view('contact','websites.contact');
+Route::post('send/message',[MessageController::class,'store'])->name('send.message');
+Route::view('about','websites.about');
+
 
 
 
@@ -56,6 +60,8 @@ Route::get('all/{id}/ads',[HomeController::class,'allAds'])->name('all.ads');
 Route::get('vendor/{id}/product',[HomeController::class,'vendorProduct'])->name('vendor.product');
 Route::get('agent/{id}/product',[HomeController::class,'agentProduct'])->name('agent.product');
 Route::get('searchresult',[SearchResultController::class,'searchResut'])->name('searchresult');
+
+//get all agents
 Route::get('agent',[AgentController::class,'index'])->name('agent');
 
 //ajax call data route 
@@ -78,6 +84,13 @@ Route::group(['prefix'=>'admin'],function()
   {
     Route::view('login','admin.admin_login')->name('admin.login');
     Route::post('authenticate',[AdminController::class,'adminLogin'])->name('admin.authenticate');
+
+    //admin password reset links
+    Route::get('forgot/password/email',[AdminForgotPasswordController::class,'index'])->name('forgot.password.email');
+    Route::post('forgot/send/email',[AdminForgotPasswordController::class,'store'])->name('forgot.send.email');
+    Route::get('admin/reset/{token}',[AdminForgotPasswordController::class,'showForm'])->name('admin.reset');
+     Route::post('/reset/password/now',[AdminForgotPasswordController::class,'resetPassword'])->name('reset.password.now');
+  
   });
 
 
@@ -91,7 +104,7 @@ Route::group(['prefix'=>'admin'],function()
   {
     Route::post('logout',[AdminController::class,'logout'])->name('admin.logout');
     Route::get('dashboard',[CountDataController::class,'index'])->name('admin.dashboard');
-    // Route::get('dashboard',[CountController::class,'count2'])->name('admin.dashboard');
+    
 
   //category routes crud
   Route::controller(CategoryController::class)->group(function () {

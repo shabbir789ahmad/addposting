@@ -48,7 +48,7 @@
 
 
 
- <div class="populer_text text-center mt-5">
+ <div class="populer_text text-center ">
    @foreach($categories as $category)
      @if($category['id']==Request('id'))
      <h3 class="browser ">{{$category['category_name']}} Ads</h3>
@@ -63,7 +63,7 @@
  
  <div class="row"  >
      @foreach($products as $product)
-     <div class="col-md-3 mt-3">
+     <div class="col-md-3 col-sm-6 col-md-4 col-lg-3 mt-3">
     <x-card.card2   :product="$product" />
     </div>  
     @endforeach

@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Labour;
 use App\Models\SubCategory;
 use App\Models\Feature;
+use App\Models\Feature2;
 use App\Http\Traits\ProductTrait;
 use Illuminate\Http\Request;
 use Cookie;
@@ -76,12 +77,13 @@ class HomeController extends Controller
       ->first();
          
     $features=Feature::where('product_id',$products->id)->get();
+    $features2=Feature2::where('product_id',$products->id)->get();
         
     $images=Image::where('product_id',$id)->get();
         
     $products2=$this->products($products->category_id);
        
-    return view('websites.detail',compact('products','images','products2','features'));
+    return view('websites.detail',compact('products','images','products2','features','features2'));
     
     }
 

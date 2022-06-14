@@ -191,9 +191,7 @@
        </div>
        
          @endforeach
-         <div class="mt-5"> 
-           {!! $products->links() !!}
-         </div>
+         
      </div>
     </div>
   </div>

@@ -12,6 +12,7 @@ use App\Models\Area;
 use App\Models\SubCategory;
 use App\Models\Product;
 use App\Models\Feature;
+use App\Models\Feature2;
 use App\Models\State;
 use App\Models\Type;
 use App\Models\City;
@@ -80,11 +81,11 @@ class AdsController extends Controller
 
         if(Auth::user()->user_type=='vendor')
         {
-          $ads=VendorAds::where('total_ads','>',0)->get();
+          $ads=VendorAds::Vendor()->where('total_ads','>',0)->get();
 
         }else if(Auth::user()->user_type=='agent')
         {
-            $ads=AgentAds::where('total_ads','>',0)->get();
+            $ads=AgentAds::Vendor()->where('total_ads','>',0)->get();
         }
         
         $types=Type::where('type_id',$id)->get();
@@ -118,11 +119,11 @@ class AdsController extends Controller
            {
             if(Auth::user()->user_type=='vendor')
             {
-               $ads=VendorAds::findOrFail($request->ads_type);
+               $ads=VendorAds::Vendor()->findOrFail($request->ads_type);
                $ads=$ads->package_name;
              }else if(Auth::user()->user_type=='agent')
              {
-              $ads=AgentAds::findOrFail($request->ads_type);
+              $ads=AgentAds::Vendor()->findOrFail($request->ads_type);
               $ads=$ads->package_name;
              }
             }else{
@@ -161,6 +162,17 @@ class AdsController extends Controller
                    ]);
                  }
                }
+
+               if($request->detail_feature)
+              {
+                for($i=0; $i<count($request->detail_feature);$i++)
+                 {
+                    Feature2::create([
+                    'detail_feature'=>$request->detail_feature[$i],
+                    'product_id'=>$product->id,
+                   ]);
+                 }
+               }
                
                foreach($request->file('image') as $file)
                {
@@ -180,13 +192,13 @@ class AdsController extends Controller
               {
                 if(Auth::user()->user_type=='vendor')
                 {
-                  $ads=VendorAds::where('agent_id',Auth::id())->where('total_ads','>',0)->where('id',$request->ads_type)->first();
+                  $ads=VendorAds::Vendor()->where('agent_id',Auth::id())->where('total_ads','>',0)->where('id',$request->ads_type)->first();
                   $ads->decrement('total_ads');
                   $ads->increment('used_ads');
 
                 }else if(Auth::user()->user_type=='agent')
                 {
-                 $ads=AgentAds::where('agent_id',Auth::id())->where('total_ads','>',0)->first();
+                 $ads=AgentAds::Vendor()->where('agent_id',Auth::id())->where('total_ads','>',0)->first();
                  $ads->decrement('total_ads');
                   $ads->increment('used_ads');
                 }

@@ -38,7 +38,10 @@ class Product extends Model
 }
 
 
-
+ public function features()
+{
+    return $this->hasMany(Feature::class);
+}
 
 
     

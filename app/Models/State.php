@@ -15,5 +15,9 @@ class State extends Model
     return $this->hasMany(City::class);
    }
 
+   public static function states()
+    {
+        return State::latest()->select('states')->get();
+    }
    
 }

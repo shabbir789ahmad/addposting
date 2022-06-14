@@ -53,6 +53,19 @@
 						</label>
 					 <textarea class="form-control input_border" name="detail" rows="5" placeholder="Detail here"></textarea>	
 					 <span class="text-danger">@error ('detail') {{$message}}@enderror</span>
+
+           <label class="font-weight-bold mt-3">Add Feature<span class="text-danger">*</span></label>
+           <div class="row" id="detail_field_append"> 
+         <div class="col-12 d-flex a" >
+       <input type="text" name="detail_feature[]" class="form-control mt-1 border border-secondary mr-2" placeholder="Product Detail">
+       <button type="button" class="btn btn-info  btn-xs add" ><i class="fas fa-plus"></i></button>
+     </div>
+
+   </div>
+    <span class="text-danger">@error('detail') {{$message}} @enderror</span>
+  
+
+
            @if($categorie->category_type=='house' || $categorie->category_type=='apartment' || $categorie->category_type=='rooms')
 					 <label for="" class="font-weight-bold mt-4">
 							Furnished
@@ -257,4 +270,32 @@
 	</div>
 </form>
 
+@endsection
+
+@section('script')
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+    
+    $(document).on('click','.add',function(){
+      $(this).replaceWith('<button class="btn btn-danger btn-xs text-center  cancel" type="button"  ><i class="fas fa-trash-alt"></i></button>')
+   
+      $('#detail_field_append').append(`
+
+         <div class="col-12 d-flex a">
+       <input type="text" name="detail_feature[]" class="form-control mt-1 border border-secondary mr-2" placeholder="Product Detail">
+       <button type="button" class="btn btn-info   btn-xs add" ><i class="fas fa-plus"></i></button>
+     </div>
+        `);
+
+    });
+
+    $(document).on('click','.cancel',function(){
+
+    $(this).parents('.a').remove();
+    });
+  
+
+  });
+</script>
 @endsection

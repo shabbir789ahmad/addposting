@@ -10,7 +10,7 @@ class BuyAdController extends Controller
 {
     public function index(Request $req)
     {
-        //fread('ab.php','w');
+        
        $package='';
        if($req->package != null)
        {

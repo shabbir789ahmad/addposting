@@ -12,6 +12,7 @@ use App\Models\Agent;
 use App\Models\SubCategory;
 use App\Http\Traits\CategoryTrait;
 use App\Http\Traits\CityTrait;
+use App\Helpers\SortArray;
 class SearchResultController extends Controller
 {
     use CategoryTrait;
@@ -73,13 +74,13 @@ class SearchResultController extends Controller
       // }
 
         
-        $products=$products->paginate(20);
+        $products=$products->take(30)->get();
          
          foreach($products as $product)
          {
             $product->agent=Agent::where('company_id',$product['company_id'])->where('user_type','vendor')->select('user_image')->first();
          }
-
+       $products=SortArray::array($products);
         return view('websites.searchresult',compact('products','categories','features','cities','areas'));
     }
 }

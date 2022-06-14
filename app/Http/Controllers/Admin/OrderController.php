@@ -35,30 +35,31 @@ class OrderController extends Controller
     public function approve(Request $req)
     {
         
-        DB::transaction(function() use($req ){
-
-          $cart=Cart::findorfail($req->id);
-       
-       $cart->approved=1;
-       $cart->save();
+     DB::transaction(function() use($req )
+     {
+        $cart=Cart::findorfail($req->id);
+        $cart->approved=1;
+        $cart->save();
         
-         $ads=VendorAds::where('agent_id',$cart['agent_id'])->where('package_name','=',$cart['item_name'])->first();
-     
-         if(!$ads==null)
-         {
-            $ads->total_ads=$ads->total_ads+$cart['item_ads'];
-            $ads->save();
-         }else
-         {
+        $ads=VendorAds::where('agent_id',$cart['agent_id'])->first();
+    
+        if($ads==null)
+        {
+           
            $adss=new VendorAds;
            $adss->total_ads=$cart['item_ads'];
            $adss->package_name=$cart['item_name'];
            $adss->agent_id=$cart['agent_id'];
-           
            $adss->save();
-         }
 
-       $agent=$this->agent->find($cart['agent_id']);
+        }else
+        {
+            
+          $ads->total_ads=$ads->total_ads+$cart['item_ads'];
+            $ads->save();
+        }
+
+         $agent=$this->agent->find($cart['agent_id']);
          $details=[
               'email'=>$agent['email'],
               'name'=>$agent['user_name'],
@@ -66,7 +67,7 @@ class OrderController extends Controller
               'order'=>'Approved',
              ];
              
-            dispatch(new SendOrderEmailJob($details));
+         dispatch(new SendOrderEmailJob($details));
 
         });
         

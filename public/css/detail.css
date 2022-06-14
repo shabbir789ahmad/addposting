@@ -6,17 +6,16 @@
 	justify-content: space-between;
 }
 .item_price h5,.detail h5{
-	font-size: 2vw;
+
 	font-weight: 700;
 	font-family:font-family: Helvetica,Lato, sans-serif;
 }
 .item_price p{
-	font-size: 1vw;
 	color: #002f34;
 	font-family:font-family: Helvetica,Lato, sans-serif;
 }
 .p-name {
-	font-size: 1.2vw;
+	
 	color: #002f34;
 	font-family:font-family: Helvetica,Lato, sans-serif;
 }
@@ -35,8 +34,12 @@ height: 7rem;
 .selller_description,.phone{
 	display: flex;
 	flex-direction: row;
-   justify-content: center;
 	font-family:font-family: Helvetica,Lato, sans-serif;
+}
+.selller_imge,.phone{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 .selller_description h6{
  font-size: 1.5rem;
@@ -50,7 +53,7 @@ height: 7rem;
 }
 .seller_name p{
   font-size: 1rem;
-  margin-left: 4%;
+ 
   color: #403b45;
 }
 .language{
@@ -60,13 +63,7 @@ height: 7rem;
 	margin-left: 10%;
 	margin-top: 8%;
 }*/
-.selller_description img{
-  width: 7rem;
-	height: 7rem;
-	border-radius: 50%;
-	object-fit: cover;
-	border: 2px solid black;
-}
+
 .phone a{
 	margin-left: 5%;
 }

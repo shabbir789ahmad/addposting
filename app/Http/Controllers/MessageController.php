@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 class MessageController extends Controller
 {
-    function index(Request $req)
+    function store(Request $req)
     {
         $data=$req->validate([
  

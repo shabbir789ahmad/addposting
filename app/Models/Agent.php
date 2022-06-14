@@ -27,7 +27,9 @@ class Agent extends Authenticatable
         'about_me',
         'company_id',
         'approve',
-       
+        'city',
+        'language',
+        'designation',
         
     ];
 

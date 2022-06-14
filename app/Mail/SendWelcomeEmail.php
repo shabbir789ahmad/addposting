@@ -29,6 +29,6 @@ class SendWelcomeEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('welcome_email',['data'=>$this->data]);
+        return $this->view('welcome_email',['data'=>$this->data])->subject('Welcome To Real Estate');
     }
 }

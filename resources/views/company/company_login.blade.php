@@ -8,12 +8,12 @@
     
         
 
-    <div class="container1">@if(session()->has('agenterror'))
-          
-            <span class="invalid-feedback" role="alert">
-                 <strong>{{ session()->get('agenterror') }}</strong>
-             </span>
-             @endif
+    <div class="container1">
+        @if(session()->has('agenterror'))
+            <div class="alert alert-danger">
+           <strong>Error!</strong>{{session()->get('agenterror')}}
+            </div>
+            @endif
       <form method="POST" action="{{ route('company.authenticate') }}">
       @csrf
      

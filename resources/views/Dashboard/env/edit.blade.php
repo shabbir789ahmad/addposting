@@ -30,6 +30,10 @@
 						</label>
 						<input type="text" class="form-control" name="password" value="">
 						<span class="text-danger">@error ('password') {{$message}}@enderror</span>
+						<span class="text-danger">
+							Go to Chrome Enable Two Step Varification And generate App password.
+
+						</span>
 					</div>
 
 

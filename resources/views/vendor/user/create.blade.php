@@ -60,6 +60,29 @@
                <span class="text-danger ">@error ('image') {{$message}}@enderror</span><br>
                  </div>
 
+                 <div class="col-md-6">
+                   <label for="" class="font-weight-bold ">
+                      Agent City
+                     </label>
+                    <input type="text" class="form-control input_border" name="city" placeholder="Agent City" >
+                     <span class="text-danger ">@error ('city') {{$message}}@enderror</span>
+                     <br>
+                 </div>
+                 <div class="col-md-6">
+                   <label for="" class="font-weight-bold ">
+                    Agent Language
+                  </label>
+                  <input type="text" class="form-control input_border" name="language"  placeholder="type with comma seprated like english,arabic">
+                  <span class="text-danger ">@error ('language') {{$message}}@enderror</span><br>
+                 </div>
+                  <div class="col-md-6">
+                   <label for="" class="font-weight-bold ">
+                    Agent Designation
+                  </label>
+                  <input type="text" class="form-control input_border" name="designation"  placeholder="Designation Like Property Consultant">
+                  <span class="text-danger ">@error ('designation') {{$message}}@enderror</span><br>
+                 </div>
+
                </div>
                 
                
